@@ -5,7 +5,7 @@ var concat = require('gulp-concat');
 gulp.task('concat-js', function() {
     gulp.src([
         'node_modules/jquery/dist/jquery.min.js',
-        'vendor/almasaeed2010/adminlte/dist/js/app.min.js',
+        'node_modules/admin-lte/dist/js/app.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js'
     ]).pipe(concat('all.js'))
      .pipe(gulp.dest('public/js'));
@@ -15,8 +15,8 @@ gulp.task('concat-js', function() {
 gulp.task('concat-css', function() {
     gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
-        'vendor/almasaeed2010/adminlte/dist/css/AdminLTE.min.css',
-        'vendor/almasaeed2010/adminlte/dist/css/skins/_all-skins.min.css'
+        'node_modules/admin-lte/dist/css/AdminLTE.min.css',
+        'node_modules/admin-lte/dist/css/skins/_all-skins.min.css'
     ]).pipe(concat('all.css'))
         .pipe(gulp.dest('public/css'));
 });

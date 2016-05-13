@@ -14,6 +14,13 @@
     <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+
+{{--Header--}}
+@include('common.header')
+
+<!-- Left side column. contains the sidebar -->
+@include('common.left-menu')
+
 <!-- Site wrapper -->
 <div class="wrapper">
 

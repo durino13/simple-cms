@@ -1,9 +1,4 @@
 @extends('layouts.welcome')
-{{--Header--}}
-@include('header')
-
-<!-- Left side column. contains the sidebar -->
-@include('left-menu')
 
 @section('content')
 <div class="content-wrapper">
@@ -49,10 +44,11 @@
     </section>
     <!-- /.content -->
 </div>
-@endsection
 
 {{--Footer--}}
-@include('footer')
+@include('common.footer')
+
+@endsection
 
 <!-- Control Sidebar -->
-@include('right-menu')
+@include('common.right-menu')

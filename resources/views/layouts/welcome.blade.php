@@ -17,20 +17,7 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
-    {{--Header--}}
-    @include('header')
-
-    <!-- Left side column. contains the sidebar -->
-    @include('left-menu')
-
-    <!-- Content Wrapper. Contains page content -->
-    @include('content')
-
-    {{--Footer--}}
-    @include('footer')
-
-    <!-- Control Sidebar -->
-    @include('right-menu')
+@yield('content')
 
 </div>
 

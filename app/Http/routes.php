@@ -11,15 +11,10 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('layouts.welcome');
-//});
-
+Route::resource('article', 'ArticleController');
 Route::get('/', [
     'middleware' => 'auth',
     'uses' => 'HomeController@index'
 ]);
-
 Route::auth();
-
 Route::get('/home', 'HomeController@index');

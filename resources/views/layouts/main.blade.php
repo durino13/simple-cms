@@ -24,7 +24,13 @@
 <!-- Site wrapper -->
 <div class="wrapper">
 
-@yield('content')
+    {{--Main content--}}
+    <div class="content-wrapper">
+        @yield('content')
+    </div>
+
+    {{--Footer--}}
+    @include('common.footer')
 
 </div>
 

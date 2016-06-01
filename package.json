@@ -5,14 +5,41 @@
     "dev": "gulp watch",
     "gulp": "gulp"
   },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.min.js",
+    "bootstrap": "./node_modules/admin-lte/dist/js/app.min.js",
+    "admin-lte": "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "admin-lte": {
+      "depends": [
+        "jquery:$",
+        "bootstrap"
+      ]
+    }
+  },
   "devDependencies": {
     "bootstrap-sass": "^3.0.0",
+    "browserify-shim": "^3.8.12",
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0"
+    "gulp-concat": "^2.6.0",
+    "imports-loader": "^0.6.5",
+    "script-loader": "^0.7.0",
+    "webpack": "^1.13.1",
+    "webpack-stream": "^3.2.0"
   },
   "dependencies": {
     "admin-lte": "^2.3.3",
     "bootstrap": "^3.3.6",
+    "datatables.net": "^1.10.12",
+    "datatables.net-bs": "^1.10.12",
+    "datatables.net-dt": "^1.10.12",
     "font-awesome": "^4.6.1",
     "gulp-sass": "^2.3.1",
     "gulp-watch": "^4.3.5",

@@ -31,9 +31,6 @@
                             <ul class="menu">
                                 <li><!-- start message -->
                                     <a href="#">
-                                        <div class="pull-left">
-                                            <img src="adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                        </div>
                                         <h4>
                                             Support Team
                                             <small><i class="fa fa-clock-o"></i> 5 mins</small>

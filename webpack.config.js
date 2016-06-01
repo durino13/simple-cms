@@ -12,12 +12,6 @@ module.exports = {
             "window.$": "jquery"
         })
     ],
-    // module: {
-    //     loaders: [{
-    //         test: /node_modules\/.+\.(jsx|js)$/,
-    //         loader: 'imports?jQuery=jquery,$=jquery,this=>window'
-    //     }]
-    // },
     watch: true
     // debug: true
 };

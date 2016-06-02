@@ -1,3 +1,5 @@
+// TODO Move this content into gulp file ..
+
 var webpack = require('webpack');
 
 module.exports = {
@@ -13,5 +15,4 @@ module.exports = {
         })
     ],
     watch: true
-    // debug: true
 };

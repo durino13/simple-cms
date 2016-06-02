@@ -1,3 +1,21 @@
+// Resets
+
+th, td  { font-size: 14px; }
+
+// Fix datatables css problems
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0 !important;
+}
+
+.table.dataTable thead th, table.dataTable thead td {
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.table.dataTable tfoot th, table.dataTable tfoot td {
+  border-top: 1px solid #f4f4f4;
+}
+
 // Fix topbar menu background height problem ..
 
 .nav > li > a {

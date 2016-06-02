@@ -61,8 +61,10 @@
 
 	// Weird way to load a datatable JS .. the define=>disable part disables AMD, so datatables will use CommonJS
 	__webpack_require__(4)(window, $);
+
 	// Let's load CSS for datatables here ..
 	__webpack_require__(6 )( window, $ );
+
 	// AdminLTE is loaded here .. The $=jquery notation will make jQuery available for AdminLTE, otherwise you will see
 	// following message: AdminLTE requires jQuery ..
 	__webpack_require__(8);

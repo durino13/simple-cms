@@ -8,8 +8,10 @@
 
 // Weird way to load a datatable JS .. the define=>disable part disables AMD, so datatables will use CommonJS
 require('imports?define=>false!datatables.net')(window, $);
+
 // Let's load CSS for datatables here ..
 require('imports?define=>false!datatables.net-bs' )( window, $ );
+
 // AdminLTE is loaded here .. The $=jquery notation will make jQuery available for AdminLTE, otherwise you will see
 // following message: AdminLTE requires jQuery ..
 require('imports?$=jquery!../../../node_modules/admin-lte/dist/js/app.min.js');

@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var concat = require('gulp-concat');
+var concat = require('gulp-concat-sourcemap');
 var sass = require('gulp-sass');
 var merge = require('merge-stream');
 var watch = require('gulp-watch');
@@ -36,6 +36,7 @@ gulp.task('css', function() {
         }));
 
     vendorCssStream = gulp.src([
+            'node_modules/normalize.css/normalize.css',
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
             'node_modules/admin-lte/dist/css/AdminLTE.min.css',
             'node_modules/admin-lte/dist/css/skins/_all-skins.min.css',

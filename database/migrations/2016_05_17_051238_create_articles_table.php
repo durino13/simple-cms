@@ -20,9 +20,9 @@ class CreateArticlesTable extends Migration
             $table->string('article_text');
             $table->dateTime('publish_date');
             $table->string('url');
-            $table->integer('author_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
-            $table->foreign('author_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::create('tags', function (Blueprint $table) {
@@ -54,7 +54,7 @@ class CreateArticlesTable extends Migration
         });
         Schema::drop('tags');
         Schema::table('articles', function (Blueprint $table) {
-            $table->dropForeign('articles_author_id_foreign');
+            $table->dropForeign('articles_user_id_foreign');
             $table->drop('articles');
         });
     }

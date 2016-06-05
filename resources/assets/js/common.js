@@ -18,7 +18,5 @@ require('imports?$=jquery!../../../node_modules/admin-lte/dist/js/app.min.js');
 require('imports?$=jquery!../../../node_modules/admin-lte/plugins/jQueryUI/jquery-ui.js');
 
 
-$('#dt-articles').DataTable({
-    "deferRender": true
-});
+$('#dt-articles').DataTable();
 $('#dt-articles').show();

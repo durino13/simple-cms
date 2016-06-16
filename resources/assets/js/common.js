@@ -17,6 +17,51 @@ require('imports?define=>false!datatables.net-bs' )( window, $ );
 require('imports?$=jquery!../../../node_modules/admin-lte/dist/js/app.min.js');
 require('imports?$=jquery!../../../node_modules/admin-lte/plugins/jQueryUI/jquery-ui.js');
 
+// import css
+require('../../../node_modules/bootstrap/dist/css/bootstrap.min.css')
+require('../../../node_modules/admin-lte/dist/css/AdminLTE.css')
+require('../../../node_modules/admin-lte/dist/css/skins/_all-skins.min.css')
+require('../../../node_modules/font-awesome/css/font-awesome.min.css')
+require('../../../node_modules/datatables.net-dt/css/jquery.dataTables.css')
 
+// Require font-awesome ..
+require('font-awesome/css/font-awesome.css');
+
+// Import TinyMCE
+require('tinymce/tinymce.js')
+require('tinymce/themes/modern/theme.js')
+require('tinymce/skins/lightgray/skin.min.css')
+// require('tinymce/skins/lightgray/content.min.css')
+require('tinymce/plugins/image/plugin.js')
+require('tinymce/plugins/media/plugin.js')
+require('tinymce/plugins/fullpage/plugin.js')
+require('tinymce/skins/lightgray/fonts/tinymce.ttf');
+require('tinymce/skins/lightgray/fonts/tinymce.woff');
+require('tinymce/skins/lightgray/fonts/tinymce.eot');
+require('tinymce/skins/lightgray/fonts/tinymce.svg');
+
+// Custom styles .
+require('../sass/app.scss')
+
+// Init datatables ..
 $('#dt-articles').DataTable();
 $('#dt-articles').show();
+
+
+// Init intro text
+tinymce.init({
+    selector: '#intro_text',
+    toolbar: "fontsizeselect",
+    fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+    font_formats: 'sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
+    skin: false,
+    plugins: ['image','media','fullpage']
+});
+
+// Init article text
+tinymce.init({
+    selector: '#article_text',
+    font_formats: 'sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
+    skin: false,
+    plugins: ['image','media','fullpage']
+})

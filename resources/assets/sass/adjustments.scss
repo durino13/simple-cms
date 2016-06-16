@@ -21,3 +21,8 @@ th, td  { font-size: 14px; }
 .nav > li > a {
   height: 50px;
 }
+
+// TinyMCE
+.ui-tooltip-content {
+  display: none !important;
+}

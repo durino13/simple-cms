@@ -61,7 +61,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find(1);
+        return view('articles.edit', ['article' => $article]);
     }
 
     /**

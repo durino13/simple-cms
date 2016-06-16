@@ -1,6 +1,5 @@
-// TODO Move this content into gulp file ..
-
 var webpack = require('webpack');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: {
@@ -15,7 +14,11 @@ module.exports = {
         loaders: [
 
             // Style loaders
-            {   test: /\.css$/, loader: "style!css" },
+            {
+                test: /\.css$/,
+                // loader: "style!css"
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            },
             {
                 test: /\.less$/,
                 loader: "style!css!less"
@@ -80,7 +83,8 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             "require.specified": "require.resolve"
-        })
+        }),
+        new ExtractTextPlugin("all.css")
     ],
     watch: true
 };

@@ -31,14 +31,17 @@ require('font-awesome/css/font-awesome.css');
 require('tinymce/tinymce.js')
 require('tinymce/themes/modern/theme.js')
 require('tinymce/skins/lightgray/skin.min.css')
-// require('tinymce/skins/lightgray/content.min.css')
+require('tinymce/skins/lightgray/content.min.css')
+require('tinymce/skins/lightgray/skin.min.css')
 require('tinymce/plugins/image/plugin.js')
 require('tinymce/plugins/media/plugin.js')
 require('tinymce/plugins/fullpage/plugin.js')
+require('tinymce/plugins/fullscreen/plugin.js')
 require('tinymce/skins/lightgray/fonts/tinymce.ttf');
 require('tinymce/skins/lightgray/fonts/tinymce.woff');
 require('tinymce/skins/lightgray/fonts/tinymce.eot');
 require('tinymce/skins/lightgray/fonts/tinymce.svg');
+
 
 // Custom styles .
 require('../sass/app.scss')
@@ -51,17 +54,13 @@ $('#dt-articles').show();
 // Init intro text
 tinymce.init({
     selector: '#intro_text',
-    toolbar: "fontsizeselect",
-    fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
-    font_formats: 'sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
-    skin: false,
-    plugins: ['image','media','fullpage']
+    skin: true,
+    plugins: ['image','media', 'fullscreen']
 });
 
 // Init article text
 tinymce.init({
     selector: '#article_text',
-    font_formats: 'sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
     skin: false,
-    plugins: ['image','media','fullpage']
+    plugins: ['image','media', 'fullscreen']
 })

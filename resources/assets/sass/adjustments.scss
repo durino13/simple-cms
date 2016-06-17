@@ -26,3 +26,7 @@ th, td  { font-size: 14px; }
 .ui-tooltip-content {
   display: none !important;
 }
+
+.mce-fullscreen {
+  z-index: 1050;
+}

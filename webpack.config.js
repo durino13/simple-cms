@@ -3,20 +3,20 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: {
-        'filename': './resources/assets/js/common.js'
+        'filename': './resources/assets/assets/common.js'
     },
     output: {
-        'path': 'public/js',
-        'publicPath': '/js/',
+        'path': 'public/assets',
+        'publicPath': '/assets/',
         'filename': 'all.js'
     },
     module: {
         loaders: [
 
-            // Style loaders
+            // Style loaders ... Using the extracttextplugin, we can extract styles in a separate file and not inject
+            // the styles in the <head> tag ..
             {
                 test: /\.css$/,
-                // loader: "style!css"
                 loader: ExtractTextPlugin.extract("style-loader", "css-loader")
             },
             {

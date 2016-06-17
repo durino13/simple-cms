@@ -34,7 +34,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/js/";
+/******/ 	__webpack_require__.p = "/assets/";
 
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(0);
@@ -77,17 +77,20 @@
 	__webpack_require__(40)
 	__webpack_require__(43)
 	__webpack_require__(44)
-	// require('tinymce/skins/lightgray/content.min.css')
 	__webpack_require__(55)
-	__webpack_require__(56)
-	__webpack_require__(57)
+	__webpack_require__(44)
+	__webpack_require__(59)
+	__webpack_require__(60)
+	__webpack_require__(61)
+	__webpack_require__(62)
 	__webpack_require__(49);
 	__webpack_require__(48);
 	__webpack_require__(47);
 	__webpack_require__(50);
 
+
 	// Custom styles .
-	__webpack_require__(58)
+	__webpack_require__(63)
 
 	// Init datatables ..
 	$('#dt-articles').DataTable();
@@ -97,19 +100,15 @@
 	// Init intro text
 	tinymce.init({
 	    selector: '#intro_text',
-	    toolbar: "fontsizeselect",
-	    fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
-	    font_formats: 'sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
-	    skin: false,
-	    plugins: ['image','media','fullpage']
+	    skin: true,
+	    plugins: ['image','media', 'fullscreen']
 	});
 
 	// Init article text
 	tinymce.init({
 	    selector: '#article_text',
-	    font_formats: 'sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
 	    skin: false,
-	    plugins: ['image','media','fullpage']
+	    plugins: ['image','media', 'fullscreen']
 	})
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
@@ -105634,6 +105633,15 @@
 /* 55 */
 /***/ function(module, exports) {
 
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */
+/***/ function(module, exports) {
+
 	/*** IMPORTS FROM imports-loader ***/
 	(function() {
 
@@ -106271,7 +106279,7 @@
 	}.call(window));
 
 /***/ },
-/* 56 */
+/* 60 */
 /***/ function(module, exports) {
 
 	/*** IMPORTS FROM imports-loader ***/
@@ -107160,7 +107168,7 @@
 	}.call(window));
 
 /***/ },
-/* 57 */
+/* 61 */
 /***/ function(module, exports) {
 
 	/*** IMPORTS FROM imports-loader ***/
@@ -107660,13 +107668,177 @@
 	}.call(window));
 
 /***/ },
-/* 58 */
+/* 62 */
+/***/ function(module, exports) {
+
+	/*** IMPORTS FROM imports-loader ***/
+	(function() {
+
+	/**
+	 * plugin.js
+	 *
+	 * Released under LGPL License.
+	 * Copyright (c) 1999-2015 Ephox Corp. All rights reserved
+	 *
+	 * License: http://www.tinymce.com/license
+	 * Contributing: http://www.tinymce.com/contributing
+	 */
+
+	/*global tinymce:true */
+
+	tinymce.PluginManager.add('fullscreen', function(editor) {
+		var fullscreenState = false, DOM = tinymce.DOM, iframeWidth, iframeHeight, resizeHandler;
+		var containerWidth, containerHeight, scrollPos;
+
+		if (editor.settings.inline) {
+			return;
+		}
+
+		function getWindowSize() {
+			var w, h, win = window, doc = document;
+			var body = doc.body;
+
+			// Old IE
+			if (body.offsetWidth) {
+				w = body.offsetWidth;
+				h = body.offsetHeight;
+			}
+
+			// Modern browsers
+			if (win.innerWidth && win.innerHeight) {
+				w = win.innerWidth;
+				h = win.innerHeight;
+			}
+
+			return {w: w, h: h};
+		}
+
+		function getScrollPos() {
+			var vp = tinymce.DOM.getViewPort();
+
+			return {
+				x: vp.x,
+				y: vp.y
+			};
+		}
+
+		function setScrollPos(pos) {
+			scrollTo(pos.x, pos.y);
+		}
+
+		function toggleFullscreen() {
+			var body = document.body, documentElement = document.documentElement, editorContainerStyle;
+			var editorContainer, iframe, iframeStyle;
+
+			function resize() {
+				DOM.setStyle(iframe, 'height', getWindowSize().h - (editorContainer.clientHeight - iframe.clientHeight));
+			}
+
+			fullscreenState = !fullscreenState;
+
+			editorContainer = editor.getContainer();
+			editorContainerStyle = editorContainer.style;
+			iframe = editor.getContentAreaContainer().firstChild;
+			iframeStyle = iframe.style;
+
+			if (fullscreenState) {
+				scrollPos = getScrollPos();
+				iframeWidth = iframeStyle.width;
+				iframeHeight = iframeStyle.height;
+				iframeStyle.width = iframeStyle.height = '100%';
+				containerWidth = editorContainerStyle.width;
+				containerHeight = editorContainerStyle.height;
+				editorContainerStyle.width = editorContainerStyle.height = '';
+
+				DOM.addClass(body, 'mce-fullscreen');
+				DOM.addClass(documentElement, 'mce-fullscreen');
+				DOM.addClass(editorContainer, 'mce-fullscreen');
+
+				DOM.bind(window, 'resize', resize);
+				resize();
+				resizeHandler = resize;
+			} else {
+				iframeStyle.width = iframeWidth;
+				iframeStyle.height = iframeHeight;
+
+				if (containerWidth) {
+					editorContainerStyle.width = containerWidth;
+				}
+
+				if (containerHeight) {
+					editorContainerStyle.height = containerHeight;
+				}
+
+				DOM.removeClass(body, 'mce-fullscreen');
+				DOM.removeClass(documentElement, 'mce-fullscreen');
+				DOM.removeClass(editorContainer, 'mce-fullscreen');
+				DOM.unbind(window, 'resize', resizeHandler);
+				setScrollPos(scrollPos);
+			}
+
+			editor.fire('FullscreenStateChanged', {state: fullscreenState});
+		}
+
+		editor.on('init', function() {
+			editor.addShortcut('Ctrl+Shift+F', '', toggleFullscreen);
+		});
+
+		editor.on('remove', function() {
+			if (resizeHandler) {
+				DOM.unbind(window, 'resize', resizeHandler);
+			}
+		});
+
+		editor.addCommand('mceFullScreen', toggleFullscreen);
+
+		editor.addMenuItem('fullscreen', {
+			text: 'Fullscreen',
+			shortcut: 'Meta+Alt+F',
+			selectable: true,
+			onClick: function() {
+				toggleFullscreen();
+				editor.focus();
+			},
+			onPostRender: function() {
+				var self = this;
+
+				editor.on('FullscreenStateChanged', function(e) {
+					self.active(e.state);
+				});
+			},
+			context: 'view'
+		});
+
+		editor.addButton('fullscreen', {
+			tooltip: 'Fullscreen',
+			shortcut: 'Meta+Alt+F',
+			onClick: toggleFullscreen,
+			onPostRender: function() {
+				var self = this;
+
+				editor.on('FullscreenStateChanged', function(e) {
+					self.active(e.state);
+				});
+			}
+		});
+
+		return {
+			isFullscreen: function() {
+				return fullscreenState;
+			}
+		};
+	});
+
+	}.call(window));
+
+/***/ },
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(59);
+	var content = __webpack_require__(64);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(17)(content, {});
@@ -107686,7 +107858,7 @@
 	}
 
 /***/ },
-/* 59 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(11)();
@@ -107694,7 +107866,7 @@
 
 
 	// module
-	exports.push([module.id, ".bg-color-blue {\n  background-color: #3c8dbc; }\n\nth, td {\n  font-size: 14px; }\n\n.dataTables_wrapper .dataTables_paginate .paginate_button {\n  padding: 0 !important; }\n\n.table.dataTable thead th, table.dataTable thead td {\n  border-bottom: 1px solid #f4f4f4; }\n\n.table.dataTable tfoot th, table.dataTable tfoot td {\n  border-top: 1px solid #f4f4f4; }\n\n.nav > li > a {\n  height: 50px; }\n\n.ui-tooltip-content {\n  display: none !important; }\n", ""]);
+	exports.push([module.id, ".bg-color-blue {\n  background-color: #3c8dbc; }\n\nth, td {\n  font-size: 14px; }\n\n.dataTables_wrapper .dataTables_paginate .paginate_button {\n  padding: 0 !important; }\n\n.table.dataTable thead th, table.dataTable thead td {\n  border-bottom: 1px solid #f4f4f4; }\n\n.table.dataTable tfoot th, table.dataTable tfoot td {\n  border-top: 1px solid #f4f4f4; }\n\n.nav > li > a {\n  height: 50px; }\n\n.ui-tooltip-content {\n  display: none !important; }\n\n.mce-fullscreen {\n  z-index: 1050; }\n", ""]);
 
 	// exports
 

@@ -9,7 +9,7 @@
     <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
     {{--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>--}}
     <![endif]-->
-    <link rel="stylesheet" href="/js/all.css">
+    <link rel="stylesheet" href="/assets/all.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -32,6 +32,6 @@
 
 </div>
 
-<script src="/js/all.js"></script>
+<script src="/assets/all.js"></script>
 </body>
 </html>

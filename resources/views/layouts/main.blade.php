@@ -10,6 +10,7 @@
     {{--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>--}}
     <![endif]-->
     <link rel="stylesheet" href="/assets/all.css">
+    <link rel="stylesheet" href="/plugins/chosen-npm/public/chosen.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -32,6 +33,10 @@
 
 </div>
 
+<script src="/plugins/jquery/dist/jquery.min.js"></script>
+<script src="/plugins/chosen-npm/public/chosen.jquery.js"></script>
+<script src="/test.js"></script>
 <script src="/assets/all.js"></script>
+
 </body>
 </html>

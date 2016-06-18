@@ -3,7 +3,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     entry: {
-        'filename': './resources/assets/assets/common.js'
+        'filename': './resources/assets/js/common.js'
     },
     output: {
         'path': 'public/assets',
@@ -26,6 +26,7 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: "style!css!sass"
+                // loader: ExtractTextPlugin.extract("style-loader", "css-loader", "sass-loader")
             },
 
             // Picture loaders

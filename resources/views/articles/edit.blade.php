@@ -1,7 +1,13 @@
 @extends('layouts.main')
 @section('content')
 
+<div class="toolbar">
+    <a href="#" class="button glow button-action"><i class="fa fa-save"></i> Save</a>
+    <a href="#" class="button glow button-highlight"><i class="fa fa-close"></i> Close</a>
+</div>
+
 <div class="content">
+
     <div class="box box-default">
 
         <div class="box-header with-border">
@@ -23,13 +29,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Intro text:</label>
-                        <textarea name="intro_text" class="form-control" id="intro_text" cols="30" rows="5"></textarea>
-                    </div>
-
-                    <div class="form-group">
                         <label>Article text:</label>
-                        <textarea name="article_text" class="form-control" id="article_text" cols="30" rows="5"></textarea>
+                        <textarea name="article_text" class="form-control" id="article_text" cols="30" rows="15"></textarea>
                     </div>
                 </div>
 
@@ -43,7 +44,7 @@
                             </div>
                             <input type="text" class="form-control pull-right" id="datepicker">
                         </div>
-                        <!-- /.input group -->
+
                     </div>
                 </div>
 

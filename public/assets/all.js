@@ -64,25 +64,24 @@
 	__webpack_require__(8);
 
 	// import css
-	__webpack_require__(9)
-	__webpack_require__(18)
-	__webpack_require__(21)
-	__webpack_require__(23)
-	__webpack_require__(31)
+	__webpack_require__(9);
+	__webpack_require__(18);
+	__webpack_require__(21);
+	__webpack_require__(23);
+	__webpack_require__(31);
+	__webpack_require__(61);
 
 	// Require font-awesome ..
 	__webpack_require__(38);
 
 	// Import TinyMCE
-	__webpack_require__(40)
-	__webpack_require__(43)
-	__webpack_require__(44)
-	__webpack_require__(55)
-	__webpack_require__(44)
-	__webpack_require__(59)
-	__webpack_require__(60)
-	__webpack_require__(61)
-	__webpack_require__(62)
+	__webpack_require__(40);
+	__webpack_require__(43);
+	__webpack_require__(44);
+	__webpack_require__(55);
+	__webpack_require__(56);
+	__webpack_require__(57);
+	__webpack_require__(58);
 	__webpack_require__(49);
 	__webpack_require__(48);
 	__webpack_require__(47);
@@ -90,26 +89,28 @@
 
 
 	// Custom styles .
-	__webpack_require__(63)
+	__webpack_require__(59);
 
 	// Init datatables ..
 	$('#dt-articles').DataTable();
 	$('#dt-articles').show();
 
 
-	// Init intro text
-	tinymce.init({
-	    selector: '#intro_text',
-	    skin: true,
-	    plugins: ['image','media', 'fullscreen']
-	});
+	// Setup TinyMCE
 
-	// Init article text
-	tinymce.init({
+	// Init intro text
+	var ed = tinymce.init({
 	    selector: '#article_text',
 	    skin: false,
-	    plugins: ['image','media', 'fullscreen']
-	})
+	    plugins: ['image','media', 'fullscreen'],
+	    toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | link image | fullscreen | table ',
+	    height: 400,
+	    setup: function (ed) {
+	        ed.on('init', function(args) {
+	            args.target.editorCommands.execCommand("fontName", false, "Arial");
+	        });
+	    }
+	});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -105633,15 +105634,6 @@
 /* 55 */
 /***/ function(module, exports) {
 
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */
-/***/ function(module, exports) {
-
 	/*** IMPORTS FROM imports-loader ***/
 	(function() {
 
@@ -106279,7 +106271,7 @@
 	}.call(window));
 
 /***/ },
-/* 60 */
+/* 56 */
 /***/ function(module, exports) {
 
 	/*** IMPORTS FROM imports-loader ***/
@@ -107168,7 +107160,7 @@
 	}.call(window));
 
 /***/ },
-/* 61 */
+/* 57 */
 /***/ function(module, exports) {
 
 	/*** IMPORTS FROM imports-loader ***/
@@ -107668,7 +107660,7 @@
 	}.call(window));
 
 /***/ },
-/* 62 */
+/* 58 */
 /***/ function(module, exports) {
 
 	/*** IMPORTS FROM imports-loader ***/
@@ -107832,13 +107824,13 @@
 	}.call(window));
 
 /***/ },
-/* 63 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(64);
+	var content = __webpack_require__(60);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(17)(content, {});
@@ -107858,7 +107850,7 @@
 	}
 
 /***/ },
-/* 64 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(11)();
@@ -107866,10 +107858,16 @@
 
 
 	// module
-	exports.push([module.id, ".bg-color-blue {\n  background-color: #3c8dbc; }\n\nth, td {\n  font-size: 14px; }\n\n.dataTables_wrapper .dataTables_paginate .paginate_button {\n  padding: 0 !important; }\n\n.table.dataTable thead th, table.dataTable thead td {\n  border-bottom: 1px solid #f4f4f4; }\n\n.table.dataTable tfoot th, table.dataTable tfoot td {\n  border-top: 1px solid #f4f4f4; }\n\n.nav > li > a {\n  height: 50px; }\n\n.ui-tooltip-content {\n  display: none !important; }\n\n.mce-fullscreen {\n  z-index: 1050; }\n", ""]);
+	exports.push([module.id, ".bg-color-blue {\n  background-color: #3c8dbc; }\n\nth, td {\n  font-size: 14px; }\n\n.dataTables_wrapper .dataTables_paginate .paginate_button {\n  padding: 0 !important; }\n\n.table.dataTable thead th, table.dataTable thead td {\n  border-bottom: 1px solid #f4f4f4; }\n\n.table.dataTable tfoot th, table.dataTable tfoot td {\n  border-top: 1px solid #f4f4f4; }\n\n.nav > li > a {\n  height: 50px; }\n\n.ui-tooltip-content {\n  display: none !important; }\n\n.mce-fullscreen {\n  z-index: 1050; }\n\n.mce-panel {\n  background-color: #f5f5f5;\n  /* uses !important or override .mce-panel background-color/image */\n  background-image: none !important; }\n\n.toolbar {\n  background: #F5F5F5;\n  border-bottom: 1px solid #e3e3e3;\n  min-height: 43px;\n  padding: 5px 0px 0px 15px; }\n\n.toolbar a {\n  margin-left: 1em; }\n", ""]);
 
 	// exports
 
+
+/***/ },
+/* 61 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

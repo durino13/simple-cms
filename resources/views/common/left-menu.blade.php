@@ -16,7 +16,7 @@
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-                <a href="article">
+                <a href="/article">
                     <i class="fa fa-th"></i> <span>Articles</span>
                     <small class="label pull-right bg-green">0</small>
                 </a>

@@ -39,13 +39,6 @@ require('tinymce/skins/lightgray/fonts/tinymce.eot');
 require('tinymce/skins/lightgray/fonts/tinymce.svg');
 
 // -------------------------------------------------
-// Chosen
-// -------------------------------------------------
-
-// require('../../../node_modules/chosen-npm/public/chosen.jquery.js');
-// require('../../../node_modules/chosen-npm/public/chosen.css');
-
-// -------------------------------------------------
 // Others
 // -------------------------------------------------
 

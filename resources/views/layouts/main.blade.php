@@ -11,6 +11,12 @@
     <![endif]-->
     <link rel="stylesheet" href="/assets/all.css">
     <link rel="stylesheet" href="/plugins/chosen-npm/public/chosen.css">
+    <style type="text/css">
+        .js #fouc {display:none;}
+    </style>
+    <script type="text/javascript">
+        document.documentElement.className = 'js';
+    </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -21,7 +27,7 @@
 @include('common.left-menu')
 
 <!-- Site wrapper -->
-<div class="wrapper">
+<div id="fouc" class="wrapper">
 
     {{--Main content--}}
     <div class="content-wrapper">
@@ -38,5 +44,8 @@
 <script src="/assets/global.js"></script>
 <script src="/assets/all.js"></script>
 
+<script type="text/javascript">
+    document.getElementById("fouc").style.display = "block";
+</script>
 </body>
 </html>

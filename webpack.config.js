@@ -1,6 +1,9 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+var extractSass = new ExtractTextPlugin('all1.css');
+var extractCss = new ExtractTextPlugin('all.css');
+
 module.exports = {
     entry: {
         'filename': './resources/assets/js/common.js'
@@ -15,19 +18,27 @@ module.exports = {
 
             // Style loaders ... Using the extracttextplugin, we can extract styles in a separate file and not inject
             // the styles in the <head> tag ..
+            // {
+            //     test: /\.css$/,
+            //     loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+            // },
+            // {
+            //     test: /\.css$/i,
+            //     loader: extractCss.extract(['css'])
+            // },
             {
-                test: /\.css$/,
-                loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+                test: /\.(css|scss)$/i,
+                loader: extractCss.extract(['css','sass'])
             },
-            {
-                test: /\.less$/,
-                loader: "style!css!less"
-            },
-            {
-                test: /\.scss$/,
-                loader: "style!css!sass"
-                // TODO Sass should be added into all.css file too ... Takes too long to load my scss files ..
-            },
+            // {
+            //     test: /\.less$/,
+            //     loader: "style!css!less"
+            // },
+            // {
+            //     test: /\.scss$/,
+            //     loader: "style!css!sass"
+            //     // TODO Sass should be added into all.css file too ... Takes too long to load my scss files ..
+            // },
 
             // Picture loaders
             {
@@ -93,7 +104,9 @@ module.exports = {
         // new webpack.DefinePlugin({
         //     "require.specified": "require.resolve"
         // }),
-        new ExtractTextPlugin("all.css")
+        // new ExtractTextPlugin("all.css")
+        extractSass,
+        extractCss
     ],
     watch: true
 };

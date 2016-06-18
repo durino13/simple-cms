@@ -21,6 +21,24 @@
                     <small class="label pull-right bg-green">0</small>
                 </a>
             </li>
+            <li>
+                <a href="/article">
+                    <i class="fa fa-th"></i> <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="/article">
+                    <i class="fa fa-th"></i> <span>Media</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="sidebar-menu">
+            <li class="header">USERS</li>
+            <li>
+                <a href="/article">
+                    <i class="fa fa-th"></i> <span>Users</span>
+                </a>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->

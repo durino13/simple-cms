@@ -23,9 +23,19 @@
 
             <div class="row">
                 <div class="col-md-8">
-                    <div class="form-group">
-                        <label>Title:</label>
-                        <input type="text" class="form-control">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Title:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Alias:</label>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -35,14 +45,22 @@
                 </div>
 
                 <div class="col-md-4">
+
                     <div class="form-group">
                         <label>Status:</label>
-
                         <select name="status" id="status" class="chosen-select">
                             <option value="published">Published</option>
                         </select>
-
                     </div>
+
+                    <div class="form-group">
+                        <label>Category:</label>
+                        <select name="status" id="status" class="chosen-select">
+                            <option value="1">Category name 1</option>
+                            <option value="2">Category name 2</option>
+                        </select>
+                    </div>
+
                 </div>
 
             </div>

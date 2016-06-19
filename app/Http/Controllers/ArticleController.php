@@ -28,7 +28,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        var_dump('Create article');
+        return view('articles.edit');
     }
 
     /**
@@ -39,7 +39,8 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        var_dump($request->all());
+        exit();
     }
 
     /**

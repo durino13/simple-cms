@@ -1,6 +1,18 @@
 @extends('layouts.main')
 @section('content')
 
+    {{--Validation errors--}}
+
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     {{-- Open form --}}
 
     {{ Form::open(array('url' => 'article')) }}
@@ -35,21 +47,20 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label>Title:</label>
-                                    <input name="title" type="text" class="form-control">
+                                    <?php echo Form::text('title','', ['class' => 'form-control']); ?>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Alias:</label>
-                                    <input name="alias" type="text" class="form-control">
+                                    <?php echo Form::text('alias','', ['class' => 'form-control']); ?>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Article text:</label>
-                            <textarea name="article_text" class="form-control" id="article_text" cols="30"
-                                      rows="15"></textarea>
+                            <?php echo Form::textarea('article_text', '', ['id' => 'article_text', 'class' => 'form-control']); ?>
                         </div>
                     </div>
 
@@ -57,17 +68,12 @@
 
                         <div class="form-group">
                             <label>Status:</label>
-                            <select name="status" id="status" class="chosen-select">
-                                <option value="published">Published</option>
-                            </select>
+                            <?php echo Form::select('status', App\Status::lists('name','id'), null, ['class' => 'chosen-select']); ?>
                         </div>
 
                         <div class="form-group">
                             <label>Category:</label>
-                            <select name="category" id="category" class="chosen-select">
-                                <option value="1">Category name 1</option>
-                                <option value="2">Category name 2</option>
-                            </select>
+                            <?php echo Form::select('status', App\Category::lists('name','id'), null, ['class' => 'chosen-select']); ?>
                         </div>
 
                         <div class="form-group">

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Article;
+use Illuminate\Support\Facades\Redirect;
 
 
 class ArticleController extends Controller
@@ -39,8 +40,26 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->all());
-        exit();
+        $this->validate($request, [
+            'title' => 'required',
+            'alias' => 'required',
+        ]);
+
+        $article = new Article();
+        $article->title = $request->input('title');
+        $article->alias = $request->input('alias');
+        $article->article_text = $request->input('article_text');
+        $article->status_id = $request->input('status');
+//        $article->category = $request->input('category');
+        // TODO get real user id here ..
+        $article->user_id = 1;
+        $article->start_publishing = $request->input('start_publishing');
+        $article->finish_publishing = $request->input('finish_publishing');
+        $article->save();
+
+        $request->session()->flash('status', 'Article was successfully saved!');
+        return Redirect::to('article');
+
     }
 
     /**

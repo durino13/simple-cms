@@ -12,4 +12,9 @@ class Article extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    public function status()
+    {
+        return $this->belongsTo('App\Status', 'status_id');
+    }
+
 }

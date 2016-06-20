@@ -108,5 +108,8 @@ module.exports = {
         extractSass,
         extractCss
     ],
+    externals: {
+        jquery: 'jQuery'
+    },
     watch: true
 };

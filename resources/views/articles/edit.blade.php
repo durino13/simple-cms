@@ -77,7 +77,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input name="date_created" type="text" class="form-control pull-right"
+                                <input name="date_created" type="text" class="form-control pull-right datepicker"
                                        id="date_created">
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input name="start_publishing" type="text" class="form-control pull-right"
+                                <input name="start_publishing" type="text" class="form-control pull-right datepicker"
                                        id="start_publishing">
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input name="finish_publishing" type="text" class="form-control pull-right"
+                                <input name="finish_publishing" type="text" class="form-control pull-right datepicker"
                                        id="finish_publishing">
                             </div>
                         </div>

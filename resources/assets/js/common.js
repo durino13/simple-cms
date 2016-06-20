@@ -21,6 +21,8 @@ require('../../../node_modules/admin-lte/dist/js/app.min.js');
 require('../../../node_modules/admin-lte/plugins/jQueryUI/jquery-ui.js');
 require('../../../node_modules/admin-lte/dist/css/AdminLTE.css');
 require('../../../node_modules/admin-lte/dist/css/skins/_all-skins.min.css');
+require('../../../node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js');
+require('../../../node_modules/admin-lte/plugins/datepicker/datepicker3.css');
 
 // -------------------------------------------------
 // TinyMCE
@@ -60,3 +62,6 @@ var ed = tinymce.init({
     toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | link image | fullscreen | table ',
     height: 400
 });
+
+// Datepicker
+$('.datepicker').datepicker();

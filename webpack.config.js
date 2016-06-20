@@ -13,32 +13,15 @@ module.exports = {
         'publicPath': '/assets/',
         'filename': 'all.js'
     },
+    devtool: "source-map",
     module: {
         loaders: [
 
-            // Style loaders ... Using the extracttextplugin, we can extract styles in a separate file and not inject
-            // the styles in the <head> tag ..
-            // {
-            //     test: /\.css$/,
-            //     loader: ExtractTextPlugin.extract("style-loader", "css-loader")
-            // },
-            // {
-            //     test: /\.css$/i,
-            //     loader: extractCss.extract(['css'])
-            // },
+            // Css loaders
             {
                 test: /\.(css|scss)$/i,
-                loader: extractCss.extract(['css','sass'])
+                loader: extractCss.extract(['css?sourceMap','sass?sourceMap'])
             },
-            // {
-            //     test: /\.less$/,
-            //     loader: "style!css!less"
-            // },
-            // {
-            //     test: /\.scss$/,
-            //     loader: "style!css!sass"
-            //     // TODO Sass should be added into all.css file too ... Takes too long to load my scss files ..
-            // },
 
             // Picture loaders
             {
@@ -83,14 +66,7 @@ module.exports = {
                 loaders: [
                     'imports?this=>window'
                 ]
-            },
-
-            // // Chosen shimming ..
-            // {
-            //     test: /chosen-npm\/public\/.+\.js/,
-            //     loader: 'imports?jQuery=jquery,$=jquery,this=>window'
-            // }
-
+            }
 
         ]
     },
@@ -101,10 +77,6 @@ module.exports = {
             "window.jQuery": "jquery",
             "window.$": "jquery"
         }),
-        // new webpack.DefinePlugin({
-        //     "require.specified": "require.resolve"
-        // }),
-        // new ExtractTextPlugin("all.css")
         extractSass,
         extractCss
     ],

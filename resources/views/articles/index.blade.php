@@ -20,24 +20,29 @@
                     <table id="dt-articles" class="table table-bordered table-hover" style="display:none">
                         <thead>
                         <tr>
+                            <th>Actions</th>
                             <th>Title</th>
                             <th>Author</th>
+                            <th>Status</th>
+                            <th>Created</th>
                         </tr>
                         </thead>
                         <tbody>
                             @foreach($articles as $article)
                                 <tr>
+                                    <td style="width: 10px;">
+                                        <a class="btn btn-primary btn-sm" href="#navigation-main">
+                                            <i class="fa fa-edit" aria-hidden="true" title="Skip to main navigation"></i>
+                                            <span class="sr-only">Skip to main navigation</span>
+                                        </a>
+                                    </td>
                                     <td>{{ $article->title }}</td>
                                     <td>{{ $article->author->name }}</td>
+                                    <td>{{ $article->status->name }}</td>
+                                    <td>{{ $article->created_at }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>Title</th>
-                            <th>Author</th>
-                        </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>

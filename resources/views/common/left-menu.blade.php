@@ -18,7 +18,7 @@
             <li>
                 <a href="/article">
                     <i class="fa fa-th"></i> <span>Articles</span>
-                    <small class="label pull-right bg-green">0</small>
+                    <small class="label pull-right bg-green"><?php echo App\Article::all()->count(); ?></small>
                 </a>
             </li>
             <li>

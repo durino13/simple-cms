@@ -50,7 +50,7 @@ class ArticleController extends Controller
         $article->alias = $request->input('alias');
         $article->article_text = $request->input('article_text');
         $article->status_id = $request->input('status');
-//        $article->category = $request->input('category');
+        $article->category_id = $request->input('category');
         // TODO get real user id here ..
         $article->user_id = 1;
         $article->start_publishing = $request->input('start_publishing');
@@ -58,7 +58,12 @@ class ArticleController extends Controller
         $article->save();
 
         $request->session()->flash('status', 'Article was successfully saved!');
-        return Redirect::to('article');
+
+        if ($request->get('action') == 'save') {
+            return redirect()->route('article');
+        } elseif ($request->get('action') == 'save_and_close') {
+            return redirect()->route('article.index');
+        }
 
     }
 
@@ -81,7 +86,7 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        $article = Article::find(1);
+        $article = Article::find($id);
         return view('articles.edit', ['article' => $article]);
     }
 
@@ -94,7 +99,29 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $this->validate($request, [
+            'title' => 'required',
+            'alias' => 'required',
+        ]);
+
+        $article = Article::find($id);
+        $article->title = $request->input('title');
+        $article->alias = $request->input('alias');
+        $article->article_text = $request->input('article_text');
+        $article->status_id = $request->input('status');
+        $article->category_id = $request->input('category');
+        $article->user_id = 1;
+        $article->start_publishing = $request->input('start_publishing');
+        $article->finish_publishing = $request->input('finish_publishing');
+        $article->save();
+
+        if ($request->get('action') == 'save') {
+            return redirect()->route('article.edit', ['article' => $article]);
+        } elseif ($request->get('action') == 'save_and_close') {
+            return redirect()->route('article.index');
+        }
+
     }
 
     /**

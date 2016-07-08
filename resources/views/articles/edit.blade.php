@@ -13,16 +13,23 @@
         </div>
     @endif
 
-    {{-- Open form --}}
+    {{--Open form--}}
 
-    {{ Form::open(array('url' => 'article')) }}
+    <?php if (isset($article)) { ?>
+    {{ Form::model($article, ['method'=> 'put', 'route' => ['article.update', $article->id]]) }}
+    <?php } else { ?>
+    {{ Form::open(['url' => '/article']) }}
+    <?php } ?>
 
-    {{-- Toolbar --}}
+    {{--Toolbar--}}
 
     <div class="toolbar">
-        <button class="button glow button-action"><i class="fa fa-save"></i> Save</button>
-        <a href="#" class="button glow button-highlight"><i class="fa fa-close"></i> Close</a>
+        <button name="action" value="save_and_close" class="btn btn-success"><i class="fa fa-close"></i> Save & Close</button>
+        <button name="action" value="save" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <a id="article-close" href="#" class="btn btn-danger"><i class="fa fa-close"></i> Close</a>
     </div>
+
+    {{--Content--}}
 
     <div class="content">
 
@@ -47,20 +54,20 @@
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label>Title:</label>
-                                    <?php echo Form::text('title','', ['class' => 'form-control']); ?>
+                                    <?php echo Form::text('title', null, ['class' => 'form-control']); ?>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Alias:</label>
-                                    <?php echo Form::text('alias','', ['class' => 'form-control']); ?>
+                                    <?php echo Form::text('alias', null, ['class' => 'form-control']); ?>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Article text:</label>
-                            <?php echo Form::textarea('article_text', '', ['id' => 'article_text', 'class' => 'form-control']); ?>
+                            <?php echo Form::textarea('article_text', null, ['id' => 'article_text', 'class' => 'form-control']); ?>
                         </div>
                     </div>
 
@@ -68,12 +75,19 @@
 
                         <div class="form-group">
                             <label>Status:</label>
-                            <?php echo Form::select('status', App\Status::lists('name','id'), null, ['class' => 'chosen-select']); ?>
+                            <?php
+                                $status_id = isset($article->status->id) ? $article->status->id : '';
+                                echo Form::select('status', App\Status::lists('name','id'), $status_id, ['class' => 'chosen-select']);
+                            ?>
                         </div>
 
                         <div class="form-group">
                             <label>Category:</label>
-                            <?php echo Form::select('status', App\Category::lists('name','id'), null, ['class' => 'chosen-select']); ?>
+                            <?php
+                                $category_id = isset($article->category->id) ? $article->category->id : '';
+                                echo Form::select('category', App\Category::lists('name','id'), $category_id, ['class' => 'chosen-select']);
+                            ?>
+
                         </div>
 
                         <div class="form-group">

@@ -4,8 +4,7 @@
 {{-- Toolbar --}}
 
 <div class="toolbar">
-    <a href="/article/create" class="button glow button-action"><i class="fa fa-save"></i> New article</a>
-    <a href="#" class="button glow button-highlight"><i class="fa fa-close"></i> Close</a>
+    <a href="/article/create" class="btn btn-success"> New article</a>
 </div>
 
 <section class="content">
@@ -31,14 +30,15 @@
                             @foreach($articles as $article)
                                 <tr>
                                     <td style="width: 10px;">
-                                        <a class="btn btn-primary btn-sm" href="#navigation-main">
-                                            <i class="fa fa-edit" aria-hidden="true" title="Skip to main navigation"></i>
-                                            <span class="sr-only">Skip to main navigation</span>
+                                        <a class="btn btn-primary btn-sm btn-action" href="/article/{{ $article->id }}/edit">
+                                            <i class="fa fa-edit" aria-hidden="true" title="Edit article"></i>
                                         </a>
                                     </td>
                                     <td>{{ $article->title }}</td>
                                     <td>{{ $article->author->name }}</td>
-                                    <td>{{ $article->status->name }}</td>
+                                    <td>
+                                        <?php echo isset($article->status->name) & $article->status->name === 'Published' ? '1' :  '2'  ?>
+                                    </td>
                                     <td>{{ $article->created_at }}</td>
                                 </tr>
                             @endforeach

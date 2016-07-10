@@ -24,8 +24,8 @@
     {{--Toolbar--}}
 
     <div class="toolbar">
-        <button name="action" value="save_and_close" class="btn btn-success"><i class="fa fa-close"></i> Save & Close</button>
-        <button name="action" value="save" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button name="action" value="save_and_close" class="btn btn-success"><i class="fa fa-check"></i> Save & Close</button>
+        <button name="action" value="save" class="btn btn-success"><i class="fa fa-check"></i> Save</button>
         <a id="article-close" href="#" class="btn btn-danger"><i class="fa fa-close"></i> Close</a>
     </div>
 

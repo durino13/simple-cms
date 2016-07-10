@@ -60,7 +60,8 @@ var ed = tinymce.init({
     skin: false,
     plugins: ['image','media', 'fullscreen'],
     toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | link image | fullscreen | table ',
-    height: 400
+    height: 400,
+    content_css : '/public/assets/all.css'
 });
 
 // Datepicker

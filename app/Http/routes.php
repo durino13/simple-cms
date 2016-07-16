@@ -12,6 +12,7 @@
 */
 
 Route::resource('article', 'ArticleController');
+Route::resource('category', 'CategoryController');
 Route::get('/', [
     'middleware' => 'auth',
     'uses' => 'HomeController@index'

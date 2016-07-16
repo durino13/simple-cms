@@ -22,12 +22,12 @@
                 </a>
             </li>
             <li>
-                <a href="/article">
+                <a href="/category">
                     <i class="fa fa-th"></i> <span>Categories</span>
                 </a>
             </li>
             <li>
-                <a href="/article">
+                <a href="/media">
                     <i class="fa fa-th"></i> <span>Media</span>
                 </a>
             </li>
@@ -35,7 +35,7 @@
         <ul class="sidebar-menu">
             <li class="header">USERS</li>
             <li>
-                <a href="/article">
+                <a href="/users">
                     <i class="fa fa-th"></i> <span>Users</span>
                 </a>
             </li>

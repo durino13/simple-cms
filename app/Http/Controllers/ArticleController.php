@@ -18,7 +18,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::all()->sortByDesc("updated_at");;
         return view('articles.index', ['articles' => $articles]);
     }
 
@@ -115,6 +115,8 @@ class ArticleController extends Controller
         $article->start_publishing = $request->input('start_publishing');
         $article->finish_publishing = $request->input('finish_publishing');
         $article->save();
+
+        $request->session()->flash('status', 'Article was successfully saved!');
 
         if ($request->get('action') == 'save') {
             return redirect()->route('article.edit', ['article' => $article]);

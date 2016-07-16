@@ -1,9 +1,16 @@
 .toolbar {
+
   background: #eaeaea;
   border-bottom: 1px solid #e3e3e3;
   min-height: 45px;
   padding: 5px 0px 0px 15px;
+
   button, a {
     margin-left: 1em;
   }
+
+  button .fa, a .fa {
+    padding-right: 5px;
+  }
+
 }

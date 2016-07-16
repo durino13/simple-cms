@@ -1,18 +1,6 @@
 @extends('layouts.main')
 @section('content')
 
-    {{--Validation errors--}}
-
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     {{--Open form--}}
 
     <?php if (isset($article)) { ?>
@@ -24,10 +12,14 @@
     {{--Toolbar--}}
 
     <div class="toolbar">
-        <button name="action" value="save_and_close" class="btn btn-success"><i class="fa fa-check"></i> Save & Close</button>
-        <button name="action" value="save" class="btn btn-success"><i class="fa fa-check"></i> Save</button>
-        <a id="article-close" href="#" class="btn btn-danger"><i class="fa fa-close"></i> Close</a>
+        <button name="action" value="save_and_close" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Save & Close</button>
+        <button name="action" value="save" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Save</button>
+        <a id="form-close" href="#" class="btn btn-danger btn-sm" data-redirect="article"><i class="fa fa-close"></i> Close</a>
     </div>
+
+    {{--Status & error messages--}}
+
+    @include('common.message')
 
     {{--Content--}}
 
@@ -91,26 +83,13 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Date created:</label>
-
-                            <div class="input-group">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <input name="date_created" type="text" class="form-control pull-right datepicker"
-                                       id="date_created">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
                             <label>Start publishing:</label>
 
                             <div class="input-group">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input name="start_publishing" type="text" class="form-control pull-right datepicker"
-                                       id="start_publishing">
+                                <?php echo Form::datetime('start_publishing', null, ['id' => 'start_publishing', 'class' => 'form-control']); ?>
                             </div>
                         </div>
 
@@ -121,8 +100,29 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input name="finish_publishing" type="text" class="form-control pull-right datepicker"
-                                       id="finish_publishing">
+                                <?php echo Form::datetime('finish_publishing', null, ['id' => 'finish_publishing', 'class' => 'form-control']); ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date updated:</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <?php echo Form::datetime('updated_at', null, ['disabled', 'id' => 'updated_at', 'class' => 'form-control']); ?>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Date created:</label>
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <?php echo Form::datetime('created_at', null, ['disabled', 'id' => 'created_at', 'class' => 'form-control']); ?>
                             </div>
                         </div>
 

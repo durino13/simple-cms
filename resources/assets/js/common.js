@@ -51,8 +51,23 @@ require('../../../node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker
 require('../../../node_modules/admin-lte/plugins/datepicker/datepicker3.css');
 
 // Init datatables ..
-$('#dt-articles').DataTable();
+$('#dt-articles').DataTable(
+    {
+        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+            // Bold the grade for all 'A' grade browsers
+            if (aData[3] === '1') {
+                $('td:eq(3)', nRow).html( '<i class="fa fa-check-circle-o text-success"></i>' );
+            } else {
+                $('td:eq(3)', nRow).html( '<i class="fa fa-close text-danger"></i>' );
+            }
+        }
+    }
+);
 $('#dt-articles').show();
+
+$('#dt-categories').DataTable();
+$('#dt-categories').show();
+
 
 // TinyMCE
 var ed = tinymce.init({

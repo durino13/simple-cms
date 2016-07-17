@@ -1,13 +1,12 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "durino13/cms",
+    "description": "Content management system",
+    "keywords": ["framework", "laravel", "cms"],
     "license": "MIT",
     "type": "project",
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
-        "barryvdh/laravel-debugbar": "^2.2",
         "laravelcollective/html": "5.2.*"
     },
     "require-dev": {

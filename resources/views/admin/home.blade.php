@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('admin.layouts.main')
 
 @section('content')
 
@@ -45,4 +45,4 @@
 @endsection
 
 <!-- Control Sidebar -->
-@include('common.right-menu')
+@include('admin.common.right-menu')

@@ -16,18 +16,18 @@
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-                <a href="/article">
+                <a href="/administrator/article">
                     <i class="fa fa-th"></i> <span>Articles</span>
                     <small class="label pull-right bg-green"><?php echo App\Article::all()->count(); ?></small>
                 </a>
             </li>
             <li>
-                <a href="/category">
+                <a href="/administrator/category">
                     <i class="fa fa-th"></i> <span>Categories</span>
                 </a>
             </li>
             <li>
-                <a href="/media">
+                <a href="/administrator/media">
                     <i class="fa fa-th"></i> <span>Media</span>
                 </a>
             </li>
@@ -35,7 +35,7 @@
         <ul class="sidebar-menu">
             <li class="header">USERS</li>
             <li>
-                <a href="/users">
+                <a href="/administrator/users">
                     <i class="fa fa-th"></i> <span>Users</span>
                 </a>
             </li>

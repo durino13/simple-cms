@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all()->sortByDesc("updated_at");
-        return view('category.index', ['categories' => $categories]);
+        return view('admin.category.index', ['categories' => $categories]);
     }
 
     /**
@@ -53,9 +53,9 @@ class CategoryController extends Controller
         $request->session()->flash('status', 'Category was successfully saved!');
 
         if ($request->get('action') == 'save') {
-            return redirect()->route('category.edit', ['category' => $category]);
+            return redirect()->route('administrator.category.edit', ['category' => $category]);
         } elseif ($request->get('action') == 'save_and_close') {
-            return redirect()->route('category.index');
+            return redirect()->route('administrator.category.index');
         }
     }
 
@@ -79,7 +79,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        return view('category.edit', ['category' => $category]);
+        return view('admin.category.edit', ['category' => $category]);
     }
 
     /**
@@ -106,9 +106,9 @@ class CategoryController extends Controller
         $request->session()->flash('status', 'Category was successfully saved!');
 
         if ($request->get('action') == 'save') {
-            return redirect()->route('category.edit', ['category' => $category]);
+            return redirect()->route('administrator.category.edit', ['category' => $category]);
         } elseif ($request->get('action') == 'save_and_close') {
-            return redirect()->route('category.index');
+            return redirect()->route('administrator.category.index');
         }
     }
 

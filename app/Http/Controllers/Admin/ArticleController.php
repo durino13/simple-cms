@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
@@ -19,7 +19,7 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::all()->sortByDesc("updated_at");;
-        return view('articles.index', ['articles' => $articles]);
+        return view('admin.articles.index', ['articles' => $articles]);
     }
 
     /**
@@ -29,7 +29,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('articles.edit');
+        return view('admin.articles.edit');
     }
 
     /**
@@ -60,9 +60,9 @@ class ArticleController extends Controller
         $request->session()->flash('status', 'Article was successfully saved!');
 
         if ($request->get('action') == 'save') {
-            return redirect()->route('article');
+            return redirect()->route('administrator.article');
         } elseif ($request->get('action') == 'save_and_close') {
-            return redirect()->route('article.index');
+            return redirect()->route('administrator.article.index');
         }
 
     }
@@ -87,7 +87,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        return view('articles.edit', ['article' => $article]);
+        return view('admin.articles.edit', ['article' => $article]);
     }
 
     /**
@@ -119,9 +119,9 @@ class ArticleController extends Controller
         $request->session()->flash('status', 'Article was successfully saved!');
 
         if ($request->get('action') == 'save') {
-            return redirect()->route('article.edit', ['article' => $article]);
+            return redirect()->route('administrator.article.edit', ['article' => $article]);
         } elseif ($request->get('action') == 'save_and_close') {
-            return redirect()->route('article.index');
+            return redirect()->route('administrator.article.index');
         }
 
     }

@@ -4,7 +4,7 @@ $(document).ready(function() {
         var redirectUrl = e.target.dataset.redirect;
 
         if(confirm('Do you really want to close this form?')) {
-            window.location.href = '/'+redirectUrl;
+            window.location.href = redirectUrl;
         }
     })
 })

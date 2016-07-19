@@ -21,10 +21,10 @@
 <body class="hold-transition skin-blue sidebar-mini">
 
 {{--Header--}}
-@include('common.header')
+@include('admin.common.header')
 
 <!-- Left side column. contains the sidebar -->
-@include('common.left-menu')
+@include('admin.common.left-menu')
 
 <!-- Site wrapper -->
 <div id="fouc" class="wrapper">
@@ -35,7 +35,7 @@
     </div>
 
     {{--Footer--}}
-    @include('common.footer')
+    @include('admin.common.footer')
 
 </div>
 

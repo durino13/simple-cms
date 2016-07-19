@@ -1,15 +1,15 @@
-@extends('layouts.main')
+@extends('admin.layouts.main')
 @section('content')
 
 {{-- Toolbar --}}
 
 <div class="toolbar">
-    <a href="/category/create" class="btn btn-success btn-sm"><span class="fa fa-plus-circle"></span> New category</a>
+    <a href="/administrator/category/create" class="btn btn-success btn-sm"><span class="fa fa-plus-circle"></span> New category</a>
 </div>
 
 {{--Status & error messages--}}
 
-@include('common.message')
+@include('admin.common.message')
 
 {{--Content--}}
 
@@ -36,7 +36,7 @@
                             @foreach($categories as $category)
                                 <tr>
                                     <td>{{ $category->id }}</td>
-                                    <td><a href="/category/{{ $category->id }}/edit">{{ $category->name }}</a></td>
+                                    <td><a href="/administrator/category/{{ $category->id }}/edit">{{ $category->name }}</a></td>
                                     <td>{{ $category->code }}</td>
                                     <td>{{ $category->updated_at }}</td>
                                     <td>{{ $category->created_at }}</td>
@@ -52,4 +52,4 @@
 @endsection
 
 <!-- Control Sidebar -->
-@include('common.right-menu')
+@include('admin.common.right-menu')

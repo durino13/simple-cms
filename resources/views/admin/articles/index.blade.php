@@ -1,15 +1,15 @@
-@extends('layouts.main')
+@extends('admin.layouts.main')
 @section('content')
 
 {{-- Toolbar --}}
 
 <div class="toolbar">
-    <a href="/article/create" class="btn btn-success btn-sm"><span class="fa fa-plus-circle"></span> New article</a>
+    <a href="/administrator/article/create" class="btn btn-success btn-sm"><span class="fa fa-plus-circle"></span> New article</a>
 </div>
 
 {{--Status & error messages--}}
 
-@include('common.message')
+@include('admin.common.message')
 
 {{--Content--}}
 
@@ -38,7 +38,7 @@
                                 <tr>
                                     <td>{{ $article->id }}</td>
                                     <td>
-                                        <a href="/article/{{ $article->id }}/edit">{{ $article->title }}</a><br/>
+                                        <a href="/administrator/article/{{ $article->id }}/edit">{{ $article->title }}</a><br/>
                                         <span class="text-sm">Category:&nbsp;&nbsp;{{ $article->category->name }}</span>
                                     </td>
                                     <td>{{ $article->author->name }}</td>
@@ -59,4 +59,4 @@
 @endsection
 
 <!-- Control Sidebar -->
-@include('common.right-menu')
+@include('admin.common.right-menu')

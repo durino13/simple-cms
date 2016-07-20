@@ -9,7 +9,7 @@
 // Weird way to load a datatable JS .. the define=>disable part disables AMD, so datatables will use CommonJS
 require('imports?define=>false!datatables.net')(window, $);
 require('imports?define=>false!datatables.net-bs' )( window, $ );
-require('../../../node_modules/datatables.net-dt/css/jquery.dataTables.css');
+require('../../../../node_modules/datatables.net-dt/css/jquery.dataTables.css');
 
 // -------------------------------------------------
 // TinyMCE
@@ -31,9 +31,9 @@ require('tinymce/skins/lightgray/fonts/tinymce.svg');
 // Others
 // -------------------------------------------------
 
-// import css
-require('../../../node_modules/bootstrap/dist/css/bootstrap.min.css');
-require('../../../node_modules/font-awesome/css/font-awesome.min.css');
+// import js & css
+require('../../../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+require('../../../../node_modules/font-awesome/css/font-awesome.min.css');
 require('../sass/app.scss');
 require('../js/article.js');
 
@@ -43,12 +43,12 @@ require('../js/article.js');
 
 // AdminLTE is loaded here .. The $=jquery notation will make jQuery available for AdminLTE, otherwise you will see
 // following message: AdminLTE requires jQuery ..
-require('../../../node_modules/admin-lte/dist/js/app.min.js');
-require('../../../node_modules/admin-lte/plugins/jQueryUI/jquery-ui.js');
-require('../../../node_modules/admin-lte/dist/css/AdminLTE.css');
-require('../../../node_modules/admin-lte/dist/css/skins/_all-skins.min.css');
-require('../../../node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js');
-require('../../../node_modules/admin-lte/plugins/datepicker/datepicker3.css');
+require('../../../../node_modules/admin-lte/dist/js/app.min.js');
+require('../../../../node_modules/admin-lte/plugins/jQueryUI/jquery-ui.js');
+require('../../../../node_modules/admin-lte/dist/css/AdminLTE.css');
+require('../../../../node_modules/admin-lte/dist/css/skins/_all-skins.min.css');
+require('../../../../node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js');
+require('../../../../node_modules/admin-lte/plugins/datepicker/datepicker3.css');
 
 // Init datatables ..
 $('#dt-articles').DataTable(

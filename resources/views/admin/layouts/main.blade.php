@@ -42,7 +42,7 @@
 <script src="/plugins/jquery/dist/jquery.min.js"></script>
 <script src="/plugins/chosen-npm/public/chosen.jquery.js"></script>
 <script src="/assets/global.js"></script>
-<script src="/assets/all.js"></script>
+<script src="/assets/admin.all.js"></script>
 
 <script type="text/javascript">
     document.getElementById("fouc").style.display = "block";

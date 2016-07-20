@@ -6,12 +6,13 @@ var extractCss = new ExtractTextPlugin('all.css');
 
 module.exports = {
     entry: {
-        'filename': './resources/assets/js/common.js'
+        'site': './resources/assets/site/js/common.js',
+        'admin': './resources/assets/admin/js/common.js'
     },
     output: {
         'path': 'public/assets',
         'publicPath': '/assets/',
-        'filename': 'all.js'
+        'filename': '[name].all.js'
     },
     devtool: "source-map",
     module: {

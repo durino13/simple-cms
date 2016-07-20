@@ -5,8 +5,5 @@ Homestead.yaml
 Homestead.json
 .env
 .idea
-public/assets/all.css
-public/assets/all.js
-public/assets/all.js.map
-public/assets/all.css.map
+public/assets/
 npm-debug.log

@@ -2,10 +2,7 @@
 
 // Site reoutes
 
-Route::get('/', function() {
-    var_dump('Main site ...');
-    exit();
-});
+Route::get('/', 'Site\HomeController@index');
 
 // Admin routes
 

@@ -76,7 +76,7 @@ var ed = tinymce.init({
     plugins: ['image','media', 'fullscreen'],
     toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | link image | fullscreen | table ',
     height: 400,
-    content_css : '/public/assets/all.css'
+    content_css : '/public/assets/admin.all.css'
 });
 
 // Datepicker

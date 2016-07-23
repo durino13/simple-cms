@@ -1,0 +1,90 @@
+/*==============================
+=            Tablet            =
+==============================*/
+
+@media only screen and (max-width : 992px) {
+
+	.container {
+		margin-left: auto;
+		margin-right: auto;
+		width: 752px;
+	}
+
+}
+
+/*==============================
+=            Mobile            =
+==============================*/
+
+@media only screen and (max-width : 768px) { 
+
+	#new-opportunities {		
+		.tree_column {
+			width: 100%; 
+		}
+
+		.one_column {
+			display: none;
+		}
+	}
+
+	.flex_container {
+		flex-direction: column;
+	}
+
+	.container {
+		margin-left: auto;
+		margin-right: auto;
+		width: 320px;
+	}
+
+	.two_column {
+		width: 100%
+	}
+
+	.contact {
+		display: none;
+	}
+
+	// Timeline
+
+	#timeline {
+
+		margin: 0px;
+
+		.timeline-icon {
+			display: none;
+		}
+
+		.timeline-item {
+
+			.timeline-content {
+				width: 100%;
+				padding: 0px;
+
+				.timeline-work, .timeline-period {
+					padding: 1em 1em 0em 1em;
+				}
+
+				h2 {
+					margin: 0px;
+				}
+
+			}
+
+		}
+
+		&:before {
+			display: none;
+			content:"";
+			width: 3px;
+			height: 100%;
+			background: $timeline-color;
+			left: 50%;
+			top: 0;
+			position: absolute;
+		}	
+
+	}
+
+}

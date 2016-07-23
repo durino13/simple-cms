@@ -1,0 +1,32 @@
+@import '_colors';
+
+body {
+    font-size:18px;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+    color:$dark-green;
+    font-size:3em;
+    letter-spacing: 3px;
+    line-height: 1em;
+}
+
+h2 {
+    color:$dark-green;
+    font-size:1.8em;
+}
+
+h3 {
+    color:$dark-green;
+    font-size:1.3em;
+}
+
+.font-xsmall {
+    font-size: 0.7em;
+}
+
+a {  
+    color: #FEC23E;
+    font-weight: bold;
+}

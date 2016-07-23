@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var extractSass = new ExtractTextPlugin('all1.css');
-var extractCss = new ExtractTextPlugin('all.css');
+var extractCss = new ExtractTextPlugin('[name].all.css');
 
 module.exports = {
     entry: {
@@ -28,7 +28,7 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/i,
                 loaders: [
-                    'file?hash=sha512&digest=hex&name=[hash].[ext]',
+                    'file?hash=sha512&digest=hex&name=[name].[ext]',
                     'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
             },

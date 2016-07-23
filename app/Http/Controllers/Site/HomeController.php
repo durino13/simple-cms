@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Article;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\Controller;
@@ -25,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('site.layouts.main');
+
+        $allNews = Article::all();
+        return view('site.layouts.main', ['allNews' => $allNews]);
     }
 }

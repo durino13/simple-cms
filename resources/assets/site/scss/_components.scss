@@ -181,7 +181,10 @@ li {
 
 
 		.blognews__content__text {
-			line-height: 1.4em; 
+			line-height: 1.4em;
+			p {
+				padding: 0 0 15px;
+			}
 		}	
 
 	}

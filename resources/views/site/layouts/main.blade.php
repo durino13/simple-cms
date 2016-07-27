@@ -8,6 +8,7 @@
 
     <script type="text/javascript" src="/assets/site.all.js"></script>
     <link rel="stylesheet" href="/assets/site.all.css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,700&amp;subset=latin-ext" rel="stylesheet" type="text/css">
 
 
     <!-- Google analytics  -->

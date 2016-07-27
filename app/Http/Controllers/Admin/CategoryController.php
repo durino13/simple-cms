@@ -16,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all()->sortByDesc("updated_at");
+        $categories = Category::where('trash', null)->get();
         return view('admin.category.index', ['categories' => $categories]);
     }
 
@@ -120,6 +120,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->trash = 1;
+        $category->save();
+
+        return response()->json(['result' => true]);
     }
 }

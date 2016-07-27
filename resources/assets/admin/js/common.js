@@ -33,9 +33,11 @@ require('tinymce/skins/lightgray/fonts/tinymce.svg');
 
 // import js & css
 require('../../../../node_modules/bootstrap/dist/css/bootstrap.min.css');
+require('../../../../node_modules/bootstrap/dist/js/bootstrap.min.js');
 require('../../../../node_modules/font-awesome/css/font-awesome.min.css');
 require('../sass/app.scss');
 require('../js/article.js');
+require('../images/dots.png');
 
 // -------------------------------------------------
 // Admin LTE
@@ -76,7 +78,17 @@ var ed = tinymce.init({
     plugins: ['image','media', 'fullscreen'],
     toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | link image | fullscreen | table ',
     height: 400,
-    content_css : '/public/assets/admin.all.css'
+    content_css : '/public/assets/admin.all.css',
+    file_picker_callback: function(callback, value, meta) {
+        tinyMCE.activeEditor.windowManager.open({
+            title: 'Insert/edit image',
+            // TODO Hardcoded url
+            url: 'http://cms.local.d/administrator/media/embedded',
+            width: 700,
+            height: 600
+        });
+    }
+
 });
 
 // Datepicker

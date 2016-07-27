@@ -31,6 +31,7 @@
                             <th>Status</th>
                             <th>Updated</th>
                             <th>Created</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,6 +48,18 @@
                                     </td>
                                     <td>{{ $article->updated_at }}</td>
                                     <td>{{ $article->created_at }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                                <span class="fa fa-ellipsis-v" style="font-size: 1.5em; color: grey;"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#"><span class="fa fa-archive"></span>Archive</a></li>
+                                                <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                <li><a href="{{ route('administrator.article.destroy', $article->id) }}" data-redirect="{{ route('administrator.article.index') }}" data-method="delete" class="jquery-postback"><span class="fa fa-trash"></span>Trash</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

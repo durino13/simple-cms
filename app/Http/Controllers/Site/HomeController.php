@@ -27,7 +27,17 @@ class HomeController extends Controller
     public function index()
     {
 
-        $allNews = Article::all();
-        return view('site.layouts.main', ['allNews' => $allNews]);
+        $allNews = Article::where('status_id', 2)->where('category_id', 2); // get only active articles in the 'news' category ..
+        $rightNewsArticle = Article::all()->where('alias','who-am-i');
+        $allJobs = Article::where('status_id', 2)->where('category_id', 1)->where('trash', null)->orderBy('created_on', 'desc');
+
+        return view(
+            'site.layouts.main',
+            [
+                'allNews' => $allNews,
+                'rightNewsArticle' => $rightNewsArticle,
+                'allJobs' => $allJobs
+            ]
+        );
     }
 }

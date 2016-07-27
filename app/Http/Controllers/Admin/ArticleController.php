@@ -18,7 +18,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all()->sortByDesc("updated_at");;
+        $articles = Article::getAllActiveArticlesByCategory();
         return view('admin.articles.index', ['articles' => $articles]);
     }
 
@@ -60,7 +60,7 @@ class ArticleController extends Controller
         $request->session()->flash('status', 'Article was successfully saved!');
 
         if ($request->get('action') == 'save') {
-            return redirect()->route('administrator.article');
+            return redirect()->route('administrator.article.index');
         } elseif ($request->get('action') == 'save_and_close') {
             return redirect()->route('administrator.article.index');
         }
@@ -134,6 +134,11 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        $article->trash = 1;
+        $article->save();
+
+        return response()->json(['result' => true]);
+
     }
 }

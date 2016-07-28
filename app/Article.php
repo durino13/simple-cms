@@ -24,10 +24,11 @@ class Article extends Model
         return $this->belongsTo('App\Category', 'category_id');
     }
 
+    // TODO TinyMCE plugins should be moved into a separate class ..
     public function getIntroTextAttribute()
     {
-        if (strpos($this->article_text, '{{readmore}}') > 0) {
-            return explode('{{readmore}}',$this->article_text)[0];
+        if (strpos($this->article_text, '<hr />') > 0) {
+            return explode('<hr />',$this->article_text)[0];
         } else {
             return $this->article_text;
         }

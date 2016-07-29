@@ -23,19 +23,34 @@ class MediaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $dl = new DirectoryListing('images');
-        return view('admin.media.index', ['list' => $dl->getDirectoryContent()]);
+        $dl = $this->setup($request);
+        return view('admin.media.index', ['list' => $dl->listDirectory()]);
     }
 
     /**
      * This will display the media window in the TinyMCE editor
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function embedded()
+    public function embedded(Request $request)
     {
-        $dl = new DirectoryListing('images');
-        return view('admin.media.embedded', ['list' => $dl->getDirectoryContent()]);
+        $dl = $this->setup($request);
+        return view('admin.media.embedded', ['list' => $dl->listDirectory()]);
     }
+
+    public function destroy(Request $request)
+    {
+        $itemToDelete = $request->get('path');
+        // TODO Delete file here ..
+        var_dump($itemToDelete);
+        exit();
+    }
+
+    private function setup($request)
+    {
+        $pathToScan = ($request->query('path') !== null) ? $request->query('path') : 'images';
+        return new DirectoryListing($pathToScan);
+    }
+
 }

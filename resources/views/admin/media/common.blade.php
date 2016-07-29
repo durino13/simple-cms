@@ -1,16 +1,9 @@
 <div class="container" style="margin-top: 2em;">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <ol class="breadcrumb" dir="ltr">
                 <li><a href="/demo/Bootstrap-Listr-2"><i class="fa fa-home fa-lg fa-fw"></i> </a></li>
             </ol>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group has-feedback">
-                <label class="control-label sr-only" for="search">Search</label>
-                <input type="text" class="form-control" id="search" placeholder="Search">
-                <i class="fa fa-search form-control-feedback"></i>
-            </div>
         </div>
     </div>
     <div class="table-responsive">
@@ -18,9 +11,10 @@
             <thead>
             <tr>
                 <th class="text-right" data-sort="int">#</th>
-                <th class="col-sm-8 text-left" data-sort="string">Name</th>
-                <th class="col-sm-2 text-right" data-sort="int">Size</th>
-                <th class="col-sm-2 text-right" data-sort="int">Modified</th>
+                <th class="col-md-6 text-left" data-sort="string">Name</th>
+                <th class="col-md-2 text-right" data-sort="int">Size</th>
+                <th class="col-md-2 text-right" data-sort="int">Modified</th>
+                <th class="col-md-2"> Actions</th>
             </tr>
             </thead>
             <tfoot>
@@ -32,11 +26,11 @@
             </tr>
             </tfoot>
             <tbody>
-            @foreach($list as $l)
+            @foreach($list as $key => $l)
                 <tr style="background-color: inherit;">
-                    <td class="text-muted text-right" data-sort-value="1">1</td>
+                    <td class="text-muted text-right" data-sort-value="1">{{ ++$key }}</td>
                     <td class="text-left" data-sort-value="checksum"><i class="fa fa-folder "></i>&nbsp;&nbsp;&nbsp;
-                        <a href="Checksum/">
+                        <a href="?path={{ $l['link'] }}">
                             @if ($l['is_dir'] === true)
                                 <strong>{{ $l['value'] }}</strong>
                             @else
@@ -49,6 +43,17 @@
                         @endif
                     </td>
                     <td class="text-right" data-sort-value="1460763836" title="2016-04-15 23:43:56">3 months ago</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
+                                <span class="fa fa-ellipsis-v" style="font-size: 1.5em; color: grey;"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <meta name="csrf-token" content="{{ csrf_token() }}">
+                                <li><a href="{{ route('administrator.media.destroy', ['path' => $l['value']]) }}" data-redirect="{{ route('administrator.media.index') }}" data-method="delete" class="jquery-postback"><span class="fa fa-trash"></span>Trash</a></li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

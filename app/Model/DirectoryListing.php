@@ -10,18 +10,20 @@ class DirectoryListing {
     private $directoryToScan;
 
     /**
-     * @var array list of directory files
-     */
-    private $files;
-
-    /**
      * @var array list of directories in a directoryToScan
      */
     private $directories;
 
+    /**
+     * @var array list of directory files
+     */
+    private $files;
+
     public function __construct($directory)
     {
         $this->directoryToScan = $directory;
+        $this->directories = [];
+        $this->files = [];
     }
 
     /**
@@ -37,13 +39,15 @@ class DirectoryListing {
                 $this->directories[] = [
                     'is_dir' => true,
                     'value' => $item,
-                    'size' => 0
+                    'size' => 0,
+                    'link' => $this->directoryToScan.'/'.$item
                 ];
             } else {
                 $this->files[] = [
                     'is_dir' => false,
                     'value' => $item,
-                    'size' => (int)filesize($this->directoryToScan.'/'.$item)
+                    'size' => (int)filesize($this->directoryToScan.'/'.$item),
+                    'link' => $this->directoryToScan.'/'.$item
                 ];
             }
         }
@@ -51,6 +55,7 @@ class DirectoryListing {
     }
 
     /**
+     * TODO Move this into a helper class ..
      * Presunut do inej classy
      * @param $bytes
      * @return float|int|string
@@ -98,7 +103,7 @@ class DirectoryListing {
     /**
      * Parse the directory
      */
-    public function getDirectoryContent()
+    public function listDirectory()
     {
         $this->scan();
         return array_merge($this->directories, $this->files);

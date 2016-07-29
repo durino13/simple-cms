@@ -35,3 +35,14 @@ th, td  { font-size: 14px; }
   background-color: #f5f5f5; /* uses !important or override .mce-panel background-color/image */
   background-image: none !important;
 }
+
+// Hide list bullet in the message ..
+.status-message {
+  ul {
+    padding: 0 0 0 0.5em;
+
+  }
+  li {
+    list-style: none;
+  }
+}

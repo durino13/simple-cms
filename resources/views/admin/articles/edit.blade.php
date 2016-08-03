@@ -137,4 +137,9 @@
 
     {{ Form::close() }}
 
+    <form style="display:none" id="fileUploadForm" method="post">
+        <input id="juraj" type="hidden" name="_token" value="{{ csrf_token() }}" >
+        <input id="fileUploader" type="file" name="fileUpload"  />
+    </form>
+
 @endsection

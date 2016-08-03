@@ -6,7 +6,7 @@
             </ol>
         </div>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive no-border">
         <table id="bs-table" class="table table-hover">
             <thead>
             <tr>
@@ -30,7 +30,7 @@
                 <tr style="background-color: inherit;">
                     <td class="text-muted text-right" data-sort-value="1">{{ ++$key }}</td>
                     <td class="text-left" data-sort-value="checksum"><i class="fa fa-folder "></i>&nbsp;&nbsp;&nbsp;
-                        <a href="?path={{ $l['link'] }}">
+                        <a href="?path={{ $l['link'] }}" class="media-trigger">
                             @if ($l['is_dir'] === true)
                                 <strong>{{ $l['value'] }}</strong>
                             @else

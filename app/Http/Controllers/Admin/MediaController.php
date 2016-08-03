@@ -53,4 +53,20 @@ class MediaController extends Controller
         return new DirectoryListing($pathToScan);
     }
 
+    public function upload(Request $request)
+    {
+
+        // TODO File is send to server, I have to catch it now ..
+
+
+        $file = $request->file('file-0');
+        echo json_encode(['result' => true, 'newPath' => $file->path()]);
+        exit();
+    }
+
+    public function download(Request $request)
+    {
+        return response()->download('images/joomla_black.png');
+    }
+
 }

@@ -9,3 +9,22 @@
   }
 
 }
+
+
+// Decrease table row geight
+.table {
+
+  tbody {
+    tr {
+      td {
+        padding: 4px;
+      }
+    }
+  }
+
+}
+
+// I dont want to display table border on the embedded table
+.no-border {
+  border: 0px;
+}

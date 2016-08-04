@@ -3,44 +3,17 @@
 var ed = tinymce.init({
     selector: '#article_text',
     skin: false,
-    plugins: ['image','media', 'fullscreen','template'],
+    plugins: ['image','media', 'fullscreen','template', 'filemanager'],
     toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | template | link image | fullscreen',
     height: 400,
     content_css : '/public/assets/admin.all.css',
     templates: [
         {title: 'Readmore', description: 'Insert readmore article section', content: '<hr/>'},
     ],
-    file_picker_callback: function(callback, value, meta) {
-        if (meta.filetype == 'image') {
-            $("#fileUploader").unbind( "change" );
-            $("#fileUploader").change(function(event) {
-                    onFileChosen(event,callback);
-                });
-            $("#fileUploader").click();
-        }
-    },
-    convert_urls: false,
-    // file_picker_callback: function(callback, value, meta) {
-    //     tinyMCE.activeEditor.windowManager.open({
-    //         title: 'Media manager',
-    //         // TODO Hardcoded url
-    //         url: 'http://cms.local.d/administrator/media/embedded',
-    //         width: 700,
-    //         height: 600,
-    //         buttons: [{
-    //             text: 'Insert',
-    //             onclick: function () {
-    //                 //.. do some work
-    //                 tinymce.activeEditor.windowManager.close();
-    //             }
-    //         }, {
-    //             text: 'Close',
-    //             onclick: 'close'
-    //         }]
-    //     });
-    //
-    //  //   win.document.getElementById('mceu_37-inp').value = 'my browser value';
-    // }
+    external_filemanager_path:"/plugins/filemanager/filemanager/",
+    filemanager_title:"Responsive Filemanager" ,
+    external_plugins: { "filemanager" : "/plugins/filemanager/filemanager/plugin.min.js"},
+    convert_urls: false
 
 });
 

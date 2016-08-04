@@ -60,6 +60,9 @@ class MediaController extends Controller
 
 
         $file = $request->file('file-0');
+        $request->file('file-0')->move('public/images');
+        echo json_encode(['result' => 'ole']);
+        exit;
         echo json_encode(['result' => true, 'newPath' => $file->path()]);
         exit();
     }

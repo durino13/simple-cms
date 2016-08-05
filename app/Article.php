@@ -38,9 +38,9 @@ class Article extends Model
     {
         if ($categoryCode !== null) {
             $category = Category::getCategoryByCode($categoryCode);
-            return Article::where('category_id', $category->id)->where('trash', null)->get();
+            return Article::where('category_id', $category->id)->where('trash', null)->orderBy('created_at','desc')->get();
         } else {
-            return Article::where('trash', null)->get();
+            return Article::where('trash', null)->orderBy('created_at','desc')->get();
         }
     }
 

@@ -8,8 +8,8 @@
 
             <div class="blognews">
                 <div class="blognews__date">
-                    <div class="blognews__date__day">09</div>
-                    <div class="blognews__date__month">SEP</div>
+                    <div class="blognews__date__day">{{ date('d', strtotime($news->start_publishing))  }}</div>
+                    <div class="blognews__date__month">{{ strtoupper(date('M', strtotime($news->start_publishing))) }}</div>
                 </div>
                 <div class="blognews__content">
                     <div class="blognews__content__title">{{ $news->title }}</div>

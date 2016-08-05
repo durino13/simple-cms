@@ -30,7 +30,7 @@ require('tinymce/skins/lightgray/fonts/tinymce.woff');
 require('tinymce/skins/lightgray/fonts/tinymce.eot');
 require('tinymce/skins/lightgray/fonts/tinymce.svg');
 
-// -------------------------------------------------
+// -------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <
 // Others
 // -------------------------------------------------
 

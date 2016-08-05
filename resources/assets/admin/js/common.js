@@ -5,6 +5,8 @@ require('../../../../node_modules/admin-lte/plugins/datepicker/datepicker3.css')
 // Application logic
 // ------------------------------------------------------------------------------------
 
+// Close form alert
+
 $(document).ready(function() {
     $('#form-close').on('click', function(e) {
         e.preventDefault();

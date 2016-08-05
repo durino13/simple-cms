@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Providers\AppServiceProvider;
+use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,7 +18,7 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $articles = Article::getAllActiveArticlesByCategory();
         return view('admin.articles.index', ['articles' => $articles]);
@@ -51,8 +53,7 @@ class ArticleController extends Controller
         $article->article_text = $request->input('article_text');
         $article->status_id = $request->input('status');
         $article->category_id = $request->input('category');
-        // TODO get real user id here ..
-        $article->user_id = 1;
+        $article->user_id = $request->user()->id;
         $article->start_publishing = $request->input('start_publishing');
         $article->finish_publishing = $request->input('finish_publishing');
         $article->save();

@@ -58,11 +58,14 @@ $('#dt-articles').DataTable(
             } else {
                 $('td:eq(3)', nRow).html( '<i class="fa fa-close text-danger"></i>' );
             }
-        }
+        },
+        order: [[4,'desc']]
     }
 );
 $('#dt-articles').show();
-$('#dt-categories').DataTable();
+$('#dt-categories').DataTable({
+    order: [[3,'desc']]
+});
 $('#dt-categories').show();
 
 // ------------------------------------------------------------------------------------

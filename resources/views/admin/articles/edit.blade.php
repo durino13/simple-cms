@@ -89,7 +89,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <?php echo Form::datetime('start_publishing', null, ['id' => 'start_publishing', 'class' => 'form-control']); ?>
+                                <?php echo Form::datetime('start_publishing', \Carbon\Carbon::now()->toDateTimeString(), ['id' => 'start_publishing', 'class' => 'form-control']); ?>
                             </div>
                         </div>
 

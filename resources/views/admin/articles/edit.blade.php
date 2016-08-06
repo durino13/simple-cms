@@ -89,7 +89,10 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <?php echo Form::datetime('start_publishing', \Carbon\Carbon::now()->toDateTimeString(), ['id' => 'start_publishing', 'class' => 'form-control']); ?>
+                                <?php
+                                    $start_publishing = !empty($article->start_publishing) ? null : \Carbon\Carbon::now()->toDateTimeString();
+                                    echo Form::datetime('start_publishing', $start_publishing, ['id' => 'start_publishing', 'class' => 'form-control']);
+                                ?>
                             </div>
                         </div>
 
@@ -100,7 +103,10 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <?php echo Form::datetime('finish_publishing', null, ['id' => 'finish_publishing', 'class' => 'form-control']); ?>
+                                <?php
+                                    $finish_publishing = !empty($article->finish_publishing) ? null : \Carbon\Carbon::now()->addYears(10)->toDateTimeString();
+                                    echo Form::datetime('finish_publishing', $finish_publishing, ['id' => 'finish_publishing', 'class' => 'form-control']);
+                                ?>
                             </div>
                         </div>
 
@@ -111,7 +117,10 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <?php echo Form::datetime('updated_at', null, ['disabled', 'id' => 'updated_at', 'class' => 'form-control']); ?>
+                                <?php
+                                    $updated_at = !empty($article->updated_at) ? null : \Carbon\Carbon::now()->toDateTimeString();
+                                    echo Form::datetime('updated_at', $updated_at, ['disabled', 'id' => 'updated_at', 'class' => 'form-control']);
+                                ?>
                             </div>
                         </div>
 
@@ -122,7 +131,10 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <?php echo Form::datetime('created_at', null, ['disabled', 'id' => 'created_at', 'class' => 'form-control']); ?>
+                                <?php
+                                    $created_at = !empty($article->created_at) ? null : \Carbon\Carbon::now()->toDateTimeString();
+                                    echo Form::datetime('created_at', $created_at, ['disabled', 'id' => 'created_at', 'class' => 'form-control']);
+                                ?>
                             </div>
                         </div>
 

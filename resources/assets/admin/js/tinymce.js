@@ -3,8 +3,8 @@
 var ed = tinymce.init({
     selector: '#article_text',
     skin: false,
-    plugins: ['image','media', 'fullscreen','template', 'filemanager'],
-    toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | template | link image | fullscreen',
+    plugins: ['image','media', 'fullscreen','template', 'filemanager', 'link'],
+    toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | link | template | image | fullscreen',
     height: 400,
     content_css : '/public/assets/admin.all.css',
     templates: [

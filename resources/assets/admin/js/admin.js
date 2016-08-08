@@ -25,6 +25,7 @@ require('tinymce/plugins/media/plugin.js');
 require('tinymce/plugins/fullpage/plugin.js');
 require('tinymce/plugins/fullscreen/plugin.js');
 require('tinymce/plugins/template/plugin.js');
+require('tinymce/plugins/link/plugin.js');
 require('tinymce/skins/lightgray/fonts/tinymce.ttf');
 require('tinymce/skins/lightgray/fonts/tinymce.woff');
 require('tinymce/skins/lightgray/fonts/tinymce.eot');

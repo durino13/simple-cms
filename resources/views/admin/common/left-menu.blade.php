@@ -14,11 +14,16 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">ARTICLES</li>
             <li>
                 <a href="/administrator/article">
                     <i class="fa fa-newspaper-o"></i> <span>Articles</span>
                     <small class="label pull-right bg-green"><?php echo App\Article::all()->count(); ?></small>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('administrator.archive.index') }}">
+                    <i class="fa fa-archive"></i> <span>Archive</span>
                 </a>
             </li>
             <li>

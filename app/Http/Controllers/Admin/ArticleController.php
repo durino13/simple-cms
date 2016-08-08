@@ -142,4 +142,42 @@ class ArticleController extends Controller
         return response()->json(['result' => true]);
 
     }
+
+    /**
+     * Archive the article
+     * @param $id
+     * @return mixed
+     */
+    public function archive($id)
+    {
+        $article = Article::find($id);
+        $article->archive = 1;
+        $article->save();
+
+        return response()->json(['result' => true]);
+    }
+
+    /**
+     * List articles in the archive
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function listArchive()
+    {
+        $articles = Article::getArchivedArticles();
+        return view('admin.articles.index', ['articles' => $articles]);
+    }
+
+    /**
+     * Unarchive the article ..
+     * @param $id
+     * @return mixed
+     */
+    public function restore($id)
+    {
+        $article = Article::find($id);
+        $article->archive = null;
+        $article->save();
+
+        return response()->json(['result' => true]);
+    }
 }

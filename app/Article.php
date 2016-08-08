@@ -38,10 +38,20 @@ class Article extends Model
     {
         if ($categoryCode !== null) {
             $category = Category::getCategoryByCode($categoryCode);
-            return Article::where('category_id', $category->id)->where('trash', null)->orderBy('created_at','desc')->get();
+            return Article::where('category_id', $category->id)
+                ->where('trash', null)
+                ->where('archive',null)
+                ->get();
         } else {
-            return Article::where('trash', null)->orderBy('created_at','desc')->get();
+            return Article::where('trash', null)
+                ->where('archive',null)
+                ->orderBy('created_at','desc')->get();
         }
+    }
+
+    public static function getArchivedArticles()
+    {
+        return Article::where('archive', 1)->orderBy('created_at','desc')->get();
     }
 
 }

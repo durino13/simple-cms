@@ -16,8 +16,13 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () 
     // Home route
     Route::get('/','Admin\ArticleController@index');
 
-    // Resource routes
+    // Article routes
     Route::resource('article', 'Admin\ArticleController');
+    Route::delete('archive/{article}', 'Admin\ArticleController@archive')->name('administrator.archive.archive');
+    Route::post('archive/{article}', 'Admin\ArticleController@restore')->name('administrator.archive.restore');
+    Route::get('archive', 'Admin\ArticleController@listarchive')->name('administrator.archive.index');
+
+    // Category routes
     Route::resource('category', 'Admin\CategoryController');
 
     // Media routes

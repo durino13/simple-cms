@@ -27,6 +27,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('administrator.trash.index') }} ">
+                    <i class="fa fa-trash"></i> <span>Trash</span>
+                </a>
+            </li>
+            <li>
                 <a href="/administrator/category">
                     <i class="fa fa-tags"></i> <span>Categories</span>
                 </a>
@@ -42,14 +47,6 @@
             <li>
                 <a href="/administrator/users">
                     <i class="fa fa-users"></i> <span>Users</span>
-                </a>
-            </li>
-        </ul>
-        <ul class="sidebar-menu">
-            <li class="header">TRASH</li>
-            <li>
-                <a href="{{ route('administrator.article.index') }} ">
-                    <i class="fa fa-trash"></i> <span>Trash</span>
                 </a>
             </li>
         </ul>

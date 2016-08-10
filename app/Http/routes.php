@@ -21,6 +21,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () 
     Route::delete('archive/{article}', 'Admin\ArticleController@archive')->name('administrator.archive.archive');
     Route::post('archive/{article}', 'Admin\ArticleController@restore')->name('administrator.archive.restore');
     Route::get('archive', 'Admin\ArticleController@listarchive')->name('administrator.archive.index');
+    Route::get('trash', 'Admin\ArticleController@listtrash')->name('administrator.trash.index');
 
     // Category routes
     Route::resource('category', 'Admin\CategoryController');

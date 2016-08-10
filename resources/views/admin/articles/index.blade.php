@@ -55,9 +55,15 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <meta name="csrf-token" content="{{ csrf_token() }}">
+                                                @if($currentURL === 'administrator/article')
                                                 <li><a href="{{ route('administrator.archive.archive', $article->id) }}" data-redirect="{{ route('administrator.article.index') }}" data-method="delete" class="jquery-postback"><span class="fa fa-archive"></span>Archive</a></li>
+                                                @endif
+                                                @if($currentURL === 'administrator/archive' || $currentURL === 'administrator/trash')
                                                 <li><a href="{{ route('administrator.archive.restore', $article->id) }}" data-redirect="{{ route('administrator.archive.index') }}" class="jquery-postback"><span class="fa fa-recycle"></span>Restore</a></li>
+                                                @endif
+                                                @if (($currentURL === 'administrator/article') || ($currentURL === 'administrator/archive'))
                                                 <li><a href="{{ route('administrator.article.destroy', $article->id) }}" data-redirect="{{ route('administrator.article.index') }}" data-method="delete" class="jquery-postback"><span class="fa fa-trash"></span>Trash</a></li>
+                                                @endif
                                             </ul>
                                         </div>
                                     </td>

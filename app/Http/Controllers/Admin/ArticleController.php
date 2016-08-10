@@ -20,8 +20,9 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
+        $currentURL = $request->path();
         $articles = Article::getAllActiveArticlesByCategory();
-        return view('admin.articles.index', ['articles' => $articles]);
+        return view('admin.articles.index', ['articles' => $articles, 'currentURL' => $currentURL]);
     }
 
     /**
@@ -143,6 +144,8 @@ class ArticleController extends Controller
 
     }
 
+    // Archive methods
+
     /**
      * Archive the article
      * @param $id
@@ -161,10 +164,11 @@ class ArticleController extends Controller
      * List articles in the archive
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function listArchive()
+    public function listArchive(Request $request)
     {
+        $currentURL = $request->path();
         $articles = Article::getArchivedArticles();
-        return view('admin.articles.index', ['articles' => $articles]);
+        return view('admin.articles.index', ['articles' => $articles, 'currentURL' => $currentURL]);
     }
 
     /**
@@ -176,8 +180,20 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
         $article->archive = null;
+        $article->trash = null;
         $article->save();
 
         return response()->json(['result' => true]);
     }
+
+    // Trash methods
+
+    public function listTrash(Request $request)
+    {
+        $currentURL = $request->path();
+        $articles = Article::getTrashArticles();
+        return view('admin.articles.index', ['articles' => $articles, 'currentURL' => $currentURL]);
+    }
+
+
 }

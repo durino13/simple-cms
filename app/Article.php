@@ -34,6 +34,11 @@ class Article extends Model
         }
     }
 
+    /**
+     * Get all articles in a specified category
+     * @param null $categoryCode
+     * @return mixed
+     */
     public static function getAllActiveArticlesByCategory($categoryCode = null)
     {
         if ($categoryCode !== null) {
@@ -49,9 +54,22 @@ class Article extends Model
         }
     }
 
+    /**
+     * Get articles in the archive
+     * @return mixed
+     */
     public static function getArchivedArticles()
     {
         return Article::where('archive', 1)->orderBy('created_at','desc')->get();
+    }
+
+    /**
+     * Get articles in the trash
+     * @return mixed
+     */
+    public static function getTrashArticles()
+    {
+        return Article::where('trash', 1)->orderBy('created_at','desc')->get();
     }
 
 }

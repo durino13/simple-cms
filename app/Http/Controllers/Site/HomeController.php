@@ -28,8 +28,16 @@ class HomeController extends Controller
     public function index()
     {
 
-        $allNews = Article::where('status_id', 2)->where('category_id', 2)->where('trash', null)->orderBy('start_publishing', 'desc')->get(); // get only active articles in the 'news' category ..
+        // get only active articles in the 'news' category ..
+        $allNews = Article::where('status_id', 2)
+            ->where('category_id', 2)
+            ->where('archive', null)
+            ->where('trash', null)
+            ->orderBy('start_publishing', 'desc')
+            ->get();
+
         $rightNewsArticle = Article::all()->where('alias','who-am-i');
+        
         $allJobs = Article::where('status_id', 2)->where('category_id', 1)->where('trash', null)->orderBy('start_publishing', 'desc')->get();
 
         return view(

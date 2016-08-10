@@ -18,10 +18,15 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () 
 
     // Article routes
     Route::resource('article', 'Admin\ArticleController');
+
+    // Archive articles
     Route::delete('archive/{article}', 'Admin\ArticleController@archive')->name('administrator.archive.archive');
     Route::post('archive/{article}', 'Admin\ArticleController@restore')->name('administrator.archive.restore');
     Route::get('archive', 'Admin\ArticleController@listarchive')->name('administrator.archive.index');
+
+    // Trash articles
     Route::get('trash', 'Admin\ArticleController@listtrash')->name('administrator.trash.index');
+    Route::delete('trash/{article}', 'Admin\ArticleController@wipe')->name('administrator.trash.wipe');
 
     // Category routes
     Route::resource('category', 'Admin\CategoryController');

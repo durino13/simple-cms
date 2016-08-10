@@ -188,11 +188,31 @@ class ArticleController extends Controller
 
     // Trash methods
 
+    /**
+     * List the articles in the trash
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function listTrash(Request $request)
     {
         $currentURL = $request->path();
         $articles = Article::getTrashArticles();
         return view('admin.articles.index', ['articles' => $articles, 'currentURL' => $currentURL]);
+    }
+
+    // Delete methods
+
+    /**
+     * Delete the article completelly from the database
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function wipe($id)
+    {
+        $article = Article::find($id);
+        $article->delete();
+
+        return response()->json(['result' => true]);
     }
 
 

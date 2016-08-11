@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
 
+    protected $table = 'article';
+
     protected $appends = ['intro_text'];
 
     public function author()
@@ -19,9 +21,9 @@ class Article extends Model
         return $this->belongsTo('App\Status', 'status_id');
     }
 
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo('App\Category', 'category_id');
+        return $this->belongsToMany('App\Category');
     }
 
     // TODO TinyMCE plugins should be moved into a separate class ..

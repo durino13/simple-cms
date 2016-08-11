@@ -22,7 +22,7 @@ class ArticleController extends Controller
     {
         $currentURL = $request->path();
         $articles = Article::getAllActiveArticlesByCategory();
-        return view('admin.articles.index', ['articles' => $articles, 'currentURL' => $currentURL]);
+        return view('admin.article.index', ['articles' => $articles, 'currentURL' => $currentURL]);
     }
 
     /**
@@ -32,7 +32,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('admin.articles.edit');
+        return view('admin.article.edit');
     }
 
     /**
@@ -89,7 +89,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        return view('admin.articles.edit', ['article' => $article]);
+        return view('admin.article.edit', ['article' => $article]);
     }
 
     /**
@@ -168,7 +168,7 @@ class ArticleController extends Controller
     {
         $currentURL = $request->path();
         $articles = Article::getArchivedArticles();
-        return view('admin.articles.index', ['articles' => $articles, 'currentURL' => $currentURL]);
+        return view('admin.article.index', ['articles' => $articles, 'currentURL' => $currentURL]);
     }
 
     /**
@@ -197,7 +197,7 @@ class ArticleController extends Controller
     {
         $currentURL = $request->path();
         $articles = Article::getTrashArticles();
-        return view('admin.articles.index', ['articles' => $articles, 'currentURL' => $currentURL]);
+        return view('admin.article.index', ['articles' => $articles, 'currentURL' => $currentURL]);
     }
 
     // Delete methods

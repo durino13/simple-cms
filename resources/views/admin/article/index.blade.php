@@ -40,7 +40,15 @@
                                     <td>{{ $article->id }}</td>
                                     <td>
                                         <a href="/administrator/article/{{ $article->id }}/edit">{{ $article->title }}</a><br/>
-                                        <span class="text-sm">Category:&nbsp;&nbsp;{{ $article->category->name }}</span>
+                                        <span class="text-sm">Categories:&nbsp;
+                                            <?php
+                                            $lastKey = $article->categories()->get()->keys()->last();
+                                            $article->categories()->get()->each(function($category, $key) use ($lastKey) {
+                                                echo $category->name;
+                                                echo ($key !== $lastKey) ? ', ' : '';
+                                            })
+                                            ?>
+                                        </span>
                                     </td>
                                     <td>{{ $article->author->name }}</td>
                                     <td>

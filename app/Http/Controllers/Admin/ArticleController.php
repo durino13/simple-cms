@@ -112,11 +112,17 @@ class ArticleController extends Controller
         $article->alias = $request->input('alias');
         $article->article_text = $request->input('article_text');
         $article->status_id = $request->input('status');
-        $article->category_id = $request->input('category');
         $article->user_id = 1;
         $article->start_publishing = $request->input('start_publishing');
         $article->finish_publishing = $request->input('finish_publishing');
         $article->save();
+
+        // Add / remove related categories ..
+//        if ($request->input('categories') !== null) {
+            $article->categories()->sync((array) $request->input('categories'));
+//        } else {
+//            $article->categories()->detach($article->categories()->get()->pluck('id'));
+//        }
 
         $request->session()->flash('status', 'Article was successfully saved!');
 

@@ -74,10 +74,15 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Category:</label>
+                            <label>Categories:</label>
                             <?php
-                                $category_id = isset($article->category->id) ? $article->category->id : '';
-                                echo Form::select('category', App\Category::lists('name','id'), $category_id, ['class' => 'chosen-select']);
+//                                $category_id = isset($article->category->id) ? $article->category->id : '';
+                                $categories = $article->categories()->get()->pluck('id')->toArray();
+                                if (empty($categories))
+                                {
+                                    $categories = [];
+                                }
+                                echo Form::select('categories[]', App\Category::lists('name','id'), $categories, ['id' => 'categories','multiple']);
                             ?>
 
                         </div>

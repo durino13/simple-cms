@@ -30,8 +30,14 @@ class HomeController extends Controller
 
         // get only active articles in the 'news' category ..
         $allNews = Article::where('status_id', 2)
-            ->where('category_id', 2)
+            ->where('category_id', 2)   // TODO remove category_id from the DB
             ->where('archive', null)
+            ->where('trash', null)
+            ->orderBy('start_publishing', 'desc')
+            ->get();
+
+        $archivedArticles = Article::where('status_id', 2)
+            ->where('archive', 1)
             ->where('trash', null)
             ->orderBy('start_publishing', 'desc')
             ->get();
@@ -45,7 +51,8 @@ class HomeController extends Controller
             [
                 'allNews' => $allNews,
                 'rightNewsArticle' => $rightNewsArticle,
-                'allJobs' => $allJobs
+                'allJobs' => $allJobs,
+                'archivedArticles' => $archivedArticles
             ]
         );
     }

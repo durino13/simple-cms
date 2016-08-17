@@ -34,7 +34,7 @@ $(function () {
 	
     $("#scroll-down").on("click" ,function(){
         $('html, body').animate({
-            scrollTop: $("#new-opportunities").offset().top
+            scrollTop: $("#news").offset().top
         }, 1000);
     });  
 

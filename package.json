@@ -31,6 +31,7 @@
     "chosen-npm": "^1.4.2",
     "css-loader": "^0.23.1",
     "exports-loader": "^0.6.3",
+    "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "font-awesome": "^4.6.3",
     "font-awesome-webpack": "0.0.4",
@@ -58,6 +59,7 @@
     "font-awesome": "^4.6.1",
     "jquery": "^2.2.3",
     "merge-stream": "^1.0.0",
-    "scriptjs": "^2.5.8"
+    "scriptjs": "^2.5.8",
+    "wow.js": "^1.2.1"
   }
 }

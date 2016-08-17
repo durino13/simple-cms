@@ -35,7 +35,7 @@
             <header>
                 <h1 class="mt-50 fg-white">JURAJ MARUŠIAK</h1>
                 <h2 class="mt-25 mb-25 fg-white">System administrator & developer</h2>
-                <div id="scroll-down" class="flex_container flex_center mt-25 mb-25 "><a href="#" class="demo-pricing demo-pricing-1 wow bounce">Hire me</a></div>
+                <div id="scroll-down" class="flex_container flex_center mt-25 mb-25 "><a href="#" class="demo-pricing demo-pricing-1    ">Hire me</a></div>
                 <div class="coding">
                     <img src="assets/coding-welcome.png" alt="">
                     <div class="codingDesktop">

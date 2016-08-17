@@ -1,4 +1,4 @@
-<div class="flex_container pt-50">
+<div id="news" class="flex_container pt-50">
 
     <section class="section two_column">
         <h2 class="pb-40">Latest news</h2>

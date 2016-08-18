@@ -52,7 +52,7 @@ function onFileChosen(event,callback)
             {
                 //This is the important part. This callback will tell TinyMCE the path of the uploaded image
                 // TODO Hardcoded URL
-                callback('http://cms.local.d/administrator/media/download?path='+ data.newPath, {});
+                callback('/administrator/media/download?path='+ data.newPath, {});
             }
             else{
                 alert("The image upload was not successful. Reason:" + data.status);

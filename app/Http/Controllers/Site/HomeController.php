@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Site;
 
 use App\Article;
-use App\Http\Requests;
-use Illuminate\Http\Request;
+use App\Status;
+use App\Category;
 use App\Http\Controllers\Admin\Controller;
 
 class HomeController extends Controller
@@ -29,14 +29,14 @@ class HomeController extends Controller
     {
 
         // get only active articles in the 'news' category ..
-        $allNews = Article::where('status_id', 2)
-            ->where('category_id', 2)   // TODO remove category_id from the DB
+        $allNews = Article::where('status_id', Status::ACTIVE_ID)
+            ->where('category_id', Category::NEWS)
             ->where('archive', null)
             ->where('trash', null)
             ->orderBy('start_publishing', 'desc')
             ->get();
 
-        $archivedArticles = Article::where('status_id', 2)
+        $archivedArticles = Article::where('status_id', Status::ACTIVE_ID)
             ->where('archive', 1)
             ->where('trash', null)
             ->orderBy('start_publishing', 'desc')
@@ -44,7 +44,7 @@ class HomeController extends Controller
 
         $rightNewsArticle = Article::all()->where('alias','who-am-i');
         
-        $allJobs = Article::where('status_id', 2)->where('category_id', 1)->where('trash', null)->orderBy('start_publishing', 'desc')->get();
+        $allJobs = Article::where('status_id', Status::ACTIVE_ID)->where('category_id', Category::JOBS)->where('trash', null)->orderBy('start_publishing', 'desc')->get();
 
         return view(
             'site.layouts.main',

@@ -159,7 +159,6 @@ return [
         /*
          * Custom service providers
          */
-        Barryvdh\Debugbar\ServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
     ],

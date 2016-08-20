@@ -9,8 +9,9 @@ class Category extends Model
 
     const JOBS = 1;
     const NEWS = 2;
+    const RIGHT_NEWS = 3;
 
-    protected $table = 'category';
+    protected $table = 'c_category';
 
     public function articles()
     {

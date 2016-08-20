@@ -11,5 +11,5 @@ class Status extends Model
     const INACTIVE_ID = 1;
     const ACTIVE_ID = 2;
 
-    protected $table = 'status';
+    protected $table = 'c_status';
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
 
-    protected $table = 'article';
+    protected $table = 'd_article';
 
     protected $appends = ['intro_text'];
 
@@ -23,7 +23,7 @@ class Article extends Model
 
     public function categories()
     {
-        return $this->belongsToMany('App\Category');
+        return $this->belongsToMany('App\Category', 'r_article_category');
     }
 
     // TODO TinyMCE plugins should be moved into a separate class ..

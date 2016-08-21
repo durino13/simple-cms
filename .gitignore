@@ -1,9 +1,6 @@
 /vendor
-/public/storage
-/public/images
 Homestead.yaml
 Homestead.json
 .env
 .idea
-public/assets/
 npm-debug.log

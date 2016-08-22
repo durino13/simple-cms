@@ -36,11 +36,6 @@
                     <i class="fa fa-tags"></i> <span>Categories</span>
                 </a>
             </li>
-            <li>
-                <a href="/administrator/media">
-                    <i class="fa fa-picture-o"></i> <span>Media</span>
-                </a>
-            </li>
         </ul>
         <ul class="sidebar-menu">
             <li class="header">USERS</li>

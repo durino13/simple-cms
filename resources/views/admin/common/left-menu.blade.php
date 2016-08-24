@@ -40,7 +40,7 @@
         <ul class="sidebar-menu">
             <li class="header">USERS</li>
             <li>
-                <a href="/administrator/users">
+                <a href="{{ route('administrator.user.index') }}">
                     <i class="fa fa-users"></i> <span>Users</span>
                 </a>
             </li>

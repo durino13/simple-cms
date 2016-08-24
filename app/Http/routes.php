@@ -31,11 +31,16 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () 
     // Category routes
     Route::resource('category', 'Admin\CategoryController');
 
+    // User routes
+    Route::resource('user', 'Admin\UserController');
+
     // Media routes
-    Route::get('/media', 'Admin\MediaController@index')->name('administrator.media.index');
-    Route::delete('/media', 'Admin\MediaController@destroy')->name('administrator.media.destroy');
-    Route::get('/media/embedded', 'Admin\MediaController@embedded');
-    Route::post('/media/upload', 'Admin\MediaController@upload');
-    Route::get('/media/download', 'Admin\MediaController@download');
+//    Route::get('/media', 'Admin\MediaController@index')->name('administrator.media.index');
+//    Route::delete('/media', 'Admin\MediaController@destroy')->name('administrator.media.destroy');
+//    Route::get('/media/embedded', 'Admin\MediaController@embedded');
+//    Route::post('/media/upload', 'Admin\MediaController@upload');
+//    Route::get('/media/download', 'Admin\MediaController@download');
+
+
 
 });

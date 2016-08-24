@@ -22,7 +22,7 @@
 
 {{--Display errors--}}
 
-@if (count($errors) > 1)
+@if (count($errors) > 0)
     <div class="status-message">
         <div class="alert alert-error" style="margin: 1em 1em 0em 1em;">
             <ul>

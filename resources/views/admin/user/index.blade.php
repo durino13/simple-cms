@@ -4,7 +4,7 @@
 {{-- Toolbar --}}
 
 <div class="toolbar">
-    <a href="/administrator/category/create" class="btn btn-success btn-sm"><span class="fa fa-plus-circle"></span> New category</a>
+    <a href="{{ route('administrator.user.create') }}" class="btn btn-success btn-sm"><span class="fa fa-plus-circle"></span> New user</a>
 </div>
 
 {{--Status & error messages--}}
@@ -18,7 +18,7 @@
         <div class="col-xs-12">
             <div class="box box-danger">
                 <div class="box-header">
-                    <h3 class="box-title">Category list</h3>
+                    <h3 class="box-title">User list</h3>
                 </div>
 
                 <div class="box-body">
@@ -27,20 +27,18 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Code</th>
                             <th>Updated</th>
                             <th>Created</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                            @foreach($categories as $category)
+                            @foreach($users as $user)
                                 <tr>
-                                    <td>{{ $category->id }}</td>
-                                    <td><a href="/administrator/category/{{ $category->id }}/edit">{{ $category->name }}</a></td>
-                                    <td>{{ $category->code }}</td>
-                                    <td>{{ $category->updated_at }}</td>
-                                    <td>{{ $category->created_at }}</td>
+                                    <td>{{ $user->id }}</td>
+                                    <td><a href="{{ route('administrator.user.edit', $user->id) }}">{{ $user->name }}</a></td>
+                                    <td>{{ $user->updated_at }}</td>
+                                    <td>{{ $user->created_at }}</td>
                                     <td>
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: transparent;">
@@ -48,7 +46,7 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                                                <li><a href="{{ route('administrator.category.destroy', $category->id) }}" data-redirect="{{ route('administrator.category.index') }}" data-method="delete" class="jquery-postback"><span class="fa fa-trash"></span>Trash</a></li>
+                                                <li><a href="{{ route('administrator.category.destroy', $user->id) }}" data-redirect="{{ route('administrator.category.index') }}" data-method="delete" class="jquery-postback"><span class="fa fa-trash"></span>Trash</a></li>
                                             </ul>
                                         </div>
                                     </td>

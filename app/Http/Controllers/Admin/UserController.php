@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Category;
+use App\User;
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('trash', null)->get();
-        return view('admin.category.index', ['categories' => $categories]);
+        $users = User::all();
+        return view('admin.user.index', ['users' => $users]);
     }
 
     /**
@@ -27,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.edit');
+        return view('admin.user.edit');
     }
 
     /**
@@ -39,11 +39,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'email' => ['required', 'email'],
+            'password' => 'required'
         ]);
 
-        $category = new Category();
-        return $this->saveCategory($request, $category);
+        $user = new User();
+        return $this->saveUser($request, $user);
     }
 
     /**
@@ -65,8 +67,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('admin.category.edit', ['category' => $category]);
+        $user = User::findOrFail($id);
+        return view('admin.user.edit', ['user' => $user]);
     }
 
     /**
@@ -79,11 +81,13 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
+            'email' => ['required', 'email'],
+            'password' => 'required'
         ]);
 
-        $category = Category::find($id);
-        return $this->saveCategory($request, $category);
+        $user = User::findOrFail($id);
+        return $this->saveUser($request, $user);
     }
 
     /**
@@ -94,31 +98,27 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->trash = 1;
-        $category->save();
-
-        return response()->json(['result' => true]);
+        //
     }
 
     /**
      * @param Request $request
-     * @param $category
+     * @param $user
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function saveCategory(Request $request, $category)
+    protected function saveUser(Request $request, $user)
     {
-        $category->name = $request->input('name');
-        $category->valid_from = $request->input('valid_from');
-        $category->valid_to = $request->input('valid_to');
-        $category->save();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $request->input('password');
+        $user->save();
 
-        $request->session()->flash('status', 'Category was successfully saved!');
+        $request->session()->flash('status', 'User successfully saved.');
 
         if ($request->get('action') == 'save') {
-            return redirect()->route('administrator.category.edit', ['category' => $category]);
+            return redirect()->route('administrator.user.edit', ['user' => $user]);
         } elseif ($request->get('action') == 'save_and_close') {
-            return redirect()->route('administrator.category.index');
+            return redirect()->route('administrator.user.index');
         }
     }
 }

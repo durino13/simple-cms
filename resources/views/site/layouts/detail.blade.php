@@ -28,70 +28,31 @@
 
 <!-- Header -->
 
+<!-- Header -->
+
 <section class="row-fluid green">
     <div class="container">
 
         <div class="flex_container">
             <header>
-                <h1 class="mt-50 fg-white">JURAJ MARUŠIAK</h1>
-                <h2 class="mt-25 mb-25 fg-white">Full stack developer & system administrator</h2>
-                <div id="scroll-down" class="flex_container flex_center mt-25 mb-25 "><a href="#" class="demo-pricing demo-pricing-1    ">Hire me</a></div>
-                <div class="coding">
-                    <img src="assets/coding-welcome.png" alt="">
-                    <div class="codingDesktop">
-                        <div class="line1">
-                            &lt;!DOCTYPE html&gt;<span>&nbsp;</span>
-                        </div>
-                        <div class="line2">
-                            &lt;html&gt;<span>&nbsp;</span>
-                        </div>
-                        <div class="line3">
-                             &lt;head&gt;<span>&nbsp;</span>
-                        </div>
-                        <div class="line4">
-                              &lt;title&gt;
-                            <p>
-                                Welcome!:)
-                            </p>
-                            &lt;/title&gt;<span>&nbsp;</span>
-                        </div>
-                    </div>
-                </div>
+                <h1 class="mt-50 fg-white">{{ $article->title }}</h1>
+                <h2 class="mt-25 mb-25 fg-white">{{ $article->publish_date }}</h2>
             </header>
         </div>
 
     </div>
 </section>
 
-<!-- Who am i -->
-
-<div class="row-fluid grey">
+<section>
     <div class="container">
-
-        @include('site.partials.news')
-
-    </div>
-</div>
-
-<!-- What can I do for you  -->
-
-<section class="row-fluid">
-    <div class="container">
-
-        @include('site.partials.skills')
-
+        <div class="row pt-60 pb-60">
+            <div class="col-md-12">
+                {!! $article->article_text !!}
+            </div>
+        </div>
     </div>
 </section>
 
-<!-- Career -->
-
-<section class="row-fluid grey">
-    <div class="container">
-
-        @include('site.partials.career')
-
-    </div>
-</section>
 
 <!-- Footer -->
 

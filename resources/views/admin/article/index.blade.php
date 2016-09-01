@@ -27,30 +27,41 @@
                         <tr>
                             <th>ID</th>
                             <th>Title</th>
+                            <th>Alias</th>
                             <th>Author</th>
+                            <th>Category</th>
                             <th>Status</th>
                             <th>Updated</th>
                             <th>Created</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
+                        <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Alias</th>
+                            <th>Author</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Updated</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                        </tfoot>
                         <tbody>
                             @foreach($articles as $article)
                                 <tr>
                                     <td>{{ $article->id }}</td>
                                     <td>
                                         <a href="/administrator/article/{{ $article->id }}/edit">{{ $article->title }}</a><br/>
-                                        <span class="text-sm">Categories:&nbsp;
-                                            <?php
-                                            $lastKey = $article->categories()->get()->keys()->last();
-                                            $article->categories()->get()->each(function($category, $key) use ($lastKey) {
-                                                echo $category->name;
-                                                echo ($key !== $lastKey) ? ', ' : '';
-                                            })
-                                            ?>
+                                        <span class="text-sm">Alias: &nbsp;
+                                            {{ $article->alias }}
                                         </span>
                                     </td>
+                                    <td>{{ $article->alias }}</td>
                                     <td>{{ $article->author->name }}</td>
+                                    <td>{{ $article->categories->first()->name }}</td>
                                     <td>
                                         <?php echo isset($article->status->name) & $article->status->name === 'Published' ? '1' :  '2'  ?>
                                     </td>

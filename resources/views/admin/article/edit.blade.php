@@ -4,9 +4,9 @@
     {{--Open form--}}
 
     <?php if (isset($article)) { ?>
-    {{ Form::model($article, ['method'=> 'put', 'route' => ['administrator.article.update', $article->id]]) }}
+        {{ Form::model($article, ['method'=> 'put', 'route' => ['administrator.article.update', $article->id]]) }}
     <?php } else { ?>
-    {{ Form::open(['url' => '/administrator/article']) }}
+        {{ Form::open(['url' => '/administrator/article']) }}
     <?php } ?>
 
     {{--Toolbar--}}
@@ -76,13 +76,12 @@
                         <div class="form-group">
                             <label>Categories:</label>
                             <?php
-//                                $category_id = isset($article->category->id) ? $article->category->id : '';
-                                $categories = $article->categories()->get()->pluck('id')->toArray();
-                                if (empty($categories))
-                                {
+                                if (isset($article)) {
+                                    $categories = $article->categories()->where('trash', '=', null)->get()->pluck('id')->toArray();
+                                } else {
                                     $categories = [];
                                 }
-                                echo Form::select('categories[]', App\Category::lists('name','id'), $categories, ['id' => 'categories','multiple']);
+                                echo Form::select('categories[]', App\Category::where('trash', '=', null)->get()->lists('name','id'), $categories, ['id' => 'categories','multiple']);
                             ?>
 
                         </div>

@@ -21,7 +21,7 @@ class ArticleController extends Controller
     public function index(Request $request)
     {
         $currentURL = $request->path();
-        $articles = Article::getAllActiveArticlesByCategory();
+        $articles = Article::getArticles();
         return view('admin.article.index', ['articles' => $articles, 'currentURL' => $currentURL]);
     }
 
@@ -43,23 +43,26 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'title' => 'required',
             'alias' => 'required',
         ]);
 
+        // Save article
+
         $article = new Article();
-        $article->title = $request->input('title');
-        $article->alias = $request->input('alias');
-        $article->article_text = $request->input('article_text');
-        $article->status_id = $request->input('status');
-        $article->category_id = $request->input('category');
-        $article->user_id = $request->user()->id;
-        $article->start_publishing = $request->input('start_publishing');
-        $article->finish_publishing = $request->input('finish_publishing');
-        $article->save();
+        $this->saveArticle($request, $article);
+
+        // Save article categories
+
+        $article->categories()->attach((array) $request->input('categories'));
+
+        // Set flash message
 
         $request->session()->flash('status', 'Article was successfully saved!');
+
+        // Redirect to view
 
         if ($request->get('action') == 'save') {
             return redirect()->route('administrator.article.index');
@@ -108,21 +111,10 @@ class ArticleController extends Controller
         ]);
 
         $article = Article::find($id);
-        $article->title = $request->input('title');
-        $article->alias = $request->input('alias');
-        $article->article_text = $request->input('article_text');
-        $article->status_id = $request->input('status');
-        $article->user_id = 1;
-        $article->start_publishing = $request->input('start_publishing');
-        $article->finish_publishing = $request->input('finish_publishing');
-        $article->save();
+        $this->saveArticle($request, $article);
 
         // Add / remove related categories ..
-//        if ($request->input('categories') !== null) {
-            $article->categories()->sync((array) $request->input('categories'));
-//        } else {
-//            $article->categories()->detach($article->categories()->get()->pluck('id'));
-//        }
+        $article->categories()->sync((array) $request->input('categories'));
 
         $request->session()->flash('status', 'Article was successfully saved!');
 
@@ -219,6 +211,22 @@ class ArticleController extends Controller
         $article->delete();
 
         return response()->json(['result' => true]);
+    }
+
+    /**
+     * @param Request $request
+     * @param $article
+     */
+    protected function saveArticle(Request $request, $article)
+    {
+        $article->title = $request->input('title');
+        $article->alias = $request->input('alias');
+        $article->article_text = $request->input('article_text');
+        $article->status_id = $request->input('status');
+        $article->user_id = 1;
+        $article->start_publishing = $request->input('start_publishing');
+        $article->finish_publishing = $request->input('finish_publishing');
+        $article->save();
     }
 
 

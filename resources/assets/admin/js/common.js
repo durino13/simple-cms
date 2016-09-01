@@ -55,17 +55,40 @@ $("#categories").chosen({width:"95%"});
 // Datatables
 // ------------------------------------------------------------------------------------
 
+
+// TODO Refaktorovat poradie stlpcov ..
+
 $('#dt-articles').DataTable(
     {
+        "initComplete": function () {
+            this.api().columns([2,3,4]).every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty())
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        },
         "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
             // Bold the grade for all 'A' grade browsers
-            if (aData[3] === '1') {
-                $('td:eq(3)', nRow).html( '<i class="fa fa-check-circle-o text-success"></i>' );
+            if (aData[5] === '1') {
+                $('td:eq(5)', nRow).html( '<i class="fa fa-check-circle-o text-success"></i>' );
             } else {
-                $('td:eq(3)', nRow).html( '<i class="fa fa-close text-danger"></i>' );
+                $('td:eq(5)', nRow).html( '<i class="fa fa-close text-danger"></i>' );
             }
         },
-        order: [[4,'desc']]
+        order: [[6,'desc']]
     }
 );
 $('#dt-articles').show();

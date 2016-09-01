@@ -41,6 +41,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () 
 //    Route::post('/media/upload', 'Admin\MediaController@upload');
 //    Route::get('/media/download', 'Admin\MediaController@download');
 
-
-
 });
+
+// Catch all route ..
+Route::get('{any}', 'Site\HomeController@detail')->where('any', '.*')->name('site.article.any');

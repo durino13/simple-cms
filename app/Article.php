@@ -41,19 +41,23 @@ class Article extends Model
      * @param null $categoryCode
      * @return mixed
      */
-    public static function getAllActiveArticlesByCategory($categoryCode = null)
+    // TODO $categoryId should be a collection ..
+    public static function getArticles(int $categoryId = null, int $statusID = Status::ACTIVE_ID, int $isTrash = 0, int $isArchive = 0)
     {
-        if ($categoryCode !== null) {
-            $category = Category::getCategoryByCode($categoryCode);
-            return Article::where('category_id', $category->id)
-                ->where('trash', null)
-                ->where('archive',null)
-                ->get();
-        } else {
-            return Article::where('trash', null)
-                ->where('archive',null)
-                ->orderBy('created_at','desc')->get();
+        $result = \DB::table('d_article')
+            ->join('r_article_category', 'd_article.id', '=', 'r_article_category.article_id');
+
+        if (!empty($categoryId)) {
+            $result->where('r_article_category.category_id', '=', $categoryId);
         }
+
+        return Article::hydrate(
+
+            $result->where('trash' ,'=', $isTrash)
+                    ->where('archive' ,'=', $isArchive)
+                    ->WHERE('status_id', '=', $statusID)
+                    ->orderBy('start_publishing', 'desc')->get()
+        );
     }
 
     /**

@@ -6,6 +6,8 @@ use App\Article;
 use App\Status;
 use App\Category;
 use App\Http\Controllers\Admin\Controller;
+use DB;
+use Tracy\Debugger;
 
 class HomeController extends Controller
 {
@@ -16,8 +18,8 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // I dont need auth on the front end ..
-        // $this->middleware('auth');
+        // Enable Tracy ..
+        Debugger::enable();
     }
 
     /**
@@ -28,32 +30,34 @@ class HomeController extends Controller
     public function index()
     {
 
-        // get only active articles in the 'news' category ..
-        $allNews = Article::where('status_id', Status::ACTIVE_ID)
-            ->where('category_id', Category::NEWS)
-            ->where('archive', null)
-            ->where('trash', null)
-            ->orderBy('start_publishing', 'desc')
-            ->get();
-
-        $archivedArticles = Article::where('status_id', Status::ACTIVE_ID)
-            ->where('archive', 1)
-            ->where('trash', null)
-            ->orderBy('start_publishing', 'desc')
-            ->get();
-
+        $allBlogArticles = Article::getArticles(Category::BLOG);
+        $projectArticles = Article::getArticles(Category::PROJECTS_ACTIVITIES);
+        $archivedArticles = Article::getArticles(Category::PROJECTS_ACTIVITIES, Status::ACTIVE_ID, 0, 1);
+        $allJobs = Article::getArticles(Category::JOBS);
         $rightNewsArticle = Article::all()->where('alias','who-am-i');
-        
-        $allJobs = Article::where('status_id', Status::ACTIVE_ID)->where('category_id', Category::JOBS)->where('trash', null)->orderBy('start_publishing', 'desc')->get();
 
         return view(
             'site.layouts.main',
             [
-                'allNews' => $allNews,
+                'allBlogArticles' => $allBlogArticles,
+                'projectArticles' => $projectArticles,
                 'rightNewsArticle' => $rightNewsArticle,
                 'allJobs' => $allJobs,
-                'archivedArticles' => $archivedArticles
+                'archivedArticles' => $archivedArticles,
             ]
         );
     }
+
+    /**
+     * Catch all rule, which finds an article based on it's alias
+     *
+     * @param $alias
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function detail($alias)
+    {
+        $article = Article::where('alias','=', $alias)->first();
+        return view('site.layouts.detail', ['article' => $article]);
+    }
+
 }

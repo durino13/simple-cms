@@ -18,3 +18,7 @@ require('../images/profilovka.jpg');
 require('../images/pdf.png');
 require('../images/grow.png');
 require('../js/script.js');
+
+// Load code highlighting library
+require('../../common/prism/prism.css');
+require('../../common/prism/prism.js');

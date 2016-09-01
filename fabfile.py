@@ -1,4 +1,5 @@
-from fabric.api import local
+from __future__ import with_statement
+from fabric.api import *
 
 env.hosts = ["shellserver.websupport.sk"]
 deploy_dir = "/home/yuma.sk/sub/test"

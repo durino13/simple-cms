@@ -83078,7 +83078,7 @@
 	$('#dt-articles').DataTable(
 	    {
 	        "initComplete": function () {
-	            this.api().columns([2,3,4]).every( function () {
+	            this.api().columns([3,4]).every( function () {
 	                var column = this;
 	                var select = $('<select><option value=""></option></select>')
 	                    .appendTo( $(column.footer()).empty())

@@ -55,13 +55,12 @@ $("#categories").chosen({width:"95%"});
 // Datatables
 // ------------------------------------------------------------------------------------
 
-
-// TODO Refaktorovat poradie stlpcov ..
+// Configuration for datatables can be found on the server in config/app.php file ..
 
 $('#dt-articles').DataTable(
     {
         "initComplete": function () {
-            this.api().columns([3,4]).every( function () {
+            this.api().columns(datatables_filterColumnsIndexes).every( function () {
                 var column = this;
                 var select = $('<select><option value=""></option></select>')
                     .appendTo( $(column.footer()).empty())
@@ -80,20 +79,22 @@ $('#dt-articles').DataTable(
                 } );
             } );
         },
+
+        // TODO Text to icon conversion not working ..
+
         "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            // Bold the grade for all 'A' grade browsers
-            if (aData[5] === '1') {
-                $('td:eq(5)', nRow).html( '<i class="fa fa-check-circle-o text-success"></i>' );
+            if (aData[datatables_articleStatusColumnIndex] === '1') {
+                $('td:eq('+datatables_articleStatusColumnIndex+')', nRow).html( '<i class="fa fa-check-circle-o text-success"></i>' );
             } else {
-                $('td:eq(5)', nRow).html( '<i class="fa fa-close text-danger"></i>' );
+                $('td:eq('+datatables_articleStatusColumnIndex+')', nRow).html( '<i class="fa fa-close text-danger"></i>' );
             }
         },
-        order: [[6,'desc']]
+        order: [[datatables_articleSortColumnIndex,'desc']]
     }
 );
 $('#dt-articles').show();
 $('#dt-categories').DataTable({
-    order: [[3,'desc']]
+    order: [[datatables_categorySortColumnIndex,'desc']]
 });
 $('#dt-categories').show();
 

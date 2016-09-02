@@ -27,7 +27,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Title</th>
-                            <th>Alias</th>
                             <th>Author</th>
                             <th>Category</th>
                             <th>Status</th>
@@ -40,7 +39,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Title</th>
-                            <th>Alias</th>
                             <th>Author</th>
                             <th>Category</th>
                             <th>Status</th>
@@ -59,7 +57,6 @@
                                             {{ $article->alias }}
                                         </span>
                                     </td>
-                                    <td>{{ $article->alias }}</td>
                                     <td>{{ $article->author->name }}</td>
                                     <td>{{ $article->categories->first()->name }}</td>
                                     <td>

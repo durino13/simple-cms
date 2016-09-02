@@ -17,6 +17,44 @@
     <script type="text/javascript">
         document.documentElement.className = 'js';
     </script>
+    {{-- Global javascript variables --}}
+    <script>
+        <?php
+
+            /*
+            |--------------------------------------------------------------------------
+            | Config sharing between PHP and javascript
+            |--------------------------------------------------------------------------
+            |
+            | This stuff will share PHP configuration with javascript. The javascript
+            | configuration is stored on the server in config/javascript.php file.
+            |
+            */
+
+            $index = 1;
+            $val = '';
+            $namespaces = config('javascript');
+            foreach ($namespaces as $namespace => $vars) {
+                foreach ($vars as $key => $var) {
+                    if (is_array($var)) {
+                        $val .= "[";
+                        foreach ($var as $k => $v) {
+                            $val .= $v;
+                            if (sizeof($var) > $index) {
+                                $val .= ',';
+                            }
+                            $index++;
+                        }
+                        $val .= "]";
+                    } else {
+                        $val = $var;
+                    }
+                    echo 'var '.$namespace.'_'.$key.' = '. $val.';';
+                }
+            }
+
+        ?>
+    </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 

@@ -39,7 +39,7 @@
                     if (is_array($var)) {
                         $val .= "[";
                         foreach ($var as $k => $v) {
-                            $val .= $v;
+                            $val .= json_encode($v);
                             if (sizeof($var) > $index) {
                                 $val .= ',';
                             }
@@ -47,9 +47,9 @@
                         }
                         $val .= "]";
                     } else {
-                        $val = $var;
+                        $val = json_encode($var);
                     }
-                    echo 'var '.$namespace.'_'.$key.' = '. $val.';';
+                    echo 'var '.$namespace.'_'.$key.' = '.$val.';';
                 }
             }
 

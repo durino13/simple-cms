@@ -14,6 +14,13 @@ return [
         'articleSortColumnIndex' => 5,
         'categorySortColumnIndex' => 3
 
+    ],
+
+    'tinymce' => [
+
+        // Readmore button
+        'readmore' => '{!--readmore--!}'
+
     ]
 
 ];

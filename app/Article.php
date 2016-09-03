@@ -26,11 +26,10 @@ class Article extends Model
         return $this->belongsToMany('App\Category', 'r_article_category');
     }
 
-    // TODO TinyMCE plugins should be moved into a separate class ..
     public function getIntroTextAttribute()
     {
-        if (strpos($this->article_text, '<hr />') > 0) {
-            return explode('<hr />',$this->article_text)[0];
+        if (strpos($this->article_text, config('javascript.tinymce.readmore')) > 0) {
+            return explode(config('javascript.tinymce.readmore'),$this->article_text)[0];
         } else {
             return $this->article_text;
         }

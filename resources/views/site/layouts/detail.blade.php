@@ -47,12 +47,21 @@
     <div class="container">
         <div class="row pt-60 pb-60">
             <div class="col-md-12">
-                {!! $article->article_text !!}
+                {!! $article->article_text_parsed !!}
             </div>
         </div>
     </div>
 </section>
 
+<!-- Disqus -->
+
+<footer class="row-fluid pb-50">
+    <div class="container">
+
+        @include('site.partials.disqus')
+
+    </div>
+</footer>
 
 <!-- Footer -->
 

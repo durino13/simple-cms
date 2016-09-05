@@ -16,6 +16,7 @@
                 <div class="blognews__content">
                     <div class="blognews__content__title">{{ $blogArticle->title }}</div>
                     <div class="blognews__content__text">{!! $blogArticle->intro_text !!}</div>
+                    <div class="blognews__content__readmore"><a href="{{ route('site.article.any', $blogArticle->alias )}}">View Blog Post</a> | Comments (0)</div>
                 </div>
             </div>
 

@@ -76,7 +76,7 @@ header {
 }
 
 footer {
-	height:200px;
+	//height:200px;
 }
 
 /*===============================
@@ -175,17 +175,32 @@ li {
 		width: 80%;
 
 		.blognews__content__title {
+			color: dimgrey;
 			margin-top:-5px;
+			padding-bottom: 5px;
 			font-weight: 700;
-		}
 
+			a {
+				color: dimgrey;
+				font-weight: bold;
+			}
+
+		}
 
 		.blognews__content__text {
 			line-height: 1.4em;
 			p {
-				padding: 0 0 15px;
+				padding: 0 0 5px;
 			}
-		}	
+		}
+
+		.blognews__content__readmore {
+			font-size: 13px;
+			a {
+				color: #b9b9b9;
+				font-weight: bolder;
+			}
+		}
 
 	}
 

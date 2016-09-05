@@ -11,6 +11,10 @@ class Article extends Model
 
     protected $appends = ['intro_text'];
 
+    /*
+     * Relation definitions ...
+     */
+
     public function author()
     {
         return $this->belongsTo('App\User', 'user_id');
@@ -26,14 +30,35 @@ class Article extends Model
         return $this->belongsToMany('App\Category', 'r_article_category');
     }
 
+    /*
+     * Accessor definitions
+     */
+
+    /**
+     * Returns the portion of article_text before READMORE placeholder
+     * @return mixed
+     */
     public function getIntroTextAttribute()
     {
         if (strpos($this->article_text, config('javascript.tinymce.readmore')) > 0) {
-            return explode(config('javascript.tinymce.readmore'),$this->article_text)[0];
+            return explode('<p>'.config('javascript.tinymce.readmore').'</p>',$this->article_text)[0];
         } else {
             return $this->article_text;
         }
     }
+
+    /**
+     * Returns the full article text without the placeholders such as 'READMORE'
+     * @return mixed Remove readmore text from the string ..
+     */
+    public function getArticleTextParsedAttribute()
+    {
+        return str_replace(config('javascript.tinymce.readmore'),'', $this->article_text);
+    }
+
+    /*
+     * Model methods
+     */
 
     /**
      * Get all articles in a specified category

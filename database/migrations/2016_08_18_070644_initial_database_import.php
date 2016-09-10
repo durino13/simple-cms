@@ -12,7 +12,8 @@ class InitialDatabaseImport extends Migration
      */
     public function up()
     {
-        //
+
+        DB::unprepared(file_get_contents('database/seeds/initial_import.sql'));
     }
 
     /**
@@ -22,6 +23,15 @@ class InitialDatabaseImport extends Migration
      */
     public function down()
     {
-        //
+        DB::unprepared(
+            '
+            drop table r_article_category;
+            drop table d_article;
+            drop table c_category;
+            drop table c_status;
+            drop table users;
+            drop table password_resets;
+            '
+        );
     }
 }

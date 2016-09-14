@@ -8,9 +8,8 @@ def read_config(e):
   config = ConfigParser.ConfigParser()
   config.read('./fabfile.conf')
   env.host_string = config.get(e,'host') +':'+ config.get(e,'port')
-  env.user = config.get(e,'user')
-  env.password = config.get(e,'password')
   env.deploy_dir = config.get(e,'deploy_dir')
+  env.use_ssh_config = True
 
 # Task
 

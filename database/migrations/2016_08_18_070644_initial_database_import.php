@@ -14,7 +14,7 @@ class InitialDatabaseImport extends Migration
     {
 
         DB::unprepared(file_get_contents('database/seeds/initial_import.sql'));
-    }
+    }          
 
     /**
      * Reverse the migrations.

@@ -104,3 +104,11 @@ $('#dt-categories').show();
 
 // Datepicker
 $('.datepicker').datepicker();
+
+// ------------------------------------------------------------------------------------
+// Datepickers
+// ------------------------------------------------------------------------------------
+
+var package_json = require('json!../../../../package.json');
+$('#version').html(package_json.version);
+console.log(package_json);

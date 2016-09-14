@@ -88,8 +88,8 @@
 	__webpack_require__(40);
 	__webpack_require__(47);
 	__webpack_require__(48);
-	__webpack_require__(51);
 	__webpack_require__(52);
+	__webpack_require__(53);
 	
 	// -------------------------------------------------
 	// Admin LTE
@@ -97,10 +97,10 @@
 	
 	// AdminLTE is loaded here .. The $=jquery notation will make jQuery available for AdminLTE, otherwise you will see
 	// following message: AdminLTE requires jQuery ..
-	__webpack_require__(53);
 	__webpack_require__(54);
 	__webpack_require__(55);
-	__webpack_require__(57);
+	__webpack_require__(56);
+	__webpack_require__(58);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -83121,6 +83121,14 @@
 	
 	// Datepicker
 	$('.datepicker').datepicker();
+	
+	// ------------------------------------------------------------------------------------
+	// Datepickers
+	// ------------------------------------------------------------------------------------
+	
+	var package_json = __webpack_require__(51);
+	$('#version').html(package_json.version);
+	console.log(package_json);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -84811,6 +84819,78 @@
 /* 51 */
 /***/ function(module, exports) {
 
+	module.exports = {
+		"private": true,
+		"scripts": {
+			"prod": "gulp --production",
+			"dev": "gulp watch",
+			"gulp": "gulp",
+			"build": "webpack"
+		},
+		"browserify": {
+			"transform": [
+				"browserify-shim"
+			]
+		},
+		"browser": {
+			"jquery": "./node_modules/jquery/dist/jquery.min.js",
+			"bootstrap": "./node_modules/admin-lte/dist/js/app.min.js",
+			"admin-lte": "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+		},
+		"browserify-shim": {
+			"jquery": "$",
+			"admin-lte": {
+				"depends": [
+					"jquery:$",
+					"bootstrap"
+				]
+			}
+		},
+		"devDependencies": {
+			"bootstrap-sass": "^3.0.0",
+			"browserify-shim": "^3.8.12",
+			"chosen-npm": "^1.4.2",
+			"css-loader": "^0.23.1",
+			"exports-loader": "^0.6.3",
+			"expose-loader": "^0.7.1",
+			"extract-text-webpack-plugin": "^1.0.1",
+			"font-awesome": "^4.6.3",
+			"font-awesome-webpack": "0.0.4",
+			"image-webpack-loader": "^1.8.0",
+			"imports-loader": "^0.6.5",
+			"less": "^2.7.1",
+			"less-loader": "^2.2.3",
+			"node-sass": "^3.7.0",
+			"normalize.css": "^4.1.1",
+			"sass-loader": "^3.2.0",
+			"script-loader": "^0.7.0",
+			"style-loader": "^0.13.1",
+			"tinymce": "^4.3.13",
+			"url-loader": "^0.5.7",
+			"webpack": "^1.13.1",
+			"webpack-stream": "^3.2.0"
+		},
+		"dependencies": {
+			"admin-lte": "^2.3.3",
+			"bootstrap": "^3.3.6",
+			"codemirror": "^5.15.2",
+			"datatables.net": "^1.10.12",
+			"datatables.net-bs": "^1.10.12",
+			"datatables.net-dt": "^1.10.12",
+			"font-awesome": "^4.6.1",
+			"jquery": "^2.2.3",
+			"json-loader": "^0.5.4",
+			"merge-stream": "^1.0.0",
+			"scriptjs": "^2.5.8",
+			"wow.js": "^1.2.1"
+		},
+		"version": "0.1.1"
+	};
+
+/***/ },
+/* 52 */
+/***/ function(module, exports) {
+
 	// TinyMCE config
 	
 	var ed = tinymce.init({
@@ -84879,13 +84959,13 @@
 	}
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "dots.png";
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($, jQuery) {/*! AdminLTE app.js
@@ -84904,7 +84984,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(1)))
 
 /***/ },
-/* 54 */
+/* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! jQuery UI - v1.11.4 - 2015-03-11
@@ -101526,14 +101606,14 @@
 	}));
 
 /***/ },
-/* 55 */
+/* 56 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 56 */,
-/* 57 */
+/* 57 */,
+/* 58 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

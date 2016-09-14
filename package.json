@@ -61,5 +61,6 @@
     "merge-stream": "^1.0.0",
     "scriptjs": "^2.5.8",
     "wow.js": "^1.2.1"
-  }
+  },
+  "version": "0.1.0"
 }

@@ -66,20 +66,29 @@ class Article extends Model
      * @return mixed
      */
     // TODO $categoryId should be a collection ..
-    public static function getArticles(int $categoryId = null, int $statusID = Status::ACTIVE_ID, int $isTrash = 0, int $isArchive = 0)
+    public static function getArticles(int $categoryId = null, int $statusID = null, int $isTrash = 0, int $isArchive = 0)
     {
         $result = \DB::table('d_article')
-            ->join('r_article_category', 'd_article.id', '=', 'r_article_category.article_id');
+            ->leftJoin('r_article_category', 'd_article.id', '=', 'r_article_category.article_id');
 
         if (!empty($categoryId)) {
             $result->where('r_article_category.category_id', '=', $categoryId);
         }
 
-        return Article::hydrate(
+        if (!empty($statusID)) {
+            $result->where('status_id', '=', $statusID);
+        }
 
+//        $result->where('trash' ,'=', $isTrash)
+//            ->where('archive' ,'=', $isArchive)
+//            ->orderBy('start_publishing', 'desc');
+//
+//        var_dump($result->toSql());
+//        exit();
+
+        return Article::hydrate(
             $result->where('trash' ,'=', $isTrash)
                     ->where('archive' ,'=', $isArchive)
-                    ->WHERE('status_id', '=', $statusID)
                     ->orderBy('start_publishing', 'desc')->get()
         );
     }

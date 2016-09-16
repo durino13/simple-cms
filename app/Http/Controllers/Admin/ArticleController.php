@@ -20,9 +20,8 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        $currentURL = $request->path();
         $articles = Article::getArticles();
-        return view('admin.article.index', ['articles' => $articles, 'currentURL' => $currentURL]);
+        return view('admin.article.index', ['articles' => $articles]);
     }
 
     /**

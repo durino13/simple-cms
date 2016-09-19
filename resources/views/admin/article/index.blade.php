@@ -4,7 +4,7 @@
 {{-- Toolbar --}}
 
 <div class="toolbar">
-    <a href="/administrator/article/create" class="btn btn-success btn-sm"><span class="fa fa-plus-circle"></span> New article</a>
+    <a id="new_article" href="/administrator/article/create" class="btn btn-success btn-sm"><span class="fa fa-plus-circle"></span> New article</a>
 </div>
 
 {{--Status & error messages--}}

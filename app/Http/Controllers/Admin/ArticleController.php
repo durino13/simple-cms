@@ -131,11 +131,12 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, int $id)
     {
         $article = Article::find($id);
         $article->trash = 1;
         $article->save();
+        $request->session()->flash('status', 'The article was successfully trashed!');
 
         return response()->json(['result' => true]);
 

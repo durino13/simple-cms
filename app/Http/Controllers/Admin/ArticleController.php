@@ -20,7 +20,7 @@ class ArticleController extends Controller
      */
     public function index(Request $request)
     {
-        $articles = Article::getArticles();
+        $articles = Article::getArticles(null, 0);
         return view('admin.article.index', ['articles' => $articles]);
     }
 

@@ -66,7 +66,7 @@ class Article extends Model
      * @return mixed
      */
     // TODO $categoryId should be a collection ..
-    public static function getArticles(int $categoryId = null, int $statusID = null, int $isTrash = 0, int $isArchive = 0)
+    public static function getArticles(int $categoryId = null, int $statusID = 2, int $isTrash = 0, int $isArchive = 0)
     {
         $result = \DB::table('d_article')
             ->leftJoin('r_article_category', 'd_article.id', '=', 'r_article_category.article_id');

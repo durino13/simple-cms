@@ -12,8 +12,8 @@
     {{--Toolbar--}}
 
     <div class="toolbar">
-        <button name="action" value="save_and_close" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Save & Close</button>
-        <button name="action" value="save" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Save</button>
+        <button id="save_and_close" name="action" value="save_and_close" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Save & Close</button>
+        <button id="save" name="action" value="save" class="btn btn-success btn-sm"><i class="fa fa-check"></i> Save</button>
         <a id="form-close" href="#" class="btn btn-danger btn-sm" data-redirect="/administrator/article"><i class="fa fa-close"></i> Close</a>
     </div>
 

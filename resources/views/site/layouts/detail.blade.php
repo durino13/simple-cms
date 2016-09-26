@@ -1,3 +1,7 @@
+<?php
+use Carbon\Carbon;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,20 +32,33 @@
 
 <!-- Header -->
 
-<!-- Header -->
-
 <section class="row-fluid green">
     <div class="container">
 
-        <div class="flex_container">
+        <div class="flex_container center-flex" style="min-height: 150px;">
             <header>
-                <h1 class="mt-50 fg-white">{{ $article->title }}</h1>
-                <h2 class="mt-25 mb-25 fg-white">{{ $article->publish_date }}</h2>
+                <h1 class="fg-white">{{ $article->title }}</h1>
             </header>
         </div>
 
     </div>
 </section>
+
+<!-- Post date -->
+
+<section class="row-fluid dark-green pt-5 pb-5 fg-white font-small">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                By: <span style="font-weight: 700;">{{ $article->author->name }}</span> <span>Published: {{ Carbon::createFromFormat('Y-m-d H:i:s', $article->start_publishing)->toFormattedDateString() }}</span>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Article -->
 
 <section>
     <div class="container">

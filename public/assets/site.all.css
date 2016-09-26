@@ -8252,7 +8252,7 @@ body {
 
 h1 {
   color: #30A689;
-  font-size: 3em;
+  font-size: 2em;
   letter-spacing: 3px;
   line-height: 1em; }
 
@@ -8266,6 +8266,9 @@ h3 {
 
 .font-xsmall {
   font-size: 0.7em; }
+
+.font-small {
+  font-size: 0.9em; }
 
 a {
   color: #FEC23E;

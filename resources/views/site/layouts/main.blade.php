@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Juraj Marušiak, web developer</title>
+    <title>Fullstack development blog</title>
+    <meta name="description" content="Personal blog dedicated to web development."/>
 
     <script type="text/javascript" src="/assets/site.all.js"></script>
     <link rel="stylesheet" href="/assets/site.all.css">

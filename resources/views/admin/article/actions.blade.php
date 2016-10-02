@@ -9,7 +9,7 @@
             <li><a href="{{ route('administrator.archive.archive', $article->id) }}" data-redirect="{{ route('administrator.article.index') }}" data-method="delete" class="jquery-postback"><span class="fa fa-archive"></span>Archive</a></li>
         @endif
         @if (in_array(url()->getRequest()->path(), config()->get('custom.action_buttons.trash')))
-            <li><a href="{{ route('administrator.article.destroy', $article->id) }}" data-redirect="{{ route('administrator.trash.index') }}" data-method="delete" class="jquery-postback"><span id="trash_{{ $article->id }}" class="fa fa-trash"></span>Trash</a></li>
+            <li><a href="{{ route('administrator.article.destroy', $article->id) }}" data-redirect="{{ route('administrator.article.index') }}" data-method="delete" class="jquery-postback"><span id="trash_{{ $article->id }}" class="fa fa-trash"></span>Trash</a></li>
         @endif
         @if (in_array(url()->getRequest()->path(), config()->get('custom.action_buttons.restore')))
             <li><a href="{{ route('administrator.archive.restore', $article->id) }}" data-redirect="{{ route('administrator.archive.index') }}" class="jquery-postback"><span class="fa fa-recycle"></span>Restore</a></li>

@@ -3,17 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Interfaces\ITrashable;
 
-class Article extends Model
+class Article extends Model implements ITrashable
 {
 
     protected $table = 'd_article';
 
     protected $appends = ['intro_text'];
 
-    /*
-     * Relation definitions ...
-     */
+    /*************************************************************
+     * Relations
+     *************************************************************/
 
     public function author()
     {
@@ -30,9 +31,9 @@ class Article extends Model
         return $this->belongsToMany('App\Category', 'r_article_category');
     }
 
-    /*
+    /*************************************************************
      * Accessor definitions
-     */
+     *************************************************************/
 
     /**
      * Returns the portion of article_text before READMORE placeholder
@@ -56,9 +57,9 @@ class Article extends Model
         return str_replace(config('javascript.tinymce.readmore'),'', $this->article_text);
     }
 
-    /*
+    /*************************************************************
      * Model methods
-     */
+     *************************************************************/
 
     /**
      * Get all articles in a specified category
@@ -78,13 +79,6 @@ class Article extends Model
         if (!empty($statusID)) {
             $result->where('status_id', '=', $statusID);
         }
-
-//        $result->where('trash' ,'=', $isTrash)
-//            ->where('archive' ,'=', $isArchive)
-//            ->orderBy('start_publishing', 'desc');
-//
-//        var_dump($result->toSql());
-//        exit();
 
         return Article::hydrate(
             $result->where('trash' ,'=', $isTrash)
@@ -111,4 +105,36 @@ class Article extends Model
         return Article::where('trash', 1)->orderBy('created_at','desc')->get();
     }
 
+    public function delete()
+    {
+        $this->categories()->detach();
+    }
+
+    /*************************************************************
+     * Trash interface implementations
+     *************************************************************/
+
+    /**
+     * @return mixed The name of the article visible in the trash
+     */
+    public function trashTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return string Document type visible in the trash
+     */
+    public function trashDocumentType()
+    {
+        return 'Article';
+    }
+
+    /**
+     * @return mixed The date, when was the article trashed ..
+     */
+    public function trashedAt()
+    {
+        return $this->updated_by;
+    }
 }

@@ -83110,10 +83110,18 @@
 	    }
 	);
 	$('#dt-articles').show();
+	
+	// Categories datatables
+	
 	$('#dt-categories').DataTable({
 	    order: [[datatables_categorySortColumnIndex,'desc']]
 	});
 	$('#dt-categories').show();
+	
+	// Trash datatables
+	
+	$('#dt-trash').DataTable();
+	$('#dt-trash').show();
 	
 	// ------------------------------------------------------------------------------------
 	// Datepickers
@@ -83128,7 +83136,6 @@
 	
 	var package_json = __webpack_require__(51);
 	$('#version').html(package_json.version);
-	console.log(package_json);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -84884,7 +84891,7 @@
 			"scriptjs": "^2.5.8",
 			"wow.js": "^1.2.1"
 		},
-		"version": "0.2.1"
+		"version": "0.2.2"
 	};
 
 /***/ },

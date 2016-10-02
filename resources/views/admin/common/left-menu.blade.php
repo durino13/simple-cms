@@ -16,7 +16,7 @@
         <ul class="sidebar-menu">
             <li class="header">ARTICLES</li>
             <li>
-                <a href="/administrator/article">
+                <a href="{{ route('administrator.article.index') }}">
                     <i class="fa fa-newspaper-o"></i> <span>Articles</span>
                     <small class="label pull-right bg-green"><?php echo App\Article::all()->count(); ?></small>
                 </a>
@@ -27,12 +27,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('administrator.trash.index') }} ">
-                    <i class="fa fa-trash"></i> <span>Trash</span>
-                </a>
-            </li>
-            <li>
-                <a href="/administrator/category">
+                <a href="{{ route('administrator.category.index') }}">
                     <i class="fa fa-tags"></i> <span>Categories</span>
                 </a>
             </li>
@@ -42,6 +37,22 @@
             <li>
                 <a href="{{ route('administrator.user.index') }}">
                     <i class="fa fa-users"></i> <span>Users</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="sidebar-menu">
+            <li class="header">TRASH</li>
+            <li>
+                <a href="{{ route('administrator.trash.index') }}">
+                    <i class="fa fa-users"></i> <span>Trashed items</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="sidebar-menu">
+            <li class="header">ADMIN</li>
+            <li>
+                <a href="{{ route('administrator.trash.index') }}">
+                    <i class="fa fa-users"></i> <span>Logs</span>
                 </a>
             </li>
         </ul>

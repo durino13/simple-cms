@@ -46,7 +46,7 @@
                                             </button>
                                             <ul class="dropdown-menu">
                                                 <meta name="csrf-token" content="{{ csrf_token() }}">
-                                                <li><a href="{{ route('administrator.category.destroy', $user->id) }}" data-redirect="{{ route('administrator.category.index') }}" data-method="delete" class="jquery-postback"><span class="fa fa-trash"></span>Trash</a></li>
+                                                <li><a href="{{ route('administrator.user.destroy', $user->id) }}" data-redirect="{{ route('administrator.user.index') }}" data-method="delete" class="jquery-postback"><span class="fa fa-trash"></span>Trash</a></li>
                                             </ul>
                                         </div>
                                     </td>

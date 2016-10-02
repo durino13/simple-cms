@@ -93,10 +93,18 @@ $('#dt-articles').DataTable(
     }
 );
 $('#dt-articles').show();
+
+// Categories datatables
+
 $('#dt-categories').DataTable({
     order: [[datatables_categorySortColumnIndex,'desc']]
 });
 $('#dt-categories').show();
+
+// Trash datatables
+
+$('#dt-trash').DataTable();
+$('#dt-trash').show();
 
 // ------------------------------------------------------------------------------------
 // Datepickers
@@ -111,4 +119,3 @@ $('.datepicker').datepicker();
 
 var package_json = require('json!../../../../package.json');
 $('#version').html(package_json.version);
-console.log(package_json);

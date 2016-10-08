@@ -26,7 +26,9 @@ class Trash
     public function addCollection(Collection $collection)
     {
         $this->validateCollection($collection);
-        $this->trashCollection = $this->trashCollection->merge($collection);
+        $collection->each(function($item) {
+            $this->trashCollection->push($item);
+        });
     }
 
     public function getCollection()

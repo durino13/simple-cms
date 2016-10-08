@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Article;
 use App\Category;
 use App\Trash;
+use App\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -20,8 +21,9 @@ class TrashController extends Controller
     {
         $test = new Collection();
         $trash = new Trash();
-        $trash->addCollection(Article::where('trash', 1)->get());
-        $trash->addCollection(Category::where('trash', 1)->get());
+        $trash->addCollection(Article::onlyTrashed()->get());
+        $trash->addCollection(Category::onlyTrashed()->get());
+        $trash->addCollection(User::onlyTrashed()->get());
         $trash->addCollection($test);
 
         return view('admin.trash.index', ['items'=> $trash->getCollection()]);
@@ -32,12 +34,10 @@ class TrashController extends Controller
      */
     public function restore(Request $request, $id)
     {
-
         $SUCCESS_MESSAGE = 'The Article has been successfully restored.';
 
-        $model = Article::findOrFail($id);
-        $model->trash = 0;
-        $model->save();
+        $model = Article::withTrashed()->findOrFail($id);
+        $model->restore();
 
         $request->session()->flash('status', $SUCCESS_MESSAGE);
         if ($request->ajax()) {
@@ -60,7 +60,6 @@ class TrashController extends Controller
         $SUCCESS_MESSAGE = 'The Article has been successfully deleted.';
 
         $model = Article::findOrFail($id);
-        // TODO Remove first all relationships ..
         $model->delete();
         $request->session()->flash('status', $SUCCESS_MESSAGE);
 

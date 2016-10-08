@@ -4,9 +4,12 @@ namespace App;
 
 use App\Interfaces\ITrashable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model implements ITrashable
 {
+
+    use SoftDeletes;
 
     const JOBS = 1;
     const PROJECTS_ACTIVITIES = 2;
@@ -14,6 +17,8 @@ class Category extends Model implements ITrashable
     const BLOG = 4;
 
     protected $table = 'c_category';
+
+    protected $dates = ['deleted_at'];
 
     /*
      * Relationships
@@ -49,6 +54,6 @@ class Category extends Model implements ITrashable
 
     public function trashedAt()
     {
-        return $this->updated_at;
+        return $this->deleted_at;
     }
 }

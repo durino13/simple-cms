@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
 use App\Category;
 
 class CategoryController extends Controller
@@ -16,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::where('trash', null)->get();
+        $categories = Category::all();
         return view('admin.category.index', ['categories' => $categories]);
     }
 
@@ -95,8 +94,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
-        $category->trash = 1;
-        $category->save();
+        $category->delete();
 
         return response()->json(['result' => true]);
     }

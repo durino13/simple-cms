@@ -134,8 +134,8 @@ class ArticleController extends Controller
     public function destroy(Request $request, int $id)
     {
         $article = Article::find($id);
-        $article->trash = 1;
-        $article->save();
+//        $article->trash = 1;
+        $article->delete();
         $request->session()->flash('status', 'The article was successfully trashed!');
 
         return response()->json(['result' => true]);
@@ -178,7 +178,7 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
         $article->archive = null;
-        $article->trash = null;
+//        $article->trash = null;
         $article->save();
 
         return response()->json(['result' => true]);
@@ -186,17 +186,17 @@ class ArticleController extends Controller
 
     // Trash methods
 
-    /**
-     * List the articles in the trash
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function listTrash(Request $request)
-    {
-        $currentURL = $request->path();
-        $articles = Article::getTrashArticles();
-        return view('admin.article.index', ['articles' => $articles, 'currentURL' => $currentURL]);
-    }
+//    /**
+//     * List the articles in the trash
+//     * @param Request $request
+//     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+//     */
+//    public function listTrash(Request $request)
+//    {
+//        $currentURL = $request->path();
+//        $articles = Article::getTrashArticles();
+//        return view('admin.article.index', ['articles' => $articles, 'currentURL' => $currentURL]);
+//    }
 
     // Delete methods
 

@@ -4,13 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Interfaces\ITrashable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model implements ITrashable
 {
 
+    use SoftDeletes;
+
     protected $table = 'd_article';
 
     protected $appends = ['intro_text'];
+
+    protected $dates = ['deleted_at'];
 
     /*************************************************************
      * Relations
@@ -80,11 +85,22 @@ class Article extends Model implements ITrashable
             $result->where('status_id', '=', $statusID);
         }
 
-        return Article::hydrate(
-            $result->where('trash' ,'=', $isTrash)
-                    ->where('archive' ,'=', $isArchive)
-                    ->orderBy('start_publishing', 'desc')->get()
-        );
+        if ($isTrash) {
+            $result->whereNotNull('deleted_at');
+        } else {
+            $result->whereNull('deleted_at');
+        }
+
+        $result->where('archive' ,'=', $isArchive)
+            ->orderBy('start_publishing', 'desc');
+
+        return Article::hydrate($result->get());
+
+//        ($isTrash) ? $result =  $result->withTrashed()->get() : $result =  $result->onlyTrashed()->get();
+//            $result->where('trash' ,'=', $isTrash)
+//                    ->where('archive' ,'=', $isArchive)
+//                    ->orderBy('start_publishing', 'desc')->get()
+        //);
     }
 
     /**
@@ -96,18 +112,19 @@ class Article extends Model implements ITrashable
         return Article::where('archive', 1)->orderBy('created_at','desc')->get();
     }
 
-    /**
-     * Get articles in the trash
-     * @return mixed
-     */
-    public static function getTrashArticles()
-    {
-        return Article::where('trash', 1)->orderBy('created_at','desc')->get();
-    }
+//    /**
+//     * Get articles in the trash
+//     * @return mixed
+//     */
+//    public static function getTrashArticles()
+//    {
+//        return Article::where('trash', 1)->orderBy('created_at','desc')->get();
+//    }
 
-    public function delete()
+    public function forceDelete()
     {
-        $this->categories()->detach();
+        $this->categories()->forceDelete();
+        $this->forceDelete();
     }
 
     /*************************************************************
@@ -135,6 +152,6 @@ class Article extends Model implements ITrashable
      */
     public function trashedAt()
     {
-        return $this->updated_by;
+        return $this->deleted_at;
     }
 }

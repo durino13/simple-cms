@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('trash', 0)->get();
+        $users = User::all();
         return view('admin.user.index', ['users' => $users]);
     }
 
@@ -99,8 +99,8 @@ class UserController extends Controller
     public function destroy(Request $request, int $id)
     {
         $user = User::findOrFail($id);
-        $user->trash = 1;
-        $user->save();
+//        $user->trash = 1;
+        $user->delete();
 
         if ($request->ajax()) {
             return response()->json(['result' => true]);

@@ -9,7 +9,16 @@
 // Weird way to load a datatable JS .. the define=>disable part disables AMD, so datatables will use CommonJS
 require('imports?define=>false!datatables.net')(window, $);
 require('imports?define=>false!datatables.net-bs' )( window, $ );
-require('../../../../node_modules/datatables.net-dt/css/jquery.dataTables.css');
+require('imports?define=>false!datatables.net-select' )( window, $ );
+require('datatables.net-dt/css/jquery.dataTables.css');
+require('datatables-select/dist/js/dataTables.select.js');
+require('datatables-select/dist/css/select.bootstrap.css');
+require('datatables.net-buttons/js/buttons.html5.js');
+require('datatables.net-buttons/js/buttons.print.js');
+require('datatables.net-buttons/js/buttons.colVis.js');
+require('datatables.net-buttons/js/buttons.flash.js');
+require('datatables.net-buttons/js/dataTables.buttons.js');
+require('datatables.net-buttons-bs');
 
 // -------------------------------------------------
 // TinyMCE
@@ -37,9 +46,9 @@ require('tinymce/skins/lightgray/fonts/tinymce.svg');
 // -------------------------------------------------
 
 // import js & css
-require('../../../../node_modules/bootstrap/dist/css/bootstrap.min.css');
-require('../../../../node_modules/bootstrap/dist/js/bootstrap.min.js');
-require('../../../../node_modules/font-awesome/css/font-awesome.min.css');
+require('bootstrap/dist/css/bootstrap.min.css');
+require('bootstrap/dist/js/bootstrap.min.js');
+require('font-awesome/css/font-awesome.min.css');
 require('../sass/app.scss');
 require('../js/common.js');
 require('../js/tinymce.js');
@@ -51,7 +60,7 @@ require('../images/dots.png');
 
 // AdminLTE is loaded here .. The $=jquery notation will make jQuery available for AdminLTE, otherwise you will see
 // following message: AdminLTE requires jQuery ..
-require('../../../../node_modules/admin-lte/dist/js/app.min.js');
-require('../../../../node_modules/admin-lte/plugins/jQueryUI/jquery-ui.js');
-require('../../../../node_modules/admin-lte/dist/css/AdminLTE.css');
-require('../../../../node_modules/admin-lte/dist/css/skins/_all-skins.min.css');
+require('admin-lte/dist/js/app.min.js');
+require('admin-lte/plugins/jQueryUI/jquery-ui.js');
+require('admin-lte/dist/css/AdminLTE.css');
+require('admin-lte/dist/css/skins/_all-skins.min.css');

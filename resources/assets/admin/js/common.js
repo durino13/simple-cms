@@ -57,8 +57,34 @@ $("#categories").chosen({width:"95%"});
 
 // Configuration for datatables can be found on the server in config/app.php file ..
 
-$('#dt-articles').DataTable(
+var table = $('#dt-articles').DataTable(
     {
+        // Enable the select plugin
+        select: true,
+
+        dom: 'Blfrtip',
+
+        buttons: [
+            {
+                text: 'Trash all',
+                action: function ( e, dt, node, config ) {
+                    dt.rows();
+                }
+            }
+        ],
+
+        columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            targets:   0
+        } ],
+
+        select: {
+            style:    'os',
+            selector: 'td:first-child'
+        },
+
+        // Add the select selectboxes at the bottom of the Datatables table ..
         "initComplete": function () {
             this.api().columns(datatables_filterColumnsIndexes).every( function () {
                 var column = this;
@@ -89,6 +115,7 @@ $('#dt-articles').DataTable(
                 $('td:eq('+datatables_articleStatusColumnIndex+')', nRow).html( '<i class="fa fa-close text-danger"></i>' );
             }
         },
+
         order: [[datatables_articleSortColumnIndex,'desc']]
     }
 );
@@ -106,6 +133,15 @@ $('#dt-categories').show();
 $('#dt-trash').DataTable();
 $('#dt-trash').show();
 
+// Init select all
+
+$('th.select-checkbox').on('click', function(){
+    var table = $('#dt-articles').DataTable();
+    // var cells = table.cells().select();
+    table.cell( ':eq(0)', null, {page: 'current'} ).select();
+    // $( cells ).find(':checkbox').prop('checked', $(this).is(':checked'));
+});
+
 // ------------------------------------------------------------------------------------
 // Datepickers
 // ------------------------------------------------------------------------------------
@@ -114,7 +150,7 @@ $('#dt-trash').show();
 $('.datepicker').datepicker();
 
 // ------------------------------------------------------------------------------------
-// Datepickers
+// Version number
 // ------------------------------------------------------------------------------------
 
 var package_json = require('json!../../../../package.json');

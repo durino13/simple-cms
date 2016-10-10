@@ -25,7 +25,8 @@
                     <table id="dt-articles" class="table table-bordered table-hover" style="display:none">
                         <thead>
                         <tr>
-                            <th>ID</th>
+                            {{--<th class="select-checkbox"></th>--}}
+                            <th></th>
                             <th>Title</th>
                             <th>Author</th>
                             <th>Category</th>
@@ -50,7 +51,7 @@
                         <tbody>
                             @foreach($articles as $article)
                                 <tr>
-                                    <td>{{ $article->id }}</td>
+                                    <td></td>
                                     <td>
                                         <a href="/administrator/article/{{ $article->id }}/edit">{{ $article->title }}</a><br/>
                                         <span class="text-sm">Alias: &nbsp;

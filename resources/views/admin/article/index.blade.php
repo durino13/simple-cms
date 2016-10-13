@@ -50,7 +50,7 @@
                         </tfoot>
                         <tbody>
                             @foreach($articles as $article)
-                                <tr>
+                                <tr id="row_{{ $article->id }}">
                                     <td></td>
                                     <td>
                                         <a href="/administrator/article/{{ $article->id }}/edit">{{ $article->title }}</a><br/>
@@ -58,9 +58,15 @@
                                             {{ $article->alias }}
                                         </span>
                                     </td>
-                                    <td>{{ $article->author->name }}</td>
-                                    <td>{{ ($article->categories->count() > 0) ? $article->categories->first()->name : "-" }}</td>
                                     <td>
+                                        <div class="flex-container">
+                                            <div>
+                                                {{ $article->author->name }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>{{ ($article->categories->count() > 0) ? $article->categories->first()->name : "-" }}</td>
+                                    <td style="text-align: center;">
                                         <?php echo isset($article->status->name) & $article->status->name === 'Published' ? '1' :  '2'  ?>
                                     </td>
                                     <td>{{ $article->updated_at }}</td>

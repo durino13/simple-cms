@@ -77,11 +77,11 @@
                             <label>Categories:</label>
                             <?php
                                 if (isset($article)) {
-                                    $categories = $article->categories()->where('trash', '=', null)->get()->pluck('id')->toArray();
+                                    $categories = $article->categories()->get()->pluck('id')->toArray();
                                 } else {
                                     $categories = [];
                                 }
-                                echo Form::select('categories[]', App\Category::where('trash', '=', null)->get()->lists('name','id'), $categories, ['id' => 'categories','multiple']);
+                                echo Form::select('categories[]', App\Category::all()->pluck('name','id'), $categories, ['id' => 'categories','multiple']);
                             ?>
 
                         </div>

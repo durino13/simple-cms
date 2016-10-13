@@ -10262,24 +10262,29 @@ th, td {
 .no-border {
   border: 0px; }
 
-table.dataTable th.select-checkbox {
-  position: relative; }
+.dataTables_length select {
+  margin: 1em; }
 
-table.dataTable th.select-checkbox:before {
-  content: ' ';
-  margin-top: -6px;
-  margin-left: -6px;
-  border: 1px solid black;
-  border-radius: 3px; }
+.dataTables_filter input {
+  margin: 1em !important; }
 
-table.dataTable th.select-checkbox:before, table.dataTable th.select-checkbox:after {
-  display: block;
-  position: absolute;
-  top: 1.2em;
-  left: 50%;
-  width: 12px;
-  height: 12px;
-  box-sizing: border-box; }
+.dt-buttons {
+  margin: 0.9em; }
+  .dt-buttons a {
+    padding: 3px 6px; }
+
+table.dataTable td.select-checkbox, td.select-checkbox:before, td.select-checkbox:after {
+  cursor: pointer; }
+
+table.dataTable tbody > tr.selected {
+  background: #BCCEE2;
+  color: #515151; }
+
+table.dataTable tbody > tr.selected {
+  background: #BCCEE2;
+  color: #515151; }
+  table.dataTable tbody > tr.selected a {
+    color: #3C8DBC; }
 /*!
  * Datepicker for Bootstrap
  *

@@ -105561,7 +105561,7 @@
 	            {
 	                text: 'Trash all',
 	                action: function ( e, dt, node, config ) {
-	                    dt.rows();
+	                    console.log(dt.rows('.selected').ids());
 	                }
 	            }
 	        ],

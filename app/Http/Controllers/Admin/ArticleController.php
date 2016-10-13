@@ -126,20 +126,50 @@ class ArticleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Move the article into the trash
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, int $id)
     {
-        $article = Article::find($id);
-//        $article->trash = 1;
-        $article->delete();
-        $request->session()->flash('status', 'The article was successfully trashed!');
 
-        return response()->json(['result' => true]);
+        try {
 
+            $article = Article::find($id);
+            $article->delete();
+
+            $request->session()->flash('status', 'The article was successfully trashed!');
+            return response()->json(['result' => true]);
+
+        } catch(Exception $e) {
+            $msg = 'An error occured: ';
+            return response()->json(['result' => false, 'message' => $msg.$e->getMessage()]);
+        }
+    }
+
+    /**
+     * Move many articles into the trash at once ..
+     * @param Request $request
+     * @param array $ids Article IDs you want to trash
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroyMany(Request $request, array $ids)
+    {
+        try {
+
+            foreach ($ids as $id) {
+                $article = Article::find($id);
+                $article->delete();
+            }
+
+            $request->session()->flash('status', 'Selected articles have been successfully moved into trash!');
+            return response()->json(['result' => true]);
+
+        } catch (Exception $e) {
+            $msg = 'An error occured: ';
+            return response()->json(['result' => false, 'message' => $msg.$e->getMessage()]);
+        }
     }
 
     // Archive methods
@@ -178,25 +208,10 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
         $article->archive = null;
-//        $article->trash = null;
         $article->save();
 
         return response()->json(['result' => true]);
     }
-
-    // Trash methods
-
-//    /**
-//     * List the articles in the trash
-//     * @param Request $request
-//     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-//     */
-//    public function listTrash(Request $request)
-//    {
-//        $currentURL = $request->path();
-//        $articles = Article::getTrashArticles();
-//        return view('admin.article.index', ['articles' => $articles, 'currentURL' => $currentURL]);
-//    }
 
     // Delete methods
 

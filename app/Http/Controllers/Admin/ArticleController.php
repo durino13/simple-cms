@@ -139,13 +139,14 @@ class ArticleController extends Controller
             $article = Article::find($id);
             $article->delete();
 
-            $request->session()->flash('status', 'The article was successfully trashed!');
+//            $request->session()->flash('status', 'The article was successfully trashed!');
             return response()->json(['result' => true]);
 
         } catch(Exception $e) {
             $msg = 'An error occured: ';
             return response()->json(['result' => false, 'message' => $msg.$e->getMessage()]);
         }
+
     }
 
     /**

@@ -50,7 +50,7 @@
                         </tfoot>
                         <tbody>
                             @foreach($articles as $article)
-                                <tr id="row_{{ $article->id }}">
+                                <tr id="{{ $article->id }}">
                                     <td></td>
                                     <td>
                                         <a href="/administrator/article/{{ $article->id }}/edit">{{ $article->title }}</a><br/>

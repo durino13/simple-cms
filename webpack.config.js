@@ -18,6 +18,14 @@ module.exports = {
     module: {
         loaders: [
 
+            // Ecmascript 6 loader
+
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            },
+
             // Css loaders
             {
                 test: /\.(css|scss)$/i,

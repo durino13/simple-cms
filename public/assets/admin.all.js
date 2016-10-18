@@ -44,7 +44,9 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {// Author:      Juraj Marusiak
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	// Author:      Juraj Marusiak
 	// Created:     01.06.2016
 	// Description: This is the entrance file for all JS on the page ...
 	
@@ -54,8 +56,8 @@
 	
 	// Weird way to load a datatable JS .. the define=>disable part disables AMD, so datatables will use CommonJS
 	__webpack_require__(2)(window, $);
-	__webpack_require__(3 )( window, $ );
-	__webpack_require__(5 )( window, $ );
+	__webpack_require__(3)(window, $);
+	__webpack_require__(5)(window, $);
 	__webpack_require__(6);
 	__webpack_require__(13);
 	__webpack_require__(15);
@@ -97,8 +99,8 @@
 	__webpack_require__(51);
 	__webpack_require__(58);
 	__webpack_require__(59);
-	__webpack_require__(63);
-	__webpack_require__(64);
+	__webpack_require__(66);
+	__webpack_require__(67);
 	
 	// -------------------------------------------------
 	// Admin LTE
@@ -106,10 +108,10 @@
 	
 	// AdminLTE is loaded here .. The $=jquery notation will make jQuery available for AdminLTE, otherwise you will see
 	// following message: AdminLTE requires jQuery ..
-	__webpack_require__(65);
-	__webpack_require__(66);
-	__webpack_require__(67);
+	__webpack_require__(68);
 	__webpack_require__(69);
+	__webpack_require__(70);
+	__webpack_require__(72);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -105491,167 +105493,85 @@
 /* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function($) {__webpack_require__(60);
-	__webpack_require__(61);
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	var _general = __webpack_require__(88);
+	
+	var _general2 = _interopRequireDefault(_general);
+	
+	var _article = __webpack_require__(89);
+	
+	var _article2 = _interopRequireDefault(_article);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	__webpack_require__(63);
+	__webpack_require__(64);
+	
 	
 	// ------------------------------------------------------------------------------------
-	// Application logic
+	// General stuff
 	// ------------------------------------------------------------------------------------
 	
-	// Close form alert
-	
-	$(document).ready(function() {
-	    $('#form-close').on('click', function(e) {
-	        e.preventDefault();
-	        var redirectUrl = e.target.dataset.redirect;
-	
-	        if(confirm('Do you really want to close this form?')) {
-	            window.location.href = redirectUrl;
-	        }
-	    })
+	$(document).ready(function () {
+	    // Initialize the application ...
+	    _general2.default.init();
+	    _article2.default.init();
 	});
-	
-	// Handle here AJAX requests to the server
-	
-	$.ajaxSetup({
-	    headers: {
-	        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-	    }
-	});
-	
-	$(document).on('click', 'a.jquery-postback', function(e) {
-	    e.preventDefault(); // does not go through with the link.
-	
-	    var $this = $(this);
-	    var redirect = $this.attr('data-redirect');
-	
-	    $.post({
-	        type: $this.data('method'),
-	        url: $this.attr('href'),
-	        redirect: redirect
-	    }).done(function (data) {
-	        if (data.result === true) {
-	            window.location.href = redirect;
-	        } else {
-	            alert('The document can not be deleted.');
-	        }
-	    });
-	});
-	
-	// ------------------------------------------------------------------------------------
-	// Chosen
-	// ------------------------------------------------------------------------------------
-	
-	$("#categories").chosen({width:"95%"});
-	
-	// ------------------------------------------------------------------------------------
-	// Datatables
-	// ------------------------------------------------------------------------------------
-	
-	// Configuration for datatables can be found on the server in config/app.php file ..
-	
-	var table = $('#dt-articles').DataTable(
-	    {
-	        // Enable the select plugin
-	        select: true,
-	
-	        dom: 'Blfrtip',
-	
-	        buttons: [
-	            {
-	                text: 'Trash all',
-	                action: function ( e, dt, node, config ) {
-	                    console.log(dt.rows('.selected').ids());
-	                }
-	            }
-	        ],
-	
-	        columnDefs: [ {
-	            orderable: false,
-	            className: 'select-checkbox',
-	            targets:   0
-	        } ],
-	
-	        select: {
-	            style:    'os',
-	            selector: 'td:first-child'
-	        },
-	
-	        // Add the select selectboxes at the bottom of the Datatables table ..
-	        "initComplete": function () {
-	            this.api().columns(datatables_filterColumnsIndexes).every( function () {
-	                var column = this;
-	                var select = $('<select><option value=""></option></select>')
-	                    .appendTo( $(column.footer()).empty())
-	                    .on( 'change', function () {
-	                        var val = $.fn.dataTable.util.escapeRegex(
-	                            $(this).val()
-	                        );
-	
-	                        column
-	                            .search( val ? '^'+val+'$' : '', true, false )
-	                            .draw();
-	                    } );
-	
-	                column.data().unique().sort().each( function ( d, j ) {
-	                    select.append( '<option value="'+d+'">'+d+'</option>' )
-	                } );
-	            } );
-	        },
-	
-	        // TODO Text to icon conversion not working ..
-	
-	        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-	            if (aData[datatables_articleStatusColumnIndex] === '1') {
-	                $('td:eq('+datatables_articleStatusColumnIndex+')', nRow).html( '<i class="fa fa-check-circle-o text-success"></i>' );
-	            } else {
-	                $('td:eq('+datatables_articleStatusColumnIndex+')', nRow).html( '<i class="fa fa-close text-danger"></i>' );
-	            }
-	        },
-	
-	        order: [[datatables_articleSortColumnIndex,'desc']]
-	    }
-	);
-	$('#dt-articles').show();
-	
-	// Categories datatables
-	
-	$('#dt-categories').DataTable({
-	    order: [[datatables_categorySortColumnIndex,'desc']]
-	});
-	$('#dt-categories').show();
-	
-	// Trash datatables
-	
-	$('#dt-trash').DataTable();
-	$('#dt-trash').show();
-	
-	// Init select all
-	
-	$('th.select-checkbox').on('click', function(){
-	    var table = $('#dt-articles').DataTable();
-	    // var cells = table.cells().select();
-	    table.cell( ':eq(0)', null, {page: 'current'} ).select();
-	    // $( cells ).find(':checkbox').prop('checked', $(this).is(':checked'));
-	});
-	
-	// ------------------------------------------------------------------------------------
-	// Datepickers
-	// ------------------------------------------------------------------------------------
-	
-	// Datepicker
-	$('.datepicker').datepicker();
 	
 	// ------------------------------------------------------------------------------------
 	// Version number
 	// ------------------------------------------------------------------------------------
 	
-	var package_json = __webpack_require__(62);
+	var package_json = __webpack_require__(65);
 	$('#version').html(package_json.version);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 60 */
+/* 60 */,
+/* 61 */,
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	// Trash the article ..
+	
+	var Article = function () {
+	    function Article(id) {
+	        _classCallCheck(this, Article);
+	
+	        this.id = id;
+	    }
+	
+	    _createClass(Article, [{
+	        key: 'trashArticle',
+	        value: function trashArticle(id) {
+	            $.ajax({
+	                url: "http://dev.yuma.sk/administrator/article/" + this.id,
+	                type: 'DELETE'
+	            }).done(function () {
+	                console.log('Done');
+	            });
+	        }
+	    }]);
+	
+	    return Article;
+	}();
+	
+	exports.default = Article;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {/* =========================================================
@@ -107329,13 +107249,13 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
-/* 61 */
+/* 64 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 62 */
+/* 65 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -107366,6 +107286,9 @@
 			}
 		},
 		"devDependencies": {
+			"babel-core": "^6.17.0",
+			"babel-loader": "^6.2.5",
+			"babel-preset-es2015": "^6.16.0",
 			"bootstrap-sass": "^3.0.0",
 			"browserify-shim": "^3.8.12",
 			"chosen-npm": "^1.4.2",
@@ -107407,30 +107330,29 @@
 	};
 
 /***/ },
-/* 63 */
+/* 66 */
 /***/ function(module, exports) {
 
+	'use strict';
+	
 	// TinyMCE config
 	
 	var ed = tinymce.init({
 	    selector: '#article_text',
 	    skin: false,
-	    plugins: ['image','media', 'fullscreen','template', 'filemanager', 'link', 'codesample'],
+	    plugins: ['image', 'media', 'fullscreen', 'template', 'filemanager', 'link', 'codesample'],
 	    toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | link | template | codesample image | fullscreen',
 	    height: 400,
-	    content_css : '/public/assets/admin.all.css',
-	    templates: [
-	        {title: 'Readmore', description: 'Insert readmore article section', content: '<hr/>'},
-	    ],
-	    external_filemanager_path:"/plugins/filemanager/filemanager/",
-	    filemanager_title:"Responsive Filemanager" ,
-	    external_plugins: { "filemanager" : "/plugins/filemanager/filemanager/plugin.min.js"},
+	    content_css: '/public/assets/admin.all.css',
+	    templates: [{ title: 'Readmore', description: 'Insert readmore article section', content: '<hr/>' }],
+	    external_filemanager_path: "/plugins/filemanager/filemanager/",
+	    filemanager_title: "Responsive Filemanager",
+	    external_plugins: { "filemanager": "/plugins/filemanager/filemanager/plugin.min.js" },
 	    convert_urls: false
 	
 	});
 	
-	function onFileChosen(event,callback)
-	{
+	function onFileChosen(event, callback) {
 	    // //Detach any current submit handlers
 	    // $("#fileUploadForm").unbind("submit");
 	    // $("#fileUploadForm").submit(function(e) {
@@ -107478,13 +107400,13 @@
 	}
 
 /***/ },
-/* 64 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = __webpack_require__.p + "dots.png";
 
 /***/ },
-/* 65 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($, jQuery) {/*! AdminLTE app.js
@@ -107503,7 +107425,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(1)))
 
 /***/ },
-/* 66 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! jQuery UI - v1.11.4 - 2015-03-11
@@ -124125,17 +124047,299 @@
 	}));
 
 /***/ },
-/* 67 */
+/* 70 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 68 */,
-/* 69 */
+/* 71 */,
+/* 72 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var General = function () {
+	    function General() {
+	        _classCallCheck(this, General);
+	    }
+	
+	    _createClass(General, null, [{
+	        key: 'init',
+	        value: function init() {
+	            this.bindCloseButton();
+	            this.bindDatepicker();
+	            this.bindAjax();
+	        }
+	
+	        // Handle here AJAX requests to the server
+	
+	    }, {
+	        key: 'bindAjax',
+	        value: function bindAjax() {
+	
+	            $.ajaxSetup({
+	                headers: {
+	                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	                }
+	            });
+	
+	            $(document).on('click', 'a.jquery-postback', function (e) {
+	                e.preventDefault(); // does not go through with the link.
+	
+	                var $this = $(this);
+	                var redirect = $this.attr('data-redirect');
+	
+	                $.post({
+	                    type: $this.data('method'),
+	                    url: $this.attr('href'),
+	                    redirect: redirect
+	                }).done(function (data) {
+	                    if (data.result === true) {
+	                        window.location.href = redirect;
+	                    } else {
+	                        alert('The document can not be deleted.');
+	                    }
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'bindCloseButton',
+	        value: function bindCloseButton() {
+	            // Bind the form close button ..
+	            $('#form-close').on('click', function (e) {
+	                e.preventDefault();
+	                var redirectUrl = e.target.dataset.redirect;
+	
+	                if (confirm('Do you really want to close this form?')) {
+	                    window.location.href = redirectUrl;
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'bindDatepicker',
+	        value: function bindDatepicker() {
+	            $('.datepicker').datepicker();
+	        }
+	    }]);
+	
+	    return General;
+	}();
+	
+	exports.default = General;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _article = __webpack_require__(62);
+	
+	var _article2 = _interopRequireDefault(_article);
+	
+	var _datatable = __webpack_require__(90);
+	
+	var _datatable2 = _interopRequireDefault(_datatable);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var ArticleForm = function () {
+	    function ArticleForm() {
+	        _classCallCheck(this, ArticleForm);
+	    }
+	
+	    _createClass(ArticleForm, null, [{
+	        key: 'init',
+	        value: function init() {
+	            this.bindChosen();
+	            this.bindDatatables();
+	        }
+	    }, {
+	        key: 'bindChosen',
+	        value: function bindChosen() {
+	            $("#categories").chosen({ width: "95%" });
+	        }
+	    }, {
+	        key: 'bindDatatables',
+	        value: function bindDatatables() {
+	
+	            // Init articles
+	            var dtArticles = new _datatable2.default('#dt-articles');
+	            dtArticles.show();
+	
+	            // Init categories
+	            var dtCategories = new _datatable2.default('#dt-categories');
+	            dtCategories.show();
+	
+	            // Init trash
+	            var dtTrash = new _datatable2.default('#dt-trash');
+	            dtTrash.show();
+	
+	            // Init select all
+	
+	            // $('th.select-checkbox').on('click', function(){
+	            //     var table = $('#dt-articles').DataTable();
+	            //     // var cells = table.cells().select();
+	            //     table.cell( ':eq(0)', null, {page: 'current'} ).select();
+	            //     // $( cells ).find(':checkbox').prop('checked', $(this).is(':checked'));
+	            // });
+	        }
+	    }]);
+	
+	    return ArticleForm;
+	}();
+	
+	exports.default = ArticleForm;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function($) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Datatable = function () {
+	    function Datatable(selector) {
+	        _classCallCheck(this, Datatable);
+	
+	        this.selector = selector;
+	        this.init();
+	    }
+	
+	    _createClass(Datatable, [{
+	        key: 'init',
+	        value: function init() {
+	            var _$$DataTable;
+	
+	            $(this.selector).DataTable((_$$DataTable = {
+	                // Enable the select plugin
+	                select: true,
+	
+	                dom: 'Blfrtip',
+	
+	                buttons: [{
+	                    text: 'Trash all',
+	                    action: function action(e, dt, node, config) {
+	                        var ids = dt.rows('.selected').ids().toArray();
+	                        var _iteratorNormalCompletion = true;
+	                        var _didIteratorError = false;
+	                        var _iteratorError = undefined;
+	
+	                        try {
+	                            for (var _iterator = ids[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	                                var id = _step.value;
+	
+	                                var article = new Article(id);
+	                                article.trashArticle();
+	                            }
+	                        } catch (err) {
+	                            _didIteratorError = true;
+	                            _iteratorError = err;
+	                        } finally {
+	                            try {
+	                                if (!_iteratorNormalCompletion && _iterator.return) {
+	                                    _iterator.return();
+	                                }
+	                            } finally {
+	                                if (_didIteratorError) {
+	                                    throw _iteratorError;
+	                                }
+	                            }
+	                        }
+	                    }
+	                }],
+	
+	                columnDefs: [{
+	                    orderable: false,
+	                    className: 'select-checkbox',
+	                    targets: 0
+	                }]
+	
+	            }, _defineProperty(_$$DataTable, 'select', {
+	                style: 'multi',
+	                selector: 'td:first-child'
+	            }), _defineProperty(_$$DataTable, "initComplete", function initComplete() {
+	                this.api().columns(datatables_filterColumnsIndexes).every(function () {
+	                    var column = this;
+	                    var select = $('<select><option value=""></option></select>').appendTo($(column.footer()).empty()).on('change', function () {
+	                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+	
+	                        column.search(val ? '^' + val + '$' : '', true, false).draw();
+	                    });
+	
+	                    column.data().unique().sort().each(function (d, j) {
+	                        select.append('<option value="' + d + '">' + d + '</option>');
+	                    });
+	                });
+	            }), _defineProperty(_$$DataTable, "fnRowCallback", function fnRowCallback(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+	                if (aData[datatables_articleStatusColumnIndex] === '1') {
+	                    $('td:eq(' + datatables_articleStatusColumnIndex + ')', nRow).html('<i class="fa fa-check-circle-o text-success"></i>');
+	                } else {
+	                    $('td:eq(' + datatables_articleStatusColumnIndex + ')', nRow).html('<i class="fa fa-close text-danger"></i>');
+	                }
+	            }), _$$DataTable));
+	        }
+	    }, {
+	        key: 'show',
+	        value: function show() {
+	            $(this.selector).show();
+	        }
+	    }]);
+	
+	    return Datatable;
+	}();
+	
+	exports.default = Datatable;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }
 /******/ ]);

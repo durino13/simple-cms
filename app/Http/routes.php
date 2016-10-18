@@ -19,6 +19,10 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () 
     // Article routes
     Route::resource('article', 'Admin\ArticleController');
 
+
+    // TODO Ujednotit, ako idem trashovat clanky ..
+
+
     // Archive articles
     Route::delete('archive/{article}', 'Admin\ArticleController@archive')->name('administrator.archive.archive');
     Route::post('archive/{article}', 'Admin\ArticleController@restore')->name('administrator.archive.restore');

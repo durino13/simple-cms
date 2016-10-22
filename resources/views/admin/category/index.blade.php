@@ -37,7 +37,12 @@
                             @foreach($categories as $category)
                                 <tr>
                                     <td>{{ $category->id }}</td>
-                                    <td><a href="/administrator/category/{{ $category->id }}/edit">{{ $category->name }}</a></td>
+                                    <td>
+                                        <a href="/administrator/category/{{ $category->id }}/edit">{{ $category->name }}</a>
+                                        <div class="text-sm">Articles in category: &nbsp;
+                                            {{ $category->articles->count() }}
+                                        </div>
+                                    </td>
                                     <td>{{ $category->code }}</td>
                                     <td>{{ $category->updated_at }}</td>
                                     <td>{{ $category->created_at }}</td>

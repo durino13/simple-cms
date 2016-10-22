@@ -26,7 +26,7 @@ class Category extends Model implements ITrashable
 
     public function articles()
     {
-        $this->belongsToMany('App\Article', 'r_article_category');
+        return $this->belongsToMany('App\Article', 'r_article_category');
     }
 
     /*

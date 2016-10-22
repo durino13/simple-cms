@@ -7,11 +7,9 @@ class Article {
     }
 
     trashArticle(id) {
-        $.ajax({
+        return $.ajax({
             url: "http://dev.yuma.sk/administrator/article/"+this.id,
             type: 'DELETE'
-        }).done(function() {
-            console.log('Done')
         });
     }
 

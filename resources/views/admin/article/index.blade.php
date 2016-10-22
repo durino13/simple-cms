@@ -54,9 +54,9 @@
                                     <td></td>
                                     <td>
                                         <a href="/administrator/article/{{ $article->id }}/edit">{{ $article->title }}</a><br/>
-                                        <span class="text-sm">Alias: &nbsp;
+                                        <div class="text-sm">Alias: &nbsp;
                                             {{ $article->alias }}
-                                        </span>
+                                        </div>
                                     </td>
                                     <td>
                                         <div class="flex-container">

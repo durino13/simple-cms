@@ -207,11 +207,11 @@ class ArticleController extends Controller
      */
     public function restore($id)
     {
-        $article = Article::find($id);
-        $article->archive = null;
-        $article->save();
-
-        return response()->json(['result' => true]);
+//        $article = Article::find($id);
+//        $article->archive = null;
+//        $article->save();
+//
+//        return response()->json(['result' => true]);
     }
 
     // Delete methods

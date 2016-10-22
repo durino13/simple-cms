@@ -25,6 +25,7 @@
                     <table id="dt-trash" class="table table-bordered table-hover" style="display:none">
                         <thead>
                         <tr>
+                            <th>#</th>
                             <th>Title</th>
                             <th>Type</th>
                             <th>Trashed</th>
@@ -33,6 +34,7 @@
                         </thead>
                         <tfoot>
                         <tr>
+                            <th></th>
                             <th>Title</th>
                             <th>Type</th>
                             <th>Trashed</th>
@@ -41,7 +43,8 @@
                         </tfoot>
                         <tbody>
                             @foreach($items as $item)
-                                <tr>
+                                <tr id="{{ $item->id }}">
+                                    <td></td>
                                     <td>{{ $item->trashTitle() }}</td>
                                     <td>
                                         {{ $item->trashDocumentType() }}

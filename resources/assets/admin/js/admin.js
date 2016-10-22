@@ -64,3 +64,7 @@ require('admin-lte/dist/js/app.min.js');
 require('admin-lte/plugins/jQueryUI/jquery-ui.js');
 require('admin-lte/dist/css/AdminLTE.css');
 require('admin-lte/dist/css/skins/_all-skins.min.css');
+
+// -------------------------------------------------
+// Alertify
+// -------------------------------------------------

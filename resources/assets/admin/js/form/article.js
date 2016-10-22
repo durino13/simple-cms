@@ -1,5 +1,7 @@
 import Article from '../model/article';
-import Datatable from '../component/datatable';
+import ArticleDatatable from '../component/ArticleDatatable';
+import TrashDatatable from '../component/TrashDatatable';
+import Datatable from '../component/Datatable';
 
 class ArticleForm {
 
@@ -15,25 +17,17 @@ class ArticleForm {
     static bindDatatables() {
 
         // Init articles
-        let dtArticles = new Datatable('#dt-articles');
+        let dtArticles = new ArticleDatatable('#dt-articles', true, true, false);
         dtArticles.show();
 
         // Init categories
-        let dtCategories = new Datatable('#dt-categories');
+        let dtCategories = new Datatable('#dt-categories', true, false, false);
         dtCategories.show();
 
         // Init trash
-        let dtTrash = new Datatable('#dt-trash');
+        let dtTrash = new TrashDatatable('#dt-trash', false, false, true);
         dtTrash.show();
 
-        // Init select all
-
-        // $('th.select-checkbox').on('click', function(){
-        //     var table = $('#dt-articles').DataTable();
-        //     // var cells = table.cells().select();
-        //     table.cell( ':eq(0)', null, {page: 'current'} ).select();
-        //     // $( cells ).find(':checkbox').prop('checked', $(this).is(':checked'));
-        // });
     }
 
 }

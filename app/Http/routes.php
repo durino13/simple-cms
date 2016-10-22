@@ -25,7 +25,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () 
 
     // Archive articles
     Route::delete('archive/{article}', 'Admin\ArticleController@archive')->name('administrator.archive.archive');
-    Route::post('archive/{article}', 'Admin\ArticleController@restore')->name('administrator.archive.restore');
+//    Route::post('archive/{article}', 'Admin\ArticleController@restore')->name('administrator.archive.restore');
     Route::get('archive', 'Admin\ArticleController@listarchive')->name('administrator.archive.index');
 
     // Trash articles

@@ -20,10 +20,15 @@ class TrashDatatable extends Datatable {
                 enabled: false,
                 className: 'recycleButton',
                 action: function ( e, dt, node, config ) {
-                    let ids = dt.rows('.selected').ids().toArray();
+                    let rows = dt.rows('.selected');
+                    let ids = rows.ids().toArray();
                     for (let id of ids) {
                         let trash = new Trash(id);
                         trash.restoreItem().done(function() {
+                            // Remove deleted rows from the table
+                            rows.remove().draw();
+
+                            // Show the notification
                             alertify.logPosition("top right");
                             alertify.success('The article has been restored!');
                         });

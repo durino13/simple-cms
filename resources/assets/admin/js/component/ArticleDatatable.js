@@ -22,11 +22,17 @@ class ArticleDatatable extends Datatable {
                 enabled: false,
                 className: 'trashButton',
                 action: function ( e, dt, node, config ) {
-                    let ids = dt.rows('.selected').ids().toArray();
+                    let rows = dt.rows('.selected');
+                    let ids = rows.ids().toArray();
                     for (let id of ids) {
                         let article = new Article(id);
-                        article.trashArticle()
+                        article.trash()
                             .done(function() {
+
+                                // Remove selected rows ..
+                                rows.remove().draw();
+
+                                // Display the notification ..
                                 alertify.logPosition("top right");
                                 alertify.success('The article has been moved into trash!');
                             });

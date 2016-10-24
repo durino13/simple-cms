@@ -49,25 +49,22 @@ class ArticleController extends Controller
         ]);
 
         // Save article
-
         $article = new Article();
         $this->saveArticle($request, $article);
 
         // Save article categories
-
         $article->categories()->attach((array) $request->input('categories'));
 
-        // Set flash message
-
-        $request->session()->flash('status', 'Article was successfully saved!');
+        // Return the result
+        return response()->json(['result' => true]);
 
         // Redirect to view
 
-        if ($request->get('action') == 'save') {
-            return redirect()->route('administrator.article.index');
-        } elseif ($request->get('action') == 'save_and_close') {
-            return redirect()->route('administrator.article.index');
-        }
+//        if ($request->get('action') == 'save') {
+//            return redirect()->route('administrator.article.index');
+//        } elseif ($request->get('action') == 'save_and_close') {
+//            return redirect()->route('administrator.article.index');
+//        }
 
     }
 
@@ -139,7 +136,6 @@ class ArticleController extends Controller
             $article = Article::find($id);
             $article->delete();
 
-//            $request->session()->flash('status', 'The article was successfully trashed!');
             return response()->json(['result' => true]);
 
         } catch(Exception $e) {
@@ -164,7 +160,6 @@ class ArticleController extends Controller
                 $article->delete();
             }
 
-            $request->session()->flash('status', 'Selected articles have been successfully moved into trash!');
             return response()->json(['result' => true]);
 
         } catch (Exception $e) {

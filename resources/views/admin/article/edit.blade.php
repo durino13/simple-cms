@@ -4,9 +4,9 @@
     {{--Open form--}}
 
     <?php if (isset($article)) { ?>
-        {{ Form::model($article, ['method'=> 'put', 'route' => ['administrator.article.update', $article->id]]) }}
+        {{ Form::model($article, ['id' => 'article-form', 'method'=> 'put', 'route' => ['administrator.article.update', $article->id]]) }}
     <?php } else { ?>
-        {{ Form::open(['url' => '/administrator/article']) }}
+        {{ Form::open(['id' => 'article-form', 'url' => '/administrator/article']) }}
     <?php } ?>
 
     {{--Toolbar--}}

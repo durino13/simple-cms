@@ -2,13 +2,21 @@
 
 class Article {
 
-    constructor(id) {
+    constructor(id = null) {
         this.id = id;
     }
 
-    trashArticle(id) {
+    save() {
         return $.ajax({
-            url: "http://dev.yuma.sk/administrator/article/"+this.id,
+            url: 'http://dev.yuma.sk/administrator/article',
+            type: 'POST',
+            data: $('#article-form').serialize()
+        })
+    }
+
+    trash() {
+        return $.ajax({
+            url: 'http://dev.yuma.sk/administrator/article/'+ this.id,
             type: 'DELETE'
         });
     }

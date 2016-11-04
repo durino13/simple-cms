@@ -1,3 +1,4 @@
+<?php use Illuminate\Support\Facades\Route; ?>
 @extends('admin.layouts.main')
 @section('content')
 
@@ -22,7 +23,14 @@
                 </div>
 
                 <div class="box-body">
-                    <table id="dt-articles" class="table table-bordered table-hover" style="display:none">
+
+                    <?php
+
+                    (Route::getFacadeRoot()->current()->uri() === 'administrator/article/archive') ? $idName = "dt-archive" : $idName = "dt-articles";
+
+                    ?>
+
+                    <table id={{ $idName }} class="table table-bordered table-hover" style="display:none">
                         <thead>
                         <tr>
                             {{--<th class="select-checkbox"></th>--}}

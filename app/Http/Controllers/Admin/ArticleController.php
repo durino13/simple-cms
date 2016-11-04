@@ -58,14 +58,6 @@ class ArticleController extends Controller
         // Return the result
         return response()->json(['result' => true]);
 
-        // Redirect to view
-
-//        if ($request->get('action') == 'save') {
-//            return redirect()->route('administrator.article.index');
-//        } elseif ($request->get('action') == 'save_and_close') {
-//            return redirect()->route('administrator.article.index');
-//        }
-
     }
 
     /**
@@ -202,11 +194,11 @@ class ArticleController extends Controller
      */
     public function restore($id)
     {
-//        $article = Article::find($id);
-//        $article->archive = null;
-//        $article->save();
-//
-//        return response()->json(['result' => true]);
+        $article = Article::find($id);
+        $article->archive = 0;
+        $article->save();
+
+        return response()->json(['result' => true]);
     }
 
     // Delete methods

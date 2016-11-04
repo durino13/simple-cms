@@ -1,5 +1,7 @@
 import Datatable from './Datatable';
 import Trash from '../model/trash';
+import Common from '../common';
+
 var alertify = require("imports?this=>window!alertify.js/dist/js/alertify.js");
 require("imports?this=>window!alertify.js/dist/css/alertify.css");
 
@@ -22,17 +24,45 @@ class TrashDatatable extends Datatable {
                 action: function ( e, dt, node, config ) {
                     let rows = dt.rows('.selected');
                     let ids = rows.ids().toArray();
-                    for (let id of ids) {
-                        let trash = new Trash(id);
-                        trash.restoreItem().done(function() {
-                            // Remove deleted rows from the table
-                            rows.remove().draw();
 
-                            // Show the notification
-                            alertify.logPosition("top right");
-                            alertify.success('The article has been restored!');
-                        });
-                    }
+                    alertify.confirm("Do you really want to restore the selected item(s)?", function () {
+
+                        for (let id of ids) {
+                            Trash.restoreItem(id).done(function() {
+                                // Remove deleted rows from the table
+                                rows.remove().draw();
+
+                                // Display the notification ..
+                                Common.notify('success', 'The selected item(s) have been successfully restored!');
+                            });
+                        }
+
+                    })
+
+                }
+            },
+            {
+                text: '<i class="fa fa-trash-o" aria-hidden="true"></i>',
+                enabled: false,
+                className: 'wipeButton',
+                action: function ( e, dt, node, config ) {
+                    let rows = dt.rows('.selected');
+                    let ids = rows.ids().toArray();
+
+                    alertify.confirm("Do you really want to delete selected items?", function () {
+
+                        for (let id of ids) {
+                            Trash.wipeItem(id).done(function() {
+                                // Remove deleted rows from the table
+                                rows.remove().draw();
+
+                                // Display the notification ..
+                                Common.notify('success', 'The selected items(s) have been successfully deleted!');
+                            });
+                        }
+
+                    })
+
                 }
             }
         ]

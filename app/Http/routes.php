@@ -17,21 +17,15 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () 
     Route::get('/','Admin\ArticleController@index');
 
     // Article routes
+    Route::get('article/archive', 'Admin\ArticleController@listarchive')->name('administrator.article.archive.index');
+    Route::post('article/{article}/archive/archive', 'Admin\ArticleController@archive')->name('administrator.article.archive.archive');
+    Route::post('article/{article}/archive/restore', 'Admin\ArticleController@restore')->name('administrator.article.archive.restore');
     Route::resource('article', 'Admin\ArticleController');
 
-
-    // TODO Ujednotit, ako idem trashovat clanky ..
-
-
-    // Archive articles
-    Route::delete('archive/{article}', 'Admin\ArticleController@archive')->name('administrator.archive.archive');
-//    Route::post('archive/{article}', 'Admin\ArticleController@restore')->name('administrator.archive.restore');
-    Route::get('archive', 'Admin\ArticleController@listarchive')->name('administrator.archive.index');
-
-    // Trash articles
+    // Trash routes
     Route::get('trash', 'Admin\TrashController@index')->name('administrator.trash.index');
-    Route::post('trash/{article}/restore', 'Admin\TrashController@restore')->name('administrator.trash.restore');
-    Route::post('trash/{article}/destroy', 'Admin\TrashController@destroy')->name('administrator.trash.destroy');
+    Route::post('trash/{item}/restore', 'Admin\TrashController@restore')->name('administrator.trash.restore');
+    Route::post('trash/{item}/destroy', 'Admin\TrashController@destroy')->name('administrator.trash.destroy');
 
     // Category routes
     Route::resource('category', 'Admin\CategoryController');

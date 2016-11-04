@@ -22,7 +22,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('administrator.archive.index') }}">
+                <a href="{{ route('administrator.article.archive.index') }}">
                     <i class="fa fa-archive"></i> <span>Archive</span>
                 </a>
             </li>

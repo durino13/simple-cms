@@ -2,15 +2,18 @@
 
 class Trash {
 
-    constructor(id) {
-        this.id = id;
-    }
-
-    restoreItem() {
+    static restoreItem(id) {
         return $.ajax({
             // TODO Hardcoded URL
-            url: "http://dev.yuma.sk/administrator/trash/"+this.id+'/restore',
+            url: "http://dev.yuma.sk/administrator/trash/"+id+'/restore',
             type: 'POST'
+        })
+    }
+
+    static wipeItem(id) {
+        return $.ajax({
+            url: "http://dev.yuma.sk/administrator/trash/"+id+"/wipe",
+            type: 'DELETE'
         })
     }
 

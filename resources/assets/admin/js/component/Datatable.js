@@ -67,7 +67,6 @@ class Datatable {
                     }
                 },
 
-                // order: [[datatables_articleSortColumnIndex,'desc']]
             }
         );
     }
@@ -88,28 +87,25 @@ class Datatable {
 
     }
 
+    /**
+     * Bind datatable select events ..
+     */
     bindEvents() {
 
         var self = this;
 
         this.dt.on('select', function (e, dt, type, indexes) {
             let selCount = dt.rows({selected:true}).count();
-            if ( type === 'row' ) {
-
-            }
             $(self.selector).trigger('repaint', [selCount]);
         } );
 
         this.dt.on('deselect', function (e, dt, type, indexes) {
             let selCount = dt.rows({selected:true}).count();
-            if ( type === 'row' ) {
-
-            }
             $(self.selector).trigger('repaint', [selCount]);
         } );
 
         this.dt.on('repaint', function(event, selCount) {
-            self.dt.buttons(['.trashButton','.archiveButton','.recycleButton']).enable(selCount > 0);
+            self.dt.buttons(['.trashButton','.archiveButton','.recycleButton','.wipeButton']).enable(selCount > 0);
         })
 
     }

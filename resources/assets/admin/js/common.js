@@ -1,21 +1,33 @@
-require('../../../../node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js');
-require('../../../../node_modules/admin-lte/plugins/datepicker/datepicker3.css');
-import General from './form/general';
-import ArticleForm from './form/article';
+var alertify = require("imports?this=>window!alertify.js/dist/js/alertify.js");
+require("imports?this=>window!alertify.js/dist/css/alertify.css");
 
-// ------------------------------------------------------------------------------------
-// General stuff
-// ------------------------------------------------------------------------------------
+class Common {
 
-$(document).ready(function() {
-    // Initialize the application ...
-    General.init();
-    ArticleForm.init();
-});
+    /**
+     * Show the notification
+     * @param type
+     * @param msg
+     */
+    static notify(type, msg) {
+        // All messages goes to the top right position
+        alertify.logPosition("top right");
 
-// ------------------------------------------------------------------------------------
-// Version number
-// ------------------------------------------------------------------------------------
+        switch (type) {
+            case 'success':
+                alertify.success(msg);
+                return;
+            case 'error':
+                alertify.error(msg);
+                return;
+            default:
+                alertify.success(msg);
+        }
+    }
 
-var package_json = require('json!../../../../package.json');
-$('#version').html(package_json.version);
+    static redirect(url) {
+        window.location.href = url;
+    }
+
+}
+
+export default Common;

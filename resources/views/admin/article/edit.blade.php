@@ -4,10 +4,12 @@
     {{--Open form--}}
 
     <?php if (isset($article)) { ?>
-        {{ Form::model($article, ['id' => 'article-form', 'method'=> 'put', 'route' => ['administrator.article.update', $article->id]]) }}
+        {{ Form::model($article, ['id' => 'article-form', 'route' => ['administrator.article.update', $article->id]]) }}
     <?php } else { ?>
         {{ Form::open(['id' => 'article-form', 'url' => '/administrator/article']) }}
     <?php } ?>
+
+    <input type="hidden" name="article_id" value="{{ isset($article->id) ? $article->id : '' }}">
 
     {{--Toolbar--}}
 

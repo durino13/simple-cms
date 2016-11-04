@@ -7,7 +7,7 @@ var extractCss = new ExtractTextPlugin('[name].all.css');
 module.exports = {
     entry: {
         'site': './resources/assets/site/js/site.js',
-        'admin': './resources/assets/admin/js/admin.js'
+        'admin': './resources/assets/admin/js/bundle.js'
     },
     output: {
         'path': 'public/assets',

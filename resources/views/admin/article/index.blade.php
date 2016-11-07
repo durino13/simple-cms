@@ -41,7 +41,6 @@
                             <th>Status</th>
                             <th>Updated</th>
                             <th>Created</th>
-                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -53,7 +52,6 @@
                             <th>Status</th>
                             <th>Updated</th>
                             <th>Created</th>
-                            <th>Actions</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -79,9 +77,6 @@
                                     </td>
                                     <td>{{ $article->updated_at }}</td>
                                     <td>{{ $article->created_at }}</td>
-                                    <td>
-                                        @include('admin.article.actions')
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

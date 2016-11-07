@@ -18,7 +18,7 @@
             <li>
                 <a href="{{ route('administrator.article.index') }}">
                     <i class="fa fa-newspaper-o"></i> <span>Articles</span>
-                    <small class="label pull-right bg-green"><?php echo App\Article::all()->count(); ?></small>
+                    <batch count="<?php echo App\Article::all()->count() ?>"></batch>
                 </a>
             </li>
             <li>
@@ -59,3 +59,8 @@
     </section>
     <!-- /.sidebar -->
 </aside>
+
+{{--Batch templates--}}
+<template id="batch-template">
+    <small id="article-count" class="label pull-right bg-green">@{{ count }}</small>
+</template>

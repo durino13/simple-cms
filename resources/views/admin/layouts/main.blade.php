@@ -58,32 +58,35 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
-{{--Header--}}
-@include('admin.common.header')
+    <div id="app">
+        {{--Header--}}
+        @include('admin.common.header')
 
-<!-- Left side column. contains the sidebar -->
-@include('admin.common.left-menu')
+        <!-- Left side column. contains the sidebar -->
+        @include('admin.common.left-menu')
 
-<!-- Site wrapper -->
-<div id="fouc" class="wrapper">
+        <!-- Site wrapper -->
+        <div id="fouc" class="wrapper">
 
-    {{--Main content--}}
-    <div class="content-wrapper">
-        @yield('content')
+            {{--Main content--}}
+            <div class="content-wrapper">
+                @yield('content')
+            </div>
+
+            {{--Footer--}}
+            @include('admin.common.footer')
+
+        </div>
     </div>
 
-    {{--Footer--}}
-    @include('admin.common.footer')
+    <script src="/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="/plugins/chosen-npm/public/chosen.jquery.js"></script>
+    <script src="/assets/global.js"></script>
+    <script src="/assets/admin.all.js"></script>
 
-</div>
+    <script type="text/javascript">
+        document.getElementById("fouc").style.display = "block";
+    </script>
 
-<script src="/plugins/jquery/dist/jquery.min.js"></script>
-<script src="/plugins/chosen-npm/public/chosen.jquery.js"></script>
-<script src="/assets/global.js"></script>
-<script src="/assets/admin.all.js"></script>
-
-<script type="text/javascript">
-    document.getElementById("fouc").style.display = "block";
-</script>
 </body>
 </html>

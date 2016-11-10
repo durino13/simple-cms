@@ -22,8 +22,8 @@ class TrashController extends Controller
         $test = new Collection();
         $trash = new Trash();
         $trash->addCollection(Article::onlyTrashed()->get());
-        $trash->addCollection(Category::onlyTrashed()->get());
-        $trash->addCollection(User::onlyTrashed()->get());
+//        $trash->addCollection(Category::onlyTrashed()->get());
+//        $trash->addCollection(User::onlyTrashed()->get());
         $trash->addCollection($test);
 
         return view('admin.trash.index', ['items'=> $trash->getCollection()]);

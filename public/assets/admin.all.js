@@ -105823,6 +105823,11 @@
 	    }, {
 	        key: 'trash',
 	        value: function trash(id) {
+	            $.ajaxSetup({
+	                headers: {
+	                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	                }
+	            });
 	            return $.ajax({
 	                url: 'http://dev.yuma.sk/administrator/article/' + id,
 	                type: 'DELETE'
@@ -105838,6 +105843,11 @@
 	    }, {
 	        key: 'archive',
 	        value: function archive(id) {
+	            $.ajaxSetup({
+	                headers: {
+	                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	                }
+	            });
 	            return $.ajax({
 	                url: 'http://dev.yuma.sk/administrator/article/' + id + '/archive/archive',
 	                type: 'POST'

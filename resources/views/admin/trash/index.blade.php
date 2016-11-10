@@ -44,7 +44,12 @@
                             @foreach($items as $item)
                                 <tr id="{{ $item->id }}">
                                     <td></td>
-                                    <td>{{ $item->trashTitle() }}</td>
+                                    <td>
+                                        <a href="/administrator/article/{{ $item->id }}/edit">{{ $item->title }}</a><br/>
+                                        <div class="text-sm">Alias: &nbsp;
+                                            {{ $item->alias }}
+                                        </div>
+                                    </td>
                                     <td>
                                         {{ $item->trashDocumentType() }}
                                     </td>

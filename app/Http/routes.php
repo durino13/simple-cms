@@ -25,7 +25,7 @@ Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () 
     // Trash routes
     Route::get('trash', 'Admin\TrashController@index')->name('administrator.trash.index');
     Route::post('trash/{item}/restore', 'Admin\TrashController@restore')->name('administrator.trash.restore');
-    Route::post('trash/{item}/destroy', 'Admin\TrashController@destroy')->name('administrator.trash.destroy');
+    Route::delete('trash/{item}/destroy', 'Admin\TrashController@destroy')->name('administrator.trash.destroy');
 
     // Category routes
     Route::resource('category', 'Admin\CategoryController');

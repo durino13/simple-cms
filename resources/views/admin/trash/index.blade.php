@@ -22,6 +22,7 @@
                 </div>
 
                 <div class="box-body">
+                    <input id="csrf_token" type="hidden" name="_token" value="{{ csrf_token() }}" >
                     <table id="dt-trash" class="table table-bordered table-hover" style="display:none">
                         <thead>
                         <tr>

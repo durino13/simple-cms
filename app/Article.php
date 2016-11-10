@@ -112,12 +112,6 @@ class Article extends Model implements ITrashable
         return Article::where('archive', 1)->orderBy('created_at','desc')->get();
     }
 
-    public function forceDelete()
-    {
-        $this->categories()->forceDelete();
-        $this->forceDelete();
-    }
-
 
 
     // TODO Ako sa robi archivacia? Pouzivam este stlpce 'archived', 'trash'? Robim predsa softdelete, takze ak nepouzivam

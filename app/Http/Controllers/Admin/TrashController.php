@@ -57,20 +57,36 @@ class TrashController extends Controller
     public function destroy(Request $request, $id)
     {
 
-        $SUCCESS_MESSAGE = 'The Article has been successfully deleted.';
+        $SUCCESS_MESSAGE = 'The item(s) have been permanently deleted.';
 
-        $model = Article::findOrFail($id);
-        $model->delete();
-        $request->session()->flash('status', $SUCCESS_MESSAGE);
+        try {
+            $model = Article::withTrashed()
+                ->where('id', $id)
+                ->first();
 
-        if ($request->ajax()) {
-            return response()->json(
-                [
-                    'result' => true
+            // Detach article categories ..
+            $model->categories()->detach();
+
+            $model->forceDelete();
+
+            if ($request->ajax()) {
+                return response()->json(
+                    [
+                        'result' => [
+                            'result' => true
+                        ]
+                    ]
+                );
+            } else {
+                return redirect()->route('administrator.trash.index');
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'result' => [
+                    'result' => false,
+                    'error' => $e->getMessage()
                 ]
-            );
-        } else {
-            return redirect()->route('administrator.trash.index');
+            ]);
         }
     }
 

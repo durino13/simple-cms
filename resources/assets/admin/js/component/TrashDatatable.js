@@ -48,16 +48,21 @@ class TrashDatatable extends Datatable {
                 action: function ( e, dt, node, config ) {
                     let rows = dt.rows('.selected');
                     let ids = rows.ids().toArray();
+                    let csrf_token = $('#csrf_token').val();
 
                     alertify.confirm("Do you really want to delete selected items?", function () {
 
                         for (let id of ids) {
-                            Trash.wipeItem(id).done(function() {
-                                // Remove deleted rows from the table
-                                rows.remove().draw();
+                            Trash.wipeItem(id, csrf_token).done(function(result) {
+                                if (result.result) {
+                                    // Remove deleted rows from the table
+                                    rows.remove().draw();
 
-                                // Display the notification ..
-                                Common.notify('success', 'The selected items(s) have been successfully deleted!');
+                                    // Display the notification ..
+                                    Common.notify('success', 'The selected items(s) have been successfully deleted!');
+                                } else {
+                                    Common.notify('error', result.error)
+                                }
                             });
                         }
 

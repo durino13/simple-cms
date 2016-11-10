@@ -10,10 +10,13 @@ class Trash {
         })
     }
 
-    static wipeItem(id) {
+    static wipeItem(id, csrf_token) {
         return $.ajax({
-            url: "http://dev.yuma.sk/administrator/trash/"+id+"/wipe",
-            type: 'DELETE'
+            url: "http://dev.yuma.sk/administrator/trash/"+id+"/destroy?csrf_token=" + csrf_token,
+            type: 'DELETE',
+            data: {
+                "_token":csrf_token
+            }
         })
     }
 

@@ -8585,6 +8585,16 @@ a {
       left: 50%;
       top: 0;
       position: absolute; } }
+
+.flex_container {
+  display: flex; }
+
+.flex_column {
+  flex-direction: column; }
+
+.flex_center {
+  justify-content: center;
+  align-items: center; }
 /* http://prismjs.com/download.html?themes=prism&languages=markup+css+clike+javascript+php+sql */
 /**
  * prism.js default theme for JavaScript, CSS and HTML

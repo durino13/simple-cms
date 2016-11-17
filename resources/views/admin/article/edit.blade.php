@@ -71,7 +71,7 @@
                             <label>Status:</label>
                             <?php
                                 $status_id = isset($article->status->id) ? $article->status->id : '';
-                                echo Form::select('status', App\Status::lists('name','id'), $status_id, ['class' => 'chosen-select']);
+                                echo Form::select('status', App\Status::pluck('name','id'), $status_id, ['class' => 'chosen-select']);
                             ?>
                         </div>
 

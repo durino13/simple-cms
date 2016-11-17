@@ -11,21 +11,21 @@ Route::group(['prefix' => 'administrator'
 });
 
 // Admin routes
-Route::group(['prefix' => 'administrator', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'administrator', 'as' => 'administrator.', 'middleware' => 'auth'], function () {
 
     // Home route
     Route::get('/','Admin\ArticleController@index');
 
     // Article routes
-    Route::get('article/archive', 'Admin\ArticleController@listarchive')->name('administrator.article.archive.index');
-    Route::post('article/{article}/archive/archive', 'Admin\ArticleController@archive')->name('administrator.article.archive.archive');
-    Route::post('article/{article}/archive/restore', 'Admin\ArticleController@restore')->name('administrator.article.archive.restore');
+    Route::get('article/archive', 'Admin\ArticleController@listarchive')->name('article.archive.index');
+    Route::post('article/{article}/archive/archive', 'Admin\ArticleController@archive')->name('article.archive.archive');
+    Route::post('article/{article}/archive/restore', 'Admin\ArticleController@restore')->name('article.archive.restore');
     Route::resource('article', 'Admin\ArticleController');
 
     // Trash routes
-    Route::get('trash', 'Admin\TrashController@index')->name('administrator.trash.index');
-    Route::post('trash/{item}/restore', 'Admin\TrashController@restore')->name('administrator.trash.restore');
-    Route::delete('trash/{item}/destroy', 'Admin\TrashController@destroy')->name('administrator.trash.destroy');
+    Route::get('trash', 'Admin\TrashController@index')->name('trash.index');
+    Route::post('trash/{item}/restore', 'Admin\TrashController@restore')->name('trash.restore');
+    Route::delete('trash/{item}/destroy', 'Admin\TrashController@destroy')->name('trash.destroy');
 
     // Category routes
     Route::resource('category', 'Admin\CategoryController');

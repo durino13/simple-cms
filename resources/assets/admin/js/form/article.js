@@ -76,7 +76,7 @@ class ArticleForm {
                 Article.save()
                     .done(function() {
                         // Show the notification
-                        Common.redirect('http://dev.yuma.sk/administrator/article');
+                        Common.redirect(JSON.parse(general_baseURL)+'/administrator/article');
                         Common.notify('success', 'The article has been successfully created!');
 
                     })
@@ -84,7 +84,7 @@ class ArticleForm {
                 Article.update(ArticleForm.getArticleID())
                     .done(function() {
                         // Show the notification
-                        Common.redirect('http://dev.yuma.sk/administrator/article');
+                        Common.redirect(JSON.parse(general_baseURL)+'/administrator/article');
                         Common.notify('success', 'The article has been successfully saved!');
                     })
             }

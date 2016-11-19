@@ -106266,13 +106266,13 @@
 	                if (ArticleForm.isNew()) {
 	                    _article2.default.save().done(function () {
 	                        // Show the notification
-	                        _common2.default.redirect('http://dev.yuma.sk/administrator/article');
+	                        _common2.default.redirect(JSON.parse(general_baseURL) + '/administrator/article');
 	                        _common2.default.notify('success', 'The article has been successfully created!');
 	                    });
 	                } else {
 	                    _article2.default.update(ArticleForm.getArticleID()).done(function () {
 	                        // Show the notification
-	                        _common2.default.redirect('http://dev.yuma.sk/administrator/article');
+	                        _common2.default.redirect(JSON.parse(general_baseURL) + '/administrator/article');
 	                        _common2.default.notify('success', 'The article has been successfully saved!');
 	                    });
 	                }
@@ -106322,8 +106322,7 @@
 	            var id = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 	
 	
-	            // TODO Hardcoded stuff
-	            var url = 'http://dev.yuma.sk/administrator/article';
+	            var url = JSON.parse(general_baseURL) + '/administrator/article';
 	            type === 'PUT' ? url += '/' + id : '';
 	
 	            return $.ajax({
@@ -106359,7 +106358,7 @@
 	                }
 	            });
 	            return $.ajax({
-	                url: 'http://dev.yuma.sk/administrator/article/' + id,
+	                url: JSON.parse(general_baseURL) + '/administrator/article/' + id,
 	                type: 'DELETE'
 	            });
 	        }
@@ -106379,7 +106378,7 @@
 	                }
 	            });
 	            return $.ajax({
-	                url: 'http://dev.yuma.sk/administrator/article/' + id + '/archive/archive',
+	                url: JSON.parse(general_baseURL) + '/administrator/article/' + id + '/archive/archive',
 	                type: 'POST'
 	            });
 	        }
@@ -106394,7 +106393,7 @@
 	        key: 'restore',
 	        value: function restore(id) {
 	            return $.ajax({
-	                url: 'http://dev.yuma.sk/administrator/article/' + id + '/archive/restore',
+	                url: JSON.parse(general_baseURL) + '/administrator/article/' + id + '/archive/restore',
 	                type: 'POST'
 	            });
 	        }
@@ -107068,7 +107067,7 @@
 	        value: function restoreItem(id) {
 	            return $.ajax({
 	                // TODO Fixnut hardcoded URL's
-	                url: "http://dev.yuma.sk/administrator/trash/" + id + '/restore',
+	                url: JSON.parse(general_baseURL) + '/administrator/trash/' + id + '/restore',
 	                type: 'POST'
 	            });
 	        }
@@ -107076,7 +107075,7 @@
 	        key: 'wipeItem',
 	        value: function wipeItem(id, csrf_token) {
 	            return $.ajax({
-	                url: "http://dev.yuma.sk/administrator/trash/" + id + "/destroy?csrf_token=" + csrf_token,
+	                url: JSON.parse(general_baseURL) + '/administrator/trash/' + id + '/destroy?csrf_token=' + csrf_token,
 	                type: 'DELETE',
 	                data: {
 	                    "_token": csrf_token

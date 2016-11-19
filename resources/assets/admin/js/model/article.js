@@ -10,8 +10,7 @@ class Article {
      */
     static save(type = 'POST', id = '') {
 
-        // TODO Hardcoded stuff
-        let url = 'http://dev.yuma.sk/administrator/article';
+        let url = JSON.parse(general_baseURL)+'/administrator/article';
         (type === 'PUT') ? url += '/'+id : '';
 
         return $.ajax({
@@ -41,7 +40,7 @@ class Article {
             }
         });
         return $.ajax({
-            url: 'http://dev.yuma.sk/administrator/article/'+ id,
+            url: JSON.parse(general_baseURL)+'/administrator/article/'+ id,
             type: 'DELETE'
         });
     }
@@ -58,7 +57,7 @@ class Article {
             }
         });
         return $.ajax({
-            url: 'http://dev.yuma.sk/administrator/article/'+ id +'/archive/archive',
+            url: JSON.parse(general_baseURL)+'/administrator/article/'+ id +'/archive/archive',
             type: 'POST'
         })
     }
@@ -70,7 +69,7 @@ class Article {
      */
     static restore(id) {
         return $.ajax({
-            url: 'http://dev.yuma.sk/administrator/article/'+ id +'/archive/restore',
+            url: JSON.parse(general_baseURL)+'/administrator/article/'+ id +'/archive/restore',
             type: 'POST'
         })
     }

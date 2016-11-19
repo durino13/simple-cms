@@ -3,7 +3,7 @@
 return [
 
     'general' => [
-        'baseURL' => url('/')
+        'baseURL' => json_encode(env('APP_URL'))
     ],
 
     'datatables' => [

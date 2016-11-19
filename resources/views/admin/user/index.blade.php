@@ -60,6 +60,3 @@
     </div>
 </section>
 @endsection
-
-<!-- Control Sidebar -->
-@include('admin.common.right-menu')

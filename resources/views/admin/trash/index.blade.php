@@ -66,4 +66,4 @@
 @endsection
 
 <!-- Control Sidebar -->
-@include('admin.common.right-menu')
+{{--@include('admin.common.right-menu')--}}

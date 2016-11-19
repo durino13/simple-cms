@@ -32,27 +32,28 @@
             |
             */
 
-            $index = 1;
+        $index = 1;
+        $val = '';
+        $namespaces = config('javascript');
+        foreach ($namespaces as $namespace => $vars) {
             $val = '';
-            $namespaces = config('javascript');
-            foreach ($namespaces as $namespace => $vars) {
-                foreach ($vars as $key => $var) {
-                    if (is_array($var)) {
-                        $val .= "[";
-                        foreach ($var as $k => $v) {
-                            $val .= json_encode($v);
-                            if (sizeof($var) > $index) {
-                                $val .= ',';
-                            }
-                            $index++;
+            foreach ($vars as $key => $var) {
+                if (is_array($var)) {
+                    $val .= "[";
+                    foreach ($var as $k => $v) {
+                        $val .= json_encode($v);
+                        if (sizeof($var) > $index) {
+                            $val .= ',';
                         }
-                        $val .= "]";
-                    } else {
-                        $val = json_encode($var);
+                        $index++;
                     }
-                    echo 'var '.$namespace.'_'.$key.' = '.$val.';';
+                    $val .= "]";
+                } else {
+                    $val = json_encode($var);
                 }
+                echo 'var '.$namespace.'_'.$key.' = '.$val.';';
             }
+        }
 
         ?>
     </script>

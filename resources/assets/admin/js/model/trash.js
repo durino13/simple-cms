@@ -4,7 +4,7 @@ class Trash {
 
     static restoreItem(id) {
         return $.ajax({
-            // TODO Hardcoded URL
+            // TODO Fixnut hardcoded URL's
             url: "http://dev.yuma.sk/administrator/trash/"+id+'/restore',
             type: 'POST'
         })

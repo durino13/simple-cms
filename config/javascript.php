@@ -2,6 +2,10 @@
 
 return [
 
+    'general' => [
+        'baseURL' => url('/')
+    ],
+
     'datatables' => [
 
         // Select filter columns

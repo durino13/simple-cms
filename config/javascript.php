@@ -7,7 +7,7 @@
 |
 | This way, we can inject PHP variables into javascript. This file
 | is read in main.blade.php file and the values of this file are
-| printed into a <script> tag in the index.php file .. 
+| printed into a <script> tag in the index.php file ..
 |
 */
 

@@ -3,7 +3,7 @@
 var ed = tinymce.init({
     selector: '#article_text',
     skin: false,
-    plugins: ['image','media', 'fullscreen','template', 'filemanager', 'link', 'codesample'],
+    plugins: ['image','media', 'fullscreen','template', 'filemanager', 'link', 'codesample', 'code'],
     toolbar: ' forecolor backcolor bold italic underline removeformat | alignleft aligncenter alignright | copy paste | bullist numlist | link | template | codesample image | fullscreen',
     height: 400,
     content_css : '/public/assets/admin.all.css',

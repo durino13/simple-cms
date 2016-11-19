@@ -1,0 +1,2 @@
+- Optimize webpack so it is minimized on the production + builds are faster
+- Fix problem with wrong version of the file .. 

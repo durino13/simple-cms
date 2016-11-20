@@ -13,6 +13,9 @@ class Article {
         let url = JSON.parse(general_baseURL)+'/administrator/article';
         (type === 'PUT') ? url += '/'+id : '';
 
+        // Save the tinyMCE content before we post it .. tinymce is a global variable ..
+        tinymce.triggerSave();
+
         return $.ajax({
             url: url,
             type: type,

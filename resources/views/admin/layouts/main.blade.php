@@ -81,10 +81,21 @@
         </div>
     </div>
 
+    <?php
+
+        /*
+         * Here we will read the filename from stats.json, because our filenames contain file hash and the file names
+         * will differ ..
+         */
+
+        $json_contents = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/public/assets/manifest.json'), true);
+        $admin_bundle_name = $json_contents['/public/assets/admin.js'];
+
+    ?>
+
     <script src="/plugins/jquery/dist/jquery.min.js"></script>
     <script src="/plugins/chosen-npm/public/chosen.jquery.js"></script>
-    <script src="/assets/global.js"></script>
-    <script src="/assets/admin.all.js"></script>
+    <script src="{{ $admin_bundle_name }}"></script>
 
     <script type="text/javascript">
         document.getElementById("fouc").style.display = "block";

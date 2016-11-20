@@ -1,3 +1,3 @@
-- www.yuma.sk not storing into correct database ?? Can't save article ..
+- Fix prism.css loading problem 
 - Optimize webpack so it is minimized on the production + builds are faster
-- Fix problem with wrong version of the file .. 
+- Fix problem with wrong version of the file ..

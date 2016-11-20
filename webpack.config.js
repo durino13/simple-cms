@@ -1,18 +1,19 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ManifestPlugin = require('webpack-manifest-plugin');
 
 var extractSass = new ExtractTextPlugin('all1.css');
 var extractCss = new ExtractTextPlugin('[name].all.css');
 
 module.exports = {
     entry: {
-        'site': './resources/assets/site/js/site.js',
-        'admin': './resources/assets/admin/js/bundle.js'
+        'site': './resources/assets/site/js/site.bundle.js',
+        'admin': './resources/assets/admin/js/admin.bundle.js'
     },
     output: {
         'path': 'public/assets',
         'publicPath': '/assets/',
-        'filename': '[name].all.js'
+        'filename': '[name].[chunkhash].all.js'
     },
     devtool: "source-map",
     module: {
@@ -87,7 +88,13 @@ module.exports = {
             "window.$": "jquery"
         }),
         extractSass,
-        extractCss
+        extractCss,
+        // The manifest file will contain the names of filenames we need to call in the <script> tags in the <head>
+        // These filenames will contain has, so we need to load them dynamically ..
+        new ManifestPlugin({
+            fileName: 'manifest.json',
+            basePath: '/public/assets/'
+        })
     ],
     externals: {
         jquery: 'jQuery'

@@ -9,8 +9,7 @@ use Carbon\Carbon;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ $article->title }}</title>
-
-    <script type="text/javascript" src="/assets/site.all.js"></script>
+    
     <link rel="stylesheet" href="/assets/site.all.css">
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300,700&amp;subset=latin-ext" rel="stylesheet" type="text/css">
 
@@ -98,5 +97,17 @@ use Carbon\Carbon;
     </div>
 </section>
 
+<?php
+
+/*
+ * Here we will read the filename from stats.json, because our filenames contain file hash and the file names
+ * will differ ..
+ */
+
+$site_bundle_name = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/public/assets/manifest.json'), true)['/public/assets/site.js'];
+
+?>
+
+<script type="text/javascript" src="{{ $site_bundle_name }}"></script>
 </body>
 </html>

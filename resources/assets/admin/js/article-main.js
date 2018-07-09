@@ -1,5 +1,5 @@
-require('../../../../node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js');
-require('../../../../node_modules/admin-lte/plugins/datepicker/datepicker3.css');
+// require('../../../../node_modules/admin-lte/plugins/datepicker/bootstrap-datepicker.js');
+// require('../../../../node_modules/admin-lte/plugins/datepicker/datepicker3.css');
 import General from './form/general';
 import ArticleForm from './form/article';
 

@@ -7,17 +7,24 @@
         <!-- Development -->
 
         <h3 class="pt-20 pb-20">Development</h3>
-        <div class="skillbar clearfix " data-percent="80%">
+        <div class="skillbar clearfix " data-percent="90%">
             <div class="skillbar-title" style="background: #88cd2a;"><span>PHP (Laravel) DEVELOPMENT</span></div>
             <div class="skillbar-bar" style="background: #88cd2a;"></div>
-            <div class="skill-bar-percent">80%</div>
+            <div class="skill-bar-percent">90%</div>
+        </div>
+
+        <div class="skillbar clearfix " data-percent="85%">
+            <div class="skillbar-title" style="background: #00a8ff;"><span>JAVASCRIPT</span></div>
+            <div class="skillbar-bar" style="background: #00a8ff;"></div>
+            <div class="skill-bar-percent">85%</div>
         </div>
 
         <div class="skillbar clearfix " data-percent="70%">
-            <div class="skillbar-title" style="background: #00a8ff;"><span>JAVASCRIPT</span></div>
+            <div class="skillbar-title" style="background: #00a8ff;"><span>DevOps</span></div>
             <div class="skillbar-bar" style="background: #00a8ff;"></div>
             <div class="skill-bar-percent">70%</div>
         </div>
+
 
         <div class="skillbar clearfix " data-percent="70%">
             <div class="skillbar-title" style="background: #00a8ff;"><span>CSS</span></div>
@@ -61,10 +68,13 @@
         <h3 class="pb-20">Other technologies & tools I use(d)</h3>
         <div class="tags">
             <div class="tag">Laravel</div>
+            <div class="tag">Angular 2/4</div>
+            <div class="tag">Docker</div>
             <div class="tag">React & Redux</div>
+            <div class="tag">Vue.js</div>
             <div class="tag">MSSQL</div>
             <div class="tag">MySQL</div>
-            <div class="tag">PHP</div>
+            <div class="tag">PHP 7</div>
             <div class="tag">Composer</div>
             <div class="tag">Javascript</div>
             <div class="tag">NPM</div>

@@ -89,7 +89,7 @@
          */
 
         $json_contents = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/public/assets/manifest.json'), true);
-        $admin_bundle_name = $json_contents['/public/assets/admin.js'];
+        $admin_bundle_name = $json_contents['/assets/admin.js'];
 
     ?>
 

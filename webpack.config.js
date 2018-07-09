@@ -3,7 +3,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var ManifestPlugin = require('webpack-manifest-plugin');
 
 var extractSass = new ExtractTextPlugin('all1.css');
-var extractCss = new ExtractTextPlugin('[name].all.css');
+var extractCss = new ExtractTextPlugin('[name].[chunkhash].css');
 
 module.exports = {
     entry: {
@@ -93,7 +93,7 @@ module.exports = {
         // These filenames will contain has, so we need to load them dynamically ..
         new ManifestPlugin({
             fileName: 'manifest.json',
-            basePath: '/public/assets/'
+            basePath: '/assets/'
         })
     ],
     externals: {

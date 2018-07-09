@@ -5,3 +5,5 @@ Homestead.json
 .idea
 npm-debug.log
 fabfile.pyc
+/node_modules
+/public/assets

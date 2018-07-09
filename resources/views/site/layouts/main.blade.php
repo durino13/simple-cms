@@ -7,7 +7,19 @@
     <title>Fullstack development blog</title>
     <meta name="description" content="Personal blog dedicated to web development."/>
 
-    <link rel="stylesheet" href="/assets/site.all.css">
+    <?php
+
+    /*
+     * Here we will read the filename from stats.json, because our filenames contain file hash and the file names
+     * will differ ..
+     */
+
+    $json_contents = json_decode(file_get_contents('assets/manifest.json'), true);
+    $admin_bundle_name = $json_contents['/assets/site.css'];
+
+    ?>
+
+    <link rel="stylesheet" href="<?php echo $admin_bundle_name; ?>">
     <link href="http://fonts.googleapis.com/css?family=Lato:100,300,700&amp;subset=latin-ext" rel="stylesheet" type="text/css">
 
 
@@ -107,7 +119,7 @@
 
 <section class="row-fluid dark-green fg-white">
     <div class="container flex_container">
-        <p class="center-block font-xsmall">© 2016 Yuma.sk</p>
+        <p class="center-block font-xsmall">© 2018 Yuma.sk</p>
     </div>
 </section>
 

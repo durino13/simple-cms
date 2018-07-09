@@ -7961,7 +7961,7 @@ table {
   margin: 0 auto; }
 
 .green {
-  background: #3DD0AC; }
+  background: red; }
 
 .dark-green {
   background: #30A689; }
@@ -8022,6 +8022,9 @@ header {
 
 .four_column {
   width: 100%; }
+
+footer {
+  height: 200px; }
 
 /*===============================
 =            Contact            =
@@ -8326,7 +8329,7 @@ div.line4 span {
   font-size: 3em; }
 
 .green {
-  background: #3DD0AC; }
+  background: red; }
 
 .dark-green {
   background: #30A689; }
@@ -8341,7 +8344,7 @@ div.line4 span {
   color: white; }
 
 .green {
-  background: #3DD0AC; }
+  background: red; }
 
 .dark-green {
   background: #30A689; }
@@ -8500,7 +8503,7 @@ a {
   box-shadow: 0px 1px 0px 0px #3293ba; }
 
 .green {
-  background: #3DD0AC; }
+  background: red; }
 
 .dark-green {
   background: #30A689; }

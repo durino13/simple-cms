@@ -62,7 +62,7 @@ require('../images/dots.png');
 
 // AdminLTE is loaded here .. The $=jquery notation will make jQuery available for AdminLTE, otherwise you will see
 // following message: AdminLTE requires jQuery ..
-require('admin-lte/dist/js/app.min.js');
+require('admin-lte/dist/js/adminlte.min.js');
 require('admin-lte/plugins/jQueryUI/jquery-ui.js');
 require('admin-lte/dist/css/AdminLTE.css');
 require('admin-lte/dist/css/skins/_all-skins.min.css');

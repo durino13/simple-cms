@@ -131,7 +131,7 @@
  * will differ ..
  */
 
-$site_bundle_name = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/public/assets/manifest.json'), true)['/public/assets/site.js'];
+$site_bundle_name = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/assets/manifest.json'), true)['/assets/site.js'];
 
 ?>
 

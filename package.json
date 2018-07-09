@@ -62,7 +62,7 @@
     "datatables.net-bs": "^1.10.12",
     "datatables.net-buttons-bs": "^1.2.2",
     "datatables.net-dt": "^1.10.12",
-    "datatables.net-select": "^1.2.0",
+    "datatables.net-select": "1.2.0",
     "font-awesome": "^4.6.1",
     "jquery": "^2.2.3",
     "json-loader": "^0.5.4",

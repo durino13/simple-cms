@@ -131,10 +131,11 @@
  * will differ ..
  */
 
-$site_bundle_name = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/assets/manifest.json'), true)['/assets/site.js'];
+//$site_bundle_name = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/assets/manifest.json'), true)['/assets/site.js'];
+$json_contents = json_decode(file_get_contents(__DIR__ . '/../../../public/assets/manifest.json'), true);
 
 ?>
 
-<script type="text/javascript" src="{{ $site_bundle_name }}"></script>
+<script type="text/javascript" src="{{ $json_contents['/assets/site.js'] }}"></script>
 </body>
 </html>

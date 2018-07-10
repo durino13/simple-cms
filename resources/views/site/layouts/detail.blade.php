@@ -11,7 +11,7 @@ use Carbon\Carbon;
     <title>{{ $article->title }}</title>
     
     <link rel="stylesheet" href="/assets/site.all.css">
-    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,700&amp;subset=latin-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,700&amp;subset=latin-ext" rel="stylesheet" type="text/css">
 
 
     <!-- Google analytics  -->

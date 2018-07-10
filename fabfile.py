@@ -26,6 +26,7 @@ def deploy(e="testing"):
 
   # Pull & install dependencies
   with cd(env.deploy_dir):
+    run("git reset --hard")
     run("git pull")
     run("composer install")
     run("npm install")

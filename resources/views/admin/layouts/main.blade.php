@@ -87,8 +87,7 @@
          * Here we will read the filename from stats.json, because our filenames contain file hash and the file names
          * will differ ..
          */
-
-        $json_contents = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'].'/assets/manifest.json'), true);
+        $json_contents = json_decode(file_get_contents(__DIR__ . '/../../../public/assets/manifest.json'), true);
         $admin_bundle_name = $json_contents['/assets/admin.js'];
 
     ?>

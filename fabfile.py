@@ -10,6 +10,7 @@ def read_config(e):
   env.host_string = config.get(e,'host') +':'+ config.get(e,'port')
   env.deploy_dir = config.get(e,'deploy_dir')
   env.use_ssh_config = True
+  env.user = 'uid58820'
 
 # Task
 
@@ -21,9 +22,11 @@ def deploy(e="testing"):
 
   # Try to clone
   with settings(warn_only=True):
-    run("git clone git@bitbucket.org:durino13/cms.git %s" % env.deploy_dir)
+    run("git clone https://github.com/durino13/simple-cms.git %s" % env.deploy_dir)
 
   # Pull & install dependencies
   with cd(env.deploy_dir):
     run("git pull")
     run("composer install")
+    run("npm install")
+    run("npm run build")

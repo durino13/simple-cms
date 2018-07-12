@@ -39,12 +39,20 @@ $spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80);
     }
   }
 }
+@mixin generate-line-height() {
+  @each $space in $spaceamounts {
+    .lh-#{$space} {
+      line-height: #{$space}px;
+    }
+  }
+}
 
 @include generate-margin-bottom();
 @include generate-margin-right();
 @include generate-margin-top();
 @include generate-padding-bottom();
 @include generate-padding-top();
+@include generate-line-height();
 
 /*===========================
 =            Text           =

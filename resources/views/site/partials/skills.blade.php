@@ -103,7 +103,7 @@
 
 <div class="flex_container pt-10 pb-50">
 
-    <section class="section">
+    <section class="section lh-35">
         {!! $aboutMe->article_text !!}
     </section>
 

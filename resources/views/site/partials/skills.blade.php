@@ -95,6 +95,16 @@
             <div class="tag">English language</div>
         </div>
 
-        <section>
+    </section>
+
+</div>
+
+<h2 class="pb-40 center-text">{!! $aboutMe->title !!}</h2>
+
+<div class="flex_container pt-10 pb-50">
+
+    <section class="section">
+        {!! $aboutMe->article_text !!}
+    </section>
 
 </div>

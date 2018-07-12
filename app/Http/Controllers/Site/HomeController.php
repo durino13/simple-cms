@@ -34,6 +34,7 @@ class HomeController extends Controller
         $projectArticles = Article::getArticles(Category::PROJECTS_ACTIVITIES);
         $archivedArticles = Article::getArticles(Category::PROJECTS_ACTIVITIES, Status::ACTIVE_ID, 0, 1);
         $allJobs = Article::getArticles(Category::JOBS);
+        $aboutMe = Article::getArticles(Category::ABOUT_ME);
         $rightNewsArticle = Article::all()->where('alias','who-am-i');
 
         return view(
@@ -44,6 +45,7 @@ class HomeController extends Controller
                 'rightNewsArticle' => $rightNewsArticle,
                 'allJobs' => $allJobs,
                 'archivedArticles' => $archivedArticles,
+                'aboutMe' => $aboutMe[0]
             ]
         );
     }

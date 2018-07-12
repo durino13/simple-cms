@@ -91,20 +91,11 @@ class Article extends Model implements ITrashable
             $result->whereNull('deleted_at');
         }
 
-//        var_dump($result->where('archive' ,'=', $isArchive)
-//            ->orderBy('start_publishing', 'desc')->toSql());
-//        exit;
-
         $result->where('archive' ,'=', $isArchive)
             ->orderBy('start_publishing', 'desc');
 
         return Article::hydrate($result->get()->toArray());
 
-//        ($isTrash) ? $result =  $result->withTrashed()->get() : $result =  $result->onlyTrashed()->get();
-//            $result->where('trash' ,'=', $isTrash)
-//                    ->where('archive' ,'=', $isArchive)
-//                    ->orderBy('start_publishing', 'desc')->get()
-        //);
     }
 
     /**

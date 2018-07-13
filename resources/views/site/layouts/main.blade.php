@@ -107,7 +107,7 @@
 
 <!-- Footer -->
 
-<footer class="row-fluid green">
+<footer class="my-footer row-fluid green">
     <div class="container">
 
         @include('site.partials.footer')

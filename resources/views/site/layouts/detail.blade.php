@@ -9,8 +9,15 @@ use Carbon\Carbon;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ $article->title }}</title>
-    
-    <link rel="stylesheet" href="/assets/site.all.css">
+
+    <?php
+
+    $json_contents = json_decode(file_get_contents('assets/manifest.json'), true);
+    $admin_bundle_name = $json_contents['/assets/site.css'];
+
+    ?>
+
+    <link rel="stylesheet" href="<?php echo $admin_bundle_name; ?>">
     <link href="https://fonts.googleapis.com/css?family=Lato:100,300,700&amp;subset=latin-ext" rel="stylesheet" type="text/css">
 
 

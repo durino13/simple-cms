@@ -125,8 +125,6 @@
 */
 ?>
 
-<h2 class="pb-40 center-text">My point of view on web development</h2>
-
 <div class="flex_container pt-10 pb-50">
 
     <section class="section lh-35">

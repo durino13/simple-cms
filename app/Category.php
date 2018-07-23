@@ -16,6 +16,7 @@ class Category extends Model implements ITrashable
     const RIGHT_NEWS = 3;
     const BLOG = 4;
     const ABOUT_ME = 5;
+    const MY_THOUGHTS = 6;
 
     protected $table = 'c_category';
 

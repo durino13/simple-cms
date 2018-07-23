@@ -99,12 +99,56 @@
 
 </div>
 
+<?php
+/*
+|--------------------------------------------------------------------------
+| About me
+|--------------------------------------------------------------------------
+*/
+?>
+
 <h2 class="pb-40 center-text">{!! $aboutMe->title !!}</h2>
+
+<div class="flex_container pt-10">
+
+    <section class="section lh-35">
+        {!! $aboutMe->article_text !!}
+    </section>
+
+</div>
+
+<?php
+/*
+|--------------------------------------------------------------------------
+| My thoughts
+|--------------------------------------------------------------------------
+*/
+?>
+
+<h2 class="pb-40 center-text">My point of view on web development</h2>
 
 <div class="flex_container pt-10 pb-50">
 
     <section class="section lh-35">
-        {!! $aboutMe->article_text !!}
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+            @foreach ($myThoughts as $index => $thought)
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?php echo $index; ?>" aria-expanded="true" aria-controls="collapseOne">
+                            <?php echo $thought->title?>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse<?php echo $index; ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <?php echo $thought->article_text?>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
     </section>
 
 </div>

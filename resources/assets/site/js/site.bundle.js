@@ -10,6 +10,7 @@ require('expose?$!expose?jQuery!jquery');
 require('expose?$!expose?WOW!wow.js');
 
 require('../../../../node_modules/wow.js/dist/wow.js');
+require('../../../../node_modules/bootstrap/dist/js/bootstrap.min')
 require('../../../../node_modules/bootstrap/dist/css/bootstrap.min.css');
 require('../../../../node_modules/font-awesome/css/font-awesome.min.css');
 require('../scss/style.scss');
